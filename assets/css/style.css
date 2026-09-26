@@ -1190,30 +1190,37 @@ a:hover {
   transition:
     border-color var(--transition),
     box-shadow var(--transition),
+    background-color var(--transition),
     transform var(--transition);
 }
 
 .article-item::before {
   content: "";
   position: absolute;
-  top: 0;
-  inset-inline: 0;
-  height: 3px;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 3px;
   background: var(--primary);
-  transform: scaleX(0.22);
-  transform-origin: right center;
+  transform: scaleY(0.28);
+  transform-origin: top center;
   transition: transform var(--transition);
 }
 
 .article-item:hover {
-  border-color: rgba(9, 112, 125, 0.28);
+  border-color: rgba(9, 112, 125, 0.22);
+  background: var(--primary-soft);
   box-shadow: var(--shadow-md);
   color: inherit;
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
 .article-item:hover::before {
-  transform: scaleX(1);
+  transform: scaleY(1);
+}
+
+.article-item:focus-visible {
+  border-color: rgba(9, 112, 125, 0.35);
+  background: var(--primary-soft);
 }
 
 .article-item__head {
@@ -1235,6 +1242,14 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--primary-dark);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+.article-item:hover .article-item__meta {
+  background: var(--primary);
+  color: var(--white);
 }
 
 .article-item__index {
@@ -1242,6 +1257,13 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--primary);
+  opacity: 0.55;
+  transition: opacity var(--transition), color var(--transition);
+}
+
+.article-item:hover .article-item__index {
+  opacity: 1;
+  color: var(--primary-dark);
 }
 
 .article-item__title {
@@ -1269,6 +1291,17 @@ a:hover {
   margin-top: auto;
   padding-top: 0.95rem;
   border-top: 1px solid var(--border);
+  transition: border-color var(--transition), gap 240ms ease;
+}
+
+.article-item:hover .article-item__more {
+  border-top-color: rgba(9, 112, 125, 0.22);
+  color: var(--primary);
+  gap: 0.65rem;
+}
+
+.article-item:hover .article-item__more::after {
+  transform: translateX(-3px);
 }
 
 .articles-footer {
@@ -1600,6 +1633,7 @@ a:hover {
   .intro-media:hover img,
   .service-card:hover,
   .article-item:hover,
+  .article-item:hover .article-item__more::after,
   .trust-item:hover {
     transform: none;
     animation: none;
