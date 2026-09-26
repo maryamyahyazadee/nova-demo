@@ -537,7 +537,7 @@ a:hover {
   padding: 0;
 }
 
-.mobile-nav a {
+.mobile-nav ul a {
   display: block;
   padding: 0.7rem 0;
   color: var(--secondary);
@@ -560,6 +560,32 @@ a:hover {
   color: var(--primary);
   font-weight: 700;
   font-size: 1rem;
+}
+
+.mobile-nav .header-cta,
+.mobile-nav .header-cta--full {
+  display: inline-flex;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 0.15rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  border: 0;
+  background: linear-gradient(135deg, #0a8a9a 0%, #09707d 55%, #065a64 100%);
+  color: var(--white);
+  font-size: 0.94rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(9, 112, 125, 0.18);
+}
+
+.mobile-nav .header-cta:hover,
+.mobile-nav .header-cta:focus-visible,
+.mobile-nav .header-cta--full:hover,
+.mobile-nav .header-cta--full:focus-visible {
+  background: linear-gradient(135deg, #09707d 0%, #065a64 100%);
+  color: var(--white);
+  border-color: transparent;
 }
 
 @media (min-width: 1200px) {
