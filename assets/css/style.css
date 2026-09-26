@@ -607,9 +607,9 @@ a:hover {
   position: relative;
   display: grid;
   align-items: stretch;
-  min-height: clamp(32rem, 78vh, 42rem);
+  min-height: clamp(30rem, 72vh, 40rem);
   overflow: hidden;
-  background: linear-gradient(145deg, #0a6b76 0%, #09707d 45%, #0c8b9a 100%);
+  background-color: var(--primary);
   color: var(--white);
   isolation: isolate;
 }
@@ -619,40 +619,23 @@ a:hover {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-}
-
-.hero-visual__glow {
-  display: none;
+  background-color: var(--primary);
 }
 
 .hero-visual img {
   position: absolute;
   inset-block: 0;
   inset-inline-end: 0;
-  width: min(62%, 820px);
+  width: min(58%, 760px);
   height: 100%;
   object-fit: cover;
-  object-position: 62% 18%;
-  transform: scale(1.02);
-  animation: heroBgSettle 1.2s ease forwards;
-  mask-image: linear-gradient(to right, #000 55%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 100%);
+  object-position: 60% 18%;
+  opacity: 0.92;
+  mask-image: linear-gradient(to right, #000 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, #000 40%, transparent 100%);
 }
 
-.hero-visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    to left,
-    rgba(9, 112, 125, 0.28) 0%,
-    rgba(9, 112, 125, 0.1) 50%,
-    transparent 78%
-  );
-}
-
+.hero-visual::before,
 .hero-visual::after {
   display: none;
 }
@@ -663,19 +646,19 @@ a:hover {
   display: flex;
   align-items: center;
   width: 100%;
-  padding-block: 7rem 3.5rem;
+  padding-block: 7rem 3.25rem;
 }
 
 .hero-panel {
   max-width: 34rem;
-  padding: 1.75rem 0;
+  padding: 1.5rem 0;
 }
 
 .hero-brand-name {
   position: relative;
-  margin: 0 0 1rem;
-  padding-inline-start: 1rem;
-  font-size: clamp(2.6rem, 6vw, 4rem);
+  margin: 0 0 0.9rem;
+  padding-inline-start: 0.95rem;
+  font-size: clamp(2.5rem, 5.5vw, 3.75rem);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -686,27 +669,27 @@ a:hover {
   content: "";
   position: absolute;
   inset-inline-start: 0;
-  top: 0.18em;
-  bottom: 0.18em;
+  top: 0.2em;
+  bottom: 0.2em;
   width: 3px;
   border-radius: 2px;
-  background: linear-gradient(180deg, #c4a35a 0%, var(--primary-light) 100%);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .hero-title {
-  margin: 0 0 0.9rem;
-  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
   font-weight: 500;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .hero-text {
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.6rem;
   max-width: 28rem;
   font-size: 1rem;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .hero-actions {
@@ -714,7 +697,7 @@ a:hover {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.85rem;
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.25rem;
 }
 
 .hero-btn {
@@ -743,26 +726,26 @@ a:hover {
 }
 
 .hero-btn--primary .hero-btn__icon {
-  background: linear-gradient(135deg, #0a8a9a 0%, #065a64 100%);
+  background: var(--primary);
   color: var(--white);
 }
 
 .hero-btn--primary:hover .hero-btn__icon,
 .hero-btn--primary:focus-visible .hero-btn__icon {
   transform: translateX(-3px);
+  background: var(--primary-dark);
 }
 
 .hero-btn--secondary {
-  --btn-bg: rgba(255, 255, 255, 0.1);
-  --btn-bg-hover: rgba(255, 255, 255, 0.18);
+  --btn-bg: transparent;
+  --btn-bg-hover: rgba(255, 255, 255, 0.12);
   --btn-color: var(--white);
-  --btn-border: rgba(255, 255, 255, 0.38);
+  --btn-border: rgba(255, 255, 255, 0.4);
   --btn-shadow: none;
   --btn-shadow-hover: none;
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   color: var(--white);
-  border-color: rgba(255, 255, 255, 0.38);
-  backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .hero-btn--secondary .hero-btn__icon--start {
@@ -779,37 +762,27 @@ a:hover {
   margin: 0;
   font-size: 0.85rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.58);
-  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .hero-reveal {
   opacity: 0;
-  transform: translateY(14px);
-  animation: heroFadeUp 650ms ease forwards;
+  transform: translateY(12px);
+  animation: heroFadeUp 600ms ease forwards;
 }
 
 .hero-reveal--delay {
-  animation-delay: 120ms;
+  animation-delay: 100ms;
 }
 
 .hero-reveal--delay-2 {
-  animation-delay: 240ms;
+  animation-delay: 200ms;
 }
 
 @keyframes heroFadeUp {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes heroBgSettle {
-  from {
-    transform: scale(1.08);
-  }
-  to {
-    transform: scale(1.04);
   }
 }
 

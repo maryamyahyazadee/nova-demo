@@ -69,18 +69,13 @@
     width: 100%;
     inset-inline: 0;
     object-position: 70% 15%;
-    opacity: 0.7;
-    mask-image: linear-gradient(to top, transparent 0%, #000 60%);
-    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 60%);
+    opacity: 0.35;
+    mask-image: linear-gradient(to top, transparent 0%, #000 70%);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 70%);
   }
 
   .hero-visual::before {
-    background: linear-gradient(
-      to top,
-      rgba(9, 112, 125, 0.35) 0%,
-      rgba(9, 112, 125, 0.08) 70%,
-      transparent 100%
-    );
+    display: none;
   }
 
   .intro-media {
