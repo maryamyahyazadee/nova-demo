@@ -1017,30 +1017,64 @@ a:hover {
   position: relative;
 }
 
-.journey-step {
-  position: relative;
-  padding: 1.5rem 1.25rem;
-  border-radius: var(--radius-md);
-  background: var(--surface);
+.journey-steps::before {
+  content: "";
+  position: absolute;
+  top: 2.125rem;
+  inset-inline: 0;
+  height: 2px;
+  background: rgba(9, 112, 125, 0.22);
+  z-index: 0;
 }
 
-.journey-step::before {
-  display: none;
+.journey-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.journey-step:hover {
+  border-color: rgba(9, 112, 125, 0.28);
+  box-shadow: var(--shadow-md);
+}
+
+.journey-step__index {
+  display: flex;
+  align-items: center;
+  height: 4.25rem;
+  padding-inline: 1.15rem;
+  background: var(--primary-soft);
+  border-bottom: 1px solid rgba(9, 112, 125, 0.1);
 }
 
 .journey-step__num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  margin-bottom: 1rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 1.5px solid rgba(9, 112, 125, 0.25);
-  background: var(--white);
-  color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1rem;
+}
+
+.journey-step__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.15rem 1.15rem 1.3rem;
 }
 
 .journey-step__title {
