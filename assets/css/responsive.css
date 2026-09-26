@@ -1,0 +1,190 @@
+/* Nova Clinic — Responsive */
+
+@media (max-width: 1199.98px) {
+  .main-nav a {
+    padding-inline: 0.65rem;
+    font-size: 0.88rem;
+  }
+
+  .site-header__shell {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .desktop-nav,
+  .header-phone {
+    display: none;
+  }
+
+  .site-header__shell {
+    grid-template-columns: 1fr auto;
+    padding: 0.45rem 0.55rem 0.45rem 0.9rem;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .trust-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .doctor-feature {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .journey-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-section {
+    min-height: auto;
+  }
+
+  .hero-section__inner {
+    padding-block: 6.25rem 3rem;
+  }
+
+  .hero-panel {
+    max-width: none;
+    padding-block: 0.5rem;
+  }
+
+  .hero-visual img {
+    width: 100%;
+    inset-inline: 0;
+    object-position: 70% 15%;
+    opacity: 0.7;
+    mask-image: linear-gradient(to top, transparent 0%, #000 60%);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 60%);
+  }
+
+  .hero-visual::before {
+    background: linear-gradient(
+      to top,
+      rgba(9, 112, 125, 0.35) 0%,
+      rgba(9, 112, 125, 0.08) 70%,
+      transparent 100%
+    );
+  }
+}
+
+@media (max-width: 767.98px) {
+  .site-header {
+    padding-block: 0.85rem;
+  }
+
+  .site-header.is-scrolled {
+    padding-block: 0.5rem;
+  }
+
+  .site-logo img {
+    height: 40px;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-brand-name {
+    font-size: clamp(2.2rem, 10vw, 2.9rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-group .btn-primary-custom,
+  .btn-group .btn-secondary-custom,
+  .btn-group .btn-outline-custom,
+  .btn-group .btn-light-custom {
+    width: 100%;
+  }
+
+  .trust-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1rem;
+  }
+
+  .intro-media {
+    margin-bottom: 1.5rem;
+    aspect-ratio: 16 / 10;
+  }
+
+  .journey-steps {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .doctor-secondary {
+    grid-template-columns: 72px 1fr;
+  }
+
+  .doctor-secondary__photo {
+    width: 72px;
+    height: 72px;
+  }
+
+  .cta-contact {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .trust-list {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-item {
+    text-align: start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trust-item:last-child {
+    border-bottom: 0;
+  }
+
+  .trust-item__mark {
+    margin-inline: 0 0 0.6rem;
+  }
+
+  .service-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .testimonial-card {
+    padding: 1.35rem;
+  }
+}
