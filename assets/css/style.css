@@ -673,54 +673,88 @@ a:hover {
 /* ---------- Trust ---------- */
 
 .trust-section {
-  padding-block: 0;
+  position: relative;
+  z-index: 2;
+  padding-block: 0 1.5rem;
   background: var(--surface);
-  border-bottom: 1px solid var(--border);
 }
 
 .trust-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 0;
-  padding: 1.75rem 0;
+  gap: 0;
+  margin: -1.4rem 0 0;
+  padding: 0.55rem;
   list-style: none;
+  border: 1px solid rgba(9, 112, 125, 0.12);
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 38px rgba(26, 58, 63, 0.09);
 }
 
 .trust-item {
+  position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
-  padding: 1.35rem 1.25rem;
+  min-width: 0;
+  padding: 1.2rem 1.35rem;
   border: 0;
-  border-radius: var(--radius-md);
-  background: var(--white);
-  transition: transform var(--transition), background-color var(--transition);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  transition:
+    background-color var(--transition),
+    transform var(--transition);
 }
 
-.trust-item:first-child {
-  border-inline-start: 0;
+.trust-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  inset-block: 1rem;
+  inset-inline-end: 0;
+  width: 1px;
+  background: var(--border);
+  transition: background-color var(--transition);
 }
 
 .trust-item:hover {
+  z-index: 1;
   transform: translateY(-2px);
-  background: var(--white);
+  background: var(--primary-soft);
+}
+
+.trust-item:hover::after,
+.trust-item:has(+ .trust-item:hover)::after {
+  background: transparent;
 }
 
 .trust-item__icon {
+  position: relative;
   flex-shrink: 0;
   display: inline-grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(9, 112, 125, 0.12);
+  border-radius: 15px;
   background: var(--primary-soft);
   color: var(--primary);
+  box-shadow: 0 6px 16px rgba(9, 112, 125, 0.08);
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.trust-item:hover .trust-item__icon {
+  background: var(--primary);
+  color: var(--white);
+  transform: rotate(-3deg) scale(1.04);
 }
 
 .trust-item__icon svg {
-  width: 22px;
-  height: 22px;
+  width: 23px;
+  height: 23px;
 }
 
 .trust-item__body {
@@ -729,10 +763,15 @@ a:hover {
 
 .trust-item__label {
   display: block;
-  margin-bottom: 0.3rem;
-  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  font-size: 1.02rem;
   font-weight: 700;
   color: var(--secondary);
+  transition: color var(--transition);
+}
+
+.trust-item:hover .trust-item__label {
+  color: var(--primary-dark);
 }
 
 .trust-item__hint {
@@ -1634,7 +1673,8 @@ a:hover {
   .service-card:hover,
   .article-item:hover,
   .article-item:hover .article-item__more::after,
-  .trust-item:hover {
+  .trust-item:hover,
+  .trust-item:hover .trust-item__icon {
     transform: none;
     animation: none;
   }
