@@ -941,26 +941,64 @@ a:hover {
 /* ---------- Doctors ---------- */
 
 .doctors-section {
+  position: relative;
+  overflow: hidden;
   padding-block: var(--section-space);
-  background: var(--surface);
+  background:
+    radial-gradient(circle at 8% 18%, rgba(9, 112, 125, 0.07), transparent 25rem),
+    var(--surface);
+}
+
+.doctors-section::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 5rem;
+  inset-inline-end: -5rem;
+  width: 13rem;
+  height: 13rem;
+  border: 1px solid rgba(9, 112, 125, 0.09);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2.5rem rgba(9, 112, 125, 0.025),
+    0 0 0 5rem rgba(9, 112, 125, 0.018);
+  pointer-events: none;
+}
+
+.doctors-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .doctor-feature {
+  position: relative;
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 2.75rem;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  padding: 1.25rem;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  gap: 0;
+  align-items: stretch;
+  margin-bottom: 1rem;
+  padding: 0;
+  border: 1px solid rgba(9, 112, 125, 0.14);
   border-radius: calc(var(--radius-lg) + 4px);
   background: var(--white);
+  box-shadow: 0 16px 42px rgba(26, 58, 63, 0.08);
+  overflow: hidden;
 }
 
 .doctor-feature__media {
-  border-radius: var(--radius-lg);
+  position: relative;
   overflow: hidden;
-  aspect-ratio: 5 / 4;
+  min-height: 29rem;
   background: var(--secondary);
+}
+
+.doctor-feature__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(6, 90, 100, 0.2), transparent 45%),
+    linear-gradient(to left, transparent 75%, rgba(255, 255, 255, 0.12));
+  pointer-events: none;
 }
 
 .doctor-feature__media img {
@@ -968,25 +1006,55 @@ a:hover {
   height: 100%;
   object-fit: cover;
   object-position: center 15%;
+  transition: transform 600ms ease;
+}
+
+.doctor-feature:hover .doctor-feature__media img {
+  transform: scale(1.025);
 }
 
 .doctor-feature__content {
-  padding-inline-end: 0.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 4vw, 3.5rem);
+}
+
+.doctor-feature__content::before {
+  content: "";
+  position: absolute;
+  inset-block: clamp(2rem, 4vw, 3.5rem);
+  inset-inline-start: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--primary);
 }
 
 .doctor-feature__role {
-  display: inline-block;
-  margin-bottom: 0.65rem;
-  padding: 0.3rem 0.7rem;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+  padding: 0.35rem 0.8rem;
   border-radius: 999px;
-  background: var(--primary-soft);
+  background: var(--primary);
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--primary-dark);
+  color: var(--white);
+}
+
+.doctor-feature__role::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .doctor-feature__name {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.45rem;
   font-size: clamp(1.6rem, 2.5vw, 2.1rem);
   font-weight: 700;
   color: var(--secondary);
@@ -994,13 +1062,14 @@ a:hover {
 }
 
 .doctor-feature__title {
-  margin: 0 0 1rem;
-  color: var(--text-muted);
+  margin: 0 0 1.15rem;
+  color: var(--primary-dark);
   font-size: 0.98rem;
+  font-weight: 600;
 }
 
 .doctor-feature__bio {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.35rem;
   color: var(--text);
   line-height: 1.8;
 }
@@ -1018,7 +1087,8 @@ a:hover {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--primary-dark);
-  padding: 0.4rem 0.75rem;
+  padding: 0.42rem 0.75rem;
+  border: 1px solid rgba(9, 112, 125, 0.1);
   border-radius: 999px;
   background: var(--primary-soft);
 }
@@ -1028,27 +1098,59 @@ a:hover {
 }
 
 .doctor-secondary {
+  position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 1.25rem;
+  gap: 1.15rem;
   align-items: center;
-  padding: 1rem 1.25rem;
-  border: 0;
-  border-radius: var(--radius-md);
-  background: var(--white);
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(9, 112, 125, 0.13);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.doctor-secondary::after {
+  content: "";
+  position: absolute;
+  inset-block: 1rem;
+  inset-inline-start: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--primary);
+  transform: scaleY(0.45);
+  transition: transform var(--transition);
+}
+
+.doctor-secondary:hover {
+  border-color: rgba(9, 112, 125, 0.25);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.doctor-secondary:hover::after {
+  transform: scaleY(1);
 }
 
 .doctor-secondary__photo {
-  width: 72px;
-  height: 72px;
+  width: 78px;
+  height: 78px;
+  padding: 3px;
+  border: 1px solid rgba(9, 112, 125, 0.18);
   border-radius: 50%;
   overflow: hidden;
-  background: var(--primary-soft);
+  background: var(--white);
 }
 
 .doctor-secondary__photo img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   object-fit: cover;
 }
 
@@ -1057,6 +1159,11 @@ a:hover {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--secondary);
+  transition: color var(--transition);
+}
+
+.doctor-secondary:hover .doctor-secondary__name {
+  color: var(--primary-dark);
 }
 
 .doctor-secondary__title {
@@ -1163,13 +1270,48 @@ a:hover {
   background: var(--surface);
 }
 
+.testimonials-slider {
+  position: relative;
+}
+
+.testimonials-slider__viewport {
+  overflow-x: auto;
+  padding: 0.35rem 0.25rem 1.25rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+
+.testimonials-slider__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials-slider__viewport:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
+}
+
+.testimonials-slider__track {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.testimonial-slide {
+  flex: 0 0 calc(50% - 0.625rem);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
 .testimonial-card {
   position: relative;
   height: 100%;
   padding: 1.75rem 1.5rem 1.5rem;
   background: var(--white);
-  border-radius: var(--radius-md);
-  border: 0;
+  border: 1px solid rgba(9, 112, 125, 0.11);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .testimonial-card__mark {
@@ -1199,6 +1341,53 @@ a:hover {
   margin: 0.15rem 0 0;
   font-size: var(--fs-small);
   color: var(--text-muted);
+}
+
+.testimonials-slider__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.testimonials-slider__button {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(9, 112, 125, 0.18);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--primary-dark);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.testimonials-slider__button:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.testimonials-slider__button:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.testimonials-slider__counter {
+  min-width: 3.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 /* ---------- Articles ---------- */
@@ -1669,12 +1858,19 @@ a:hover {
     transition: none;
   }
 
+  .testimonials-slider__viewport {
+    scroll-behavior: auto;
+  }
+
   .intro-media:hover img,
   .service-card:hover,
   .article-item:hover,
   .article-item:hover .article-item__more::after,
   .trust-item:hover,
-  .trust-item:hover .trust-item__icon {
+  .trust-item:hover .trust-item__icon,
+  .doctor-feature:hover .doctor-feature__media img,
+  .doctor-secondary:hover,
+  .testimonials-slider__button:hover {
     transform: none;
     animation: none;
   }

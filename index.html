@@ -361,8 +361,10 @@
           <p class="section-lead">تجربه واقعی بیماران از روند درمان و برخورد تیم کلینیک.</p>
         </div>
 
-        <div class="row g-3 g-lg-4">
-          <div class="col-md-4 reveal">
+        <div class="testimonials-slider reveal" data-testimonials-slider>
+          <div class="testimonials-slider__viewport" tabindex="0" aria-label="نظرات مراجعین">
+            <div class="testimonials-slider__track">
+          <div class="testimonial-slide">
             <blockquote class="testimonial-card">
               <span class="testimonial-card__mark" aria-hidden="true">”</span>
               <p class="testimonial-card__quote">
@@ -373,7 +375,7 @@
               </footer>
             </blockquote>
           </div>
-          <div class="col-md-4 reveal">
+          <div class="testimonial-slide">
             <blockquote class="testimonial-card">
               <span class="testimonial-card__mark" aria-hidden="true">”</span>
               <p class="testimonial-card__quote">
@@ -384,7 +386,7 @@
               </footer>
             </blockquote>
           </div>
-          <div class="col-md-4 reveal">
+          <div class="testimonial-slide">
             <blockquote class="testimonial-card">
               <span class="testimonial-card__mark" aria-hidden="true">”</span>
               <p class="testimonial-card__quote">
@@ -394,6 +396,17 @@
                 <p class="testimonial-card__author">زهرا کیانی</p>
               </footer>
             </blockquote>
+          </div>
+            </div>
+          </div>
+          <div class="testimonials-slider__controls">
+            <button class="testimonials-slider__button" type="button" data-testimonials-prev aria-label="نظر قبلی">
+              <span aria-hidden="true">→</span>
+            </button>
+            <span class="testimonials-slider__counter" data-testimonials-counter aria-live="polite">۱ / ۳</span>
+            <button class="testimonials-slider__button" type="button" data-testimonials-next aria-label="نظر بعدی">
+              <span aria-hidden="true">←</span>
+            </button>
           </div>
         </div>
       </div>
