@@ -135,19 +135,19 @@
 
   .footer-top {
     grid-template-columns: 1fr;
-    gap: 2.25rem;
+    gap: 1.35rem;
   }
 
   .footer-brand {
     padding-inline-end: 0;
-    padding-bottom: 2rem;
+    padding-bottom: 1.15rem;
     border-inline-end: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.13);
   }
 
   .footer-nav {
     grid-template-columns: 1fr 1fr;
-    gap: 1.75rem 1.25rem;
+    gap: 1.15rem 1rem;
   }
 
   .footer-col--contact {
