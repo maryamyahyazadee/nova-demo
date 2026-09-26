@@ -1931,6 +1931,17 @@ a:hover {
   color: var(--primary-dark);
 }
 
+.footer-credit {
+  margin: 1.15rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.02em;
+}
+
 /* ---------- Reveal on scroll ---------- */
 
 .reveal {
