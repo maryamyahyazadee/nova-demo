@@ -790,22 +790,28 @@ a:hover {
 
 .trust-section {
   padding-block: 0;
-  background: var(--white);
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
 }
 
 .trust-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   margin: 0;
-  padding: 0;
+  padding: 1.75rem 0;
   list-style: none;
 }
 
 .trust-item {
-  padding: 1.75rem 1.25rem;
-  border-inline-start: 1px solid var(--border);
-  transition: background-color var(--transition);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.35rem 1.25rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--white);
+  transition: transform var(--transition), background-color var(--transition);
 }
 
 .trust-item:first-child {
@@ -813,20 +819,33 @@ a:hover {
 }
 
 .trust-item:hover {
-  background: var(--surface);
+  transform: translateY(-2px);
+  background: var(--white);
 }
 
-.trust-item__index {
-  display: block;
-  margin-bottom: 0.85rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+.trust-item__icon {
+  flex-shrink: 0;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary-soft);
   color: var(--primary);
+}
+
+.trust-item__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.trust-item__body {
+  min-width: 0;
 }
 
 .trust-item__label {
   display: block;
+  margin-bottom: 0.3rem;
   font-size: 1rem;
   font-weight: 700;
   color: var(--secondary);
@@ -834,10 +853,9 @@ a:hover {
 
 .trust-item__hint {
   display: block;
-  margin-top: 0.35rem;
-  font-size: var(--fs-small);
+  font-size: 0.88rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* ---------- Intro ---------- */
@@ -1593,6 +1611,7 @@ a:hover {
 
   .intro-media:hover img,
   .service-card:hover,
+  .trust-item:hover,
   .hero-visual img {
     transform: none;
     animation: none;
