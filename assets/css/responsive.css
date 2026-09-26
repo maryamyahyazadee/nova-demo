@@ -193,6 +193,10 @@
     max-width: none;
   }
 
+  .intro-heading__line {
+    display: inline;
+  }
+
   .footer-nav {
     grid-template-columns: 1fr 1fr;
     gap: 1.75rem 1.25rem;

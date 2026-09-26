@@ -770,7 +770,11 @@ a:hover {
 
 .intro-content .section-heading {
   margin-bottom: 1.1rem;
-  max-width: 16ch;
+  max-width: none;
+}
+
+.intro-heading__line {
+  display: block;
 }
 
 .intro-content p {
