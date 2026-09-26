@@ -718,8 +718,24 @@ a:hover {
 .trust-section {
   position: relative;
   z-index: 2;
-  padding-block: 0 1.5rem;
+  padding-block: 0 2rem;
   background: var(--surface);
+}
+
+.trust-section::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(9, 112, 125, 0.16) 18%,
+    rgba(9, 112, 125, 0.16) 82%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .trust-list {
@@ -828,7 +844,7 @@ a:hover {
 
 .intro-section {
   padding-block: var(--section-space);
-  background: var(--surface);
+  background: var(--white);
 }
 
 .intro-media {
@@ -874,7 +890,7 @@ a:hover {
 
 .services-section {
   padding-block: var(--section-space);
-  background: var(--white);
+  background: var(--surface);
 }
 
 .service-card {
@@ -987,9 +1003,7 @@ a:hover {
   position: relative;
   overflow: hidden;
   padding-block: var(--section-space);
-  background:
-    radial-gradient(circle at 8% 18%, rgba(9, 112, 125, 0.07), transparent 25rem),
-    var(--surface);
+  background: var(--white);
 }
 
 .doctors-section::before {
@@ -1219,7 +1233,7 @@ a:hover {
 
 .journey-section {
   padding-block: var(--section-space);
-  background: var(--white);
+  background: var(--surface);
 }
 
 .journey-steps {
@@ -1310,7 +1324,7 @@ a:hover {
 
 .testimonials-section {
   padding-block: var(--section-space);
-  background: var(--surface);
+  background: var(--white);
 }
 
 .testimonials-slider {
@@ -1437,7 +1451,7 @@ a:hover {
 
 .articles-section {
   padding-block: var(--section-space);
-  background: var(--white);
+  background: var(--surface);
 }
 
 .articles-grid {
@@ -1584,7 +1598,7 @@ a:hover {
 
 .faq-section {
   padding-block: var(--section-space);
-  background: var(--surface);
+  background: var(--white);
 }
 
 .faq-list {
@@ -1596,9 +1610,10 @@ a:hover {
 }
 
 .faq-item {
-  border: 0;
+  border: 1px solid rgba(9, 112, 125, 0.1);
   border-radius: var(--radius-md);
-  background: var(--white);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 
@@ -1655,7 +1670,7 @@ a:hover {
 
 .cta-section {
   padding-block: clamp(2.25rem, 4vw, 3.5rem);
-  background: var(--white);
+  background: var(--surface);
   color: var(--white);
 }
 
