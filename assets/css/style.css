@@ -588,8 +588,14 @@ a:hover {
   border-color: transparent;
 }
 
+@media (min-width: 992px) {
+  .header-phone--mobile {
+    display: none;
+  }
+}
+
 @media (min-width: 1200px) {
-  .header-phone {
+  .header-phone:not(.header-phone--mobile) {
     display: inline-flex;
   }
 }
