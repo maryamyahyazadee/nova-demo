@@ -216,6 +216,13 @@
     gap: 2.25rem;
   }
 
+  .footer-brand {
+    padding-inline-end: 0;
+    padding-bottom: 2rem;
+    border-inline-end: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+  }
+
   .footer-nav {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
