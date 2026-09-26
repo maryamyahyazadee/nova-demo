@@ -1176,38 +1176,80 @@ a:hover {
 }
 
 .article-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 1.5rem;
-  border: 0;
-  border-radius: var(--radius-md);
-  background: var(--surface);
+  padding: 1.35rem 1.35rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
   color: inherit;
-  transition: background-color var(--transition), transform var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.article-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: 3px;
+  background: var(--primary);
+  transform: scaleX(0.22);
+  transform-origin: right center;
+  transition: transform var(--transition);
 }
 
 .article-item:hover {
-  background: #eef7f8;
+  border-color: rgba(9, 112, 125, 0.28);
+  box-shadow: var(--shadow-md);
   color: inherit;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+
+.article-item:hover::before {
+  transform: scaleX(1);
+}
+
+.article-item__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.05rem;
 }
 
 .article-item__meta {
-  display: block;
-  margin-bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.85rem;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  background: var(--primary-soft);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
+  color: var(--primary-dark);
+}
+
+.article-item__index {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--primary);
 }
 
 .article-item__title {
-  margin: 0 0 0.65rem;
-  font-size: 1.1rem;
+  margin: 0 0 0.7rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--secondary);
-  line-height: 1.55;
+  line-height: 1.6;
   transition: color var(--transition);
 }
 
@@ -1216,7 +1258,7 @@ a:hover {
 }
 
 .article-item__excerpt {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.15rem;
   font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.75;
@@ -1225,6 +1267,8 @@ a:hover {
 
 .article-item__more {
   margin-top: auto;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--border);
 }
 
 .articles-footer {
@@ -1555,6 +1599,7 @@ a:hover {
 
   .intro-media:hover img,
   .service-card:hover,
+  .article-item:hover,
   .trust-item:hover {
     transform: none;
     animation: none;

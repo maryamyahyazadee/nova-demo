@@ -53,7 +53,7 @@
   }
 
   .articles-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .hero-section {
@@ -152,6 +152,10 @@
 
   .trust-item:first-child {
     border-top: 0;
+  }
+
+  .articles-grid {
+    grid-template-columns: 1fr;
   }
 
   .journey-steps {
