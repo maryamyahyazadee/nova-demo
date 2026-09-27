@@ -38,8 +38,26 @@
   }
 
   function onScroll() {
-    if (!header) return;
-    header.classList.toggle("is-scrolled", window.scrollY > 24);
+    if (header) {
+      header.classList.toggle("is-scrolled", window.scrollY > 24);
+    }
+
+    var floatCall = document.querySelector("[data-float-call]");
+    if (!floatCall) return;
+
+    var show = window.scrollY > 280;
+    var footer = document.querySelector(".site-footer");
+
+    if (show && footer) {
+      var footerTop = footer.getBoundingClientRect().top;
+      if (footerTop < window.innerHeight - 24) {
+        show = false;
+      }
+    }
+
+    floatCall.classList.toggle("is-visible", show);
+    floatCall.setAttribute("aria-hidden", show ? "false" : "true");
+    floatCall.tabIndex = show ? 0 : -1;
   }
 
   if (navToggle && mobileNav) {

@@ -2557,6 +2557,91 @@ body.nav-open {
   color: rgba(255, 255, 255, 0.9);
 }
 
+/* ---------- Floating call sidebar ---------- */
+
+.float-call {
+  position: fixed;
+  bottom: 5.5rem;
+  inset-inline-start: 0;
+  z-index: 1040;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 2.85rem;
+  min-height: 7.5rem;
+  margin: 0;
+  padding: 1rem 0.45rem;
+  border: 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(9, 112, 125, 0.28);
+  text-decoration: none;
+  transform: translateX(-120%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 320ms ease,
+    opacity 320ms ease,
+    visibility 320ms ease,
+    background-color var(--transition),
+    box-shadow var(--transition);
+}
+
+[dir="rtl"] .float-call {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  transform: translateX(120%);
+}
+
+.float-call.is-visible {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.float-call:hover,
+.float-call:focus-visible {
+  background: var(--primary-dark);
+  color: var(--white);
+  box-shadow: 0 10px 28px rgba(9, 112, 125, 0.36);
+}
+
+.float-call__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.float-call__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.float-call__text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+}
+
+body.nav-open .float-call,
+body.booking-open .float-call {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* ---------- Reveal on scroll ---------- */
 
 .reveal {
