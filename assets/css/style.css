@@ -1557,20 +1557,6 @@ a:hover {
   color: var(--white);
 }
 
-.article-item__index {
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--primary);
-  opacity: 0.55;
-  transition: opacity var(--transition), color var(--transition);
-}
-
-.article-item:hover .article-item__index {
-  opacity: 1;
-  color: var(--primary-dark);
-}
-
 .article-item__title {
   margin: 0 0 0.7rem;
   font-size: 1.15rem;
