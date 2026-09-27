@@ -280,45 +280,114 @@
           </p>
         </div>
 
-        <div class="doctor-feature reveal">
-          <div class="doctor-feature__media">
-            <img
-              src="assets/images/doctors/dr-hamedani.webp"
-              width="1200"
-              height="675"
-              alt="دکتر کاوه همدانی، فلوشیپ جراحی غدد درون‌ریز"
-              loading="lazy"
-            >
-          </div>
-          <div class="doctor-feature__content">
-            <span class="doctor-feature__role">مدیر نووا کلینیک</span>
-            <h3 class="doctor-feature__name">دکتر کاوه همدانی</h3>
-            <p class="doctor-feature__title">متخصص جراحی عمومی | فلوشیپ جراحی غدد درون‌ریز</p>
-            <p class="doctor-feature__bio">
-              نخستین جراح ایرانی معرفی‌کننده و اجراکننده تکنیک TOETVA (جراحی تیروئید از راه دهان بدون برش روی گردن). تمرکز ایشان بر ارزیابی دقیق بیمار و انتخاب روش جراحی متناسب با شرایط هر فرد است.
-            </p>
-            <ul class="doctor-meta">
-              <li>نظام پزشکی: ۱۱۰۶۱۴</li>
-              <li>فلوشیپ دانشگاه علوم پزشکی تهران</li>
-              <li>مجوز رسمی DHA</li>
-            </ul>
-            <a class="btn-primary-custom" href="pages/doctors.html">مشاهده پروفایل پزشک</a>
-          </div>
+        <div class="doctor-picker reveal" role="tablist" aria-label="انتخاب پزشک">
+          <button
+            class="doctor-picker__btn is-active"
+            type="button"
+            role="tab"
+            id="tab-hamedani"
+            aria-selected="true"
+            aria-controls="panel-hamedani"
+            data-doctor-tab="hamedani"
+          >
+            <span class="doctor-picker__avatar">
+              <img
+                src="assets/images/doctors/dr-hamedani-portrait.webp"
+                width="72"
+                height="72"
+                alt=""
+                loading="lazy"
+              >
+            </span>
+            <span class="doctor-picker__name">دکتر کاوه همدانی</span>
+          </button>
+          <button
+            class="doctor-picker__btn"
+            type="button"
+            role="tab"
+            id="tab-takyar"
+            aria-selected="false"
+            aria-controls="panel-takyar"
+            data-doctor-tab="takyar"
+            tabindex="-1"
+          >
+            <span class="doctor-picker__avatar">
+              <img
+                src="assets/images/doctors/dr-takyar.jpeg"
+                width="72"
+                height="72"
+                alt=""
+                loading="lazy"
+              >
+            </span>
+            <span class="doctor-picker__name">دکتر میرعلیرضا تکیار</span>
+          </button>
         </div>
 
-        <div class="doctor-secondary reveal">
-          <div class="doctor-secondary__photo">
-            <img
-              src="assets/images/doctors/dr-takyar.jpeg"
-              width="176"
-              height="176"
-              alt="دکتر میرعلیرضا تکیار"
-              loading="lazy"
-            >
+        <div class="doctor-panels">
+          <div
+            class="doctor-feature reveal is-active"
+            role="tabpanel"
+            id="panel-hamedani"
+            aria-labelledby="tab-hamedani"
+            data-doctor-panel="hamedani"
+          >
+            <div class="doctor-feature__media">
+              <img
+                src="assets/images/doctors/dr-hamedani.webp"
+                width="1200"
+                height="675"
+                alt="دکتر کاوه همدانی، فلوشیپ جراحی غدد درون‌ریز"
+                loading="lazy"
+              >
+            </div>
+            <div class="doctor-feature__content">
+              <span class="doctor-feature__role">مدیر نووا کلینیک</span>
+              <h3 class="doctor-feature__name">دکتر کاوه همدانی</h3>
+              <p class="doctor-feature__title">متخصص جراحی عمومی | فلوشیپ جراحی غدد درون‌ریز</p>
+              <p class="doctor-feature__bio">
+                نخستین جراح ایرانی معرفی‌کننده و اجراکننده تکنیک TOETVA (جراحی تیروئید از راه دهان بدون برش روی گردن). تمرکز ایشان بر ارزیابی دقیق بیمار و انتخاب روش جراحی متناسب با شرایط هر فرد است.
+              </p>
+              <ul class="doctor-meta">
+                <li>نظام پزشکی: ۱۱۰۶۱۴</li>
+                <li>فلوشیپ دانشگاه علوم پزشکی تهران</li>
+                <li>مجوز رسمی DHA</li>
+              </ul>
+              <a class="btn-primary-custom" href="https://nova-clinic.org/doctors/kaveh-hamedani/" target="_blank" rel="noopener noreferrer">مشاهده پروفایل پزشک</a>
+            </div>
           </div>
-          <div>
-            <h3 class="doctor-secondary__name">دکتر میرعلیرضا تکیار</h3>
-            <p class="doctor-secondary__title">متخصص بیماری‌های داخلی | پزشک و پژوهشگر حوزه غدد درون‌ریز و متابولیسم</p>
+
+          <div
+            class="doctor-feature"
+            role="tabpanel"
+            id="panel-takyar"
+            aria-labelledby="tab-takyar"
+            data-doctor-panel="takyar"
+            hidden
+          >
+            <div class="doctor-feature__media">
+              <img
+                src="assets/images/doctors/dr-takyar.jpeg"
+                width="436"
+                height="351"
+                alt="دکتر میرعلیرضا تکیار، متخصص بیماری‌های داخلی"
+                loading="lazy"
+              >
+            </div>
+            <div class="doctor-feature__content">
+              <span class="doctor-feature__role">پزشک‌پژوهشگر</span>
+              <h3 class="doctor-feature__name">دکتر میرعلیرضا تکیار</h3>
+              <p class="doctor-feature__title">متخصص بیماری‌های داخلی | پزشک و پژوهشگر حوزه غدد درون‌ریز و متابولیسم</p>
+              <p class="doctor-feature__bio">
+                پزشک متخصص بیماری‌های داخلی و پژوهشگر حوزه غدد درون‌ریز و متابولیسم. فعالیت‌های علمی ایشان بر بررسی اختلالات غدد، بیماری‌های متابولیک و سازوکارهای مرتبط با استخوان و هورمون‌ها متمرکز است.
+              </p>
+              <ul class="doctor-meta">
+                <li>پسادکتری دانشگاه ییل</li>
+                <li>دکترای پژوهشی دانشگاه ملبورن</li>
+                <li>پژوهشکده علوم غدد شهید بهشتی</li>
+              </ul>
+              <a class="btn-primary-custom" href="https://nova-clinic.org/doctors/miralireza-takyar/" target="_blank" rel="noopener noreferrer">مشاهده پروفایل پزشک</a>
+            </div>
           </div>
         </div>
       </div>

@@ -79,6 +79,10 @@
     padding: 0;
   }
 
+  .doctor-feature.is-active {
+    display: grid;
+  }
+
   .doctor-feature__media {
     min-height: 0;
     aspect-ratio: 16 / 10;
@@ -435,25 +439,19 @@
     font-size: 1rem;
   }
 
-  .doctor-secondary {
-    grid-template-columns: 58px minmax(0, 1fr);
-    gap: 0.85rem;
-    padding: 0.85rem;
-    border-radius: 15px;
+  .doctor-picker {
+    gap: 0.7rem;
+    margin-bottom: 1.25rem;
   }
 
-  .doctor-secondary__photo {
-    width: 58px;
-    height: 58px;
+  .doctor-picker__avatar {
+    width: 3.85rem;
+    height: 3.85rem;
   }
 
-  .doctor-secondary__name {
-    font-size: 1rem;
-  }
-
-  .doctor-secondary__title {
-    font-size: 0.84rem;
-    line-height: 1.55;
+  .doctor-picker__name {
+    max-width: 6.5rem;
+    font-size: 0.72rem;
   }
 
   .doctor-feature__content {

@@ -179,6 +179,53 @@
     });
   }
 
+  var doctorPicker = document.querySelector(".doctor-picker");
+  if (doctorPicker) {
+    var doctorTabs = doctorPicker.querySelectorAll("[data-doctor-tab]");
+    var doctorPanels = document.querySelectorAll("[data-doctor-panel]");
+
+    function activateDoctor(id) {
+      doctorTabs.forEach(function (tab) {
+        var isActive = tab.getAttribute("data-doctor-tab") === id;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        tab.tabIndex = isActive ? 0 : -1;
+      });
+
+      doctorPanels.forEach(function (panel) {
+        var isActive = panel.getAttribute("data-doctor-panel") === id;
+        panel.classList.toggle("is-active", isActive);
+        panel.hidden = !isActive;
+        if (isActive) {
+          panel.classList.add("is-visible");
+        }
+      });
+    }
+
+    doctorTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        activateDoctor(tab.getAttribute("data-doctor-tab"));
+      });
+
+      tab.addEventListener("keydown", function (event) {
+        var tabs = Array.prototype.slice.call(doctorTabs);
+        var index = tabs.indexOf(tab);
+        var nextIndex = index;
+
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+          event.preventDefault();
+          if (event.key === "ArrowLeft") {
+            nextIndex = (index + 1) % tabs.length;
+          } else {
+            nextIndex = (index - 1 + tabs.length) % tabs.length;
+          }
+          tabs[nextIndex].focus();
+          activateDoctor(tabs[nextIndex].getAttribute("data-doctor-tab"));
+        }
+      });
+    });
+  }
+
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 })();
