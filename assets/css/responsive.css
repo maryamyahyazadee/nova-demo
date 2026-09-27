@@ -647,9 +647,20 @@
     font-size: 0.74rem;
   }
 
-  .testimonial-card,
-  .article-item {
+  .testimonial-card {
     padding: 1.2rem 1.05rem;
+  }
+
+  .article-item {
+    padding: 0;
+  }
+
+  .article-item__media {
+    border-radius: 16px 16px 0 0;
+  }
+
+  .article-item__body {
+    padding: 1.1rem 1.05rem 1.05rem;
   }
 
   .cta-panel {
