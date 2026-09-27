@@ -835,11 +835,8 @@ body.nav-open {
   position: absolute;
   inset: 0;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.85rem;
+  display: grid;
+  place-items: center;
   margin: 0;
   padding: 1rem;
   border: 0;
@@ -903,36 +900,6 @@ body.nav-open {
   width: 1.35rem;
   height: 1.35rem;
   margin-inline-start: 2px;
-}
-
-.hero-media__play-label {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--white);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  box-shadow: 0 8px 20px rgba(26, 58, 63, 0.18);
-  transition:
-    background-color var(--transition),
-    border-color var(--transition),
-    transform var(--transition);
-}
-
-.hero-media__play:hover .hero-media__play-label,
-.hero-media__play:focus-visible .hero-media__play-label {
-  background: rgba(255, 255, 255, 0.24);
-  border-color: rgba(255, 255, 255, 0.55);
-  transform: translateY(-1px);
 }
 
 @keyframes heroPlayPulse {

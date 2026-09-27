@@ -268,10 +268,6 @@
     border-radius: 18px;
   }
 
-  .hero-media__play {
-    gap: 0.7rem;
-  }
-
   .hero-media__play-ring {
     width: 76px;
     height: 76px;
@@ -285,12 +281,6 @@
   .hero-media__play-icon svg {
     width: 1.15rem;
     height: 1.15rem;
-  }
-
-  .hero-media__play-label {
-    font-size: 0.76rem;
-    min-height: 1.8rem;
-    padding: 0.28rem 0.75rem;
   }
 
   .hero-media::after {
