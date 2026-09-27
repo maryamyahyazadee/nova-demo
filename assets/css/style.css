@@ -582,6 +582,31 @@ a:hover {
   border-color: transparent;
 }
 
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1020;
+  background: rgba(6, 40, 45, 0.32);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 240ms ease,
+    visibility 240ms ease;
+}
+
+.nav-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
 @media (min-width: 992px) {
   .header-phone--mobile {
     display: none;

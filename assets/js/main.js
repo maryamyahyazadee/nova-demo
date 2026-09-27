@@ -4,9 +4,25 @@
   var header = document.querySelector(".site-header");
   var navToggle = document.querySelector(".nav-toggle");
   var mobileNav = document.querySelector(".mobile-nav");
+  var navBackdrop = document.querySelector(".nav-backdrop");
   var faqButtons = document.querySelectorAll(".faq-item__question");
   var revealItems = document.querySelectorAll(".reveal");
   var testimonialSliders = document.querySelectorAll("[data-testimonials-slider]");
+
+  function setMobileNavOpen(isOpen) {
+    if (!navToggle || !mobileNav) return;
+
+    mobileNav.classList.toggle("is-open", isOpen);
+    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    navToggle.setAttribute("aria-label", isOpen ? "بستن منو" : "باز کردن منو");
+    mobileNav.setAttribute("aria-hidden", isOpen ? "false" : "true");
+    document.body.classList.toggle("nav-open", isOpen);
+
+    if (navBackdrop) {
+      navBackdrop.classList.toggle("is-visible", isOpen);
+      navBackdrop.setAttribute("aria-hidden", isOpen ? "false" : "true");
+    }
+  }
 
   function onScroll() {
     if (!header) return;
@@ -15,16 +31,18 @@
 
   if (navToggle && mobileNav) {
     navToggle.addEventListener("click", function () {
-      var isOpen = mobileNav.classList.toggle("is-open");
-      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      mobileNav.setAttribute("aria-hidden", isOpen ? "false" : "true");
+      setMobileNavOpen(!mobileNav.classList.contains("is-open"));
     });
+
+    if (navBackdrop) {
+      navBackdrop.addEventListener("click", function () {
+        setMobileNavOpen(false);
+      });
+    }
 
     mobileNav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
-        mobileNav.classList.remove("is-open");
-        navToggle.setAttribute("aria-expanded", "false");
-        mobileNav.setAttribute("aria-hidden", "true");
+        setMobileNavOpen(false);
       });
     });
   }
