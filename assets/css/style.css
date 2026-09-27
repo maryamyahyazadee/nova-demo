@@ -954,7 +954,7 @@ body.nav-open {
 .intro-media {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 10;
   background: var(--secondary);
 }
 
@@ -962,7 +962,7 @@ body.nav-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center center;
   transition: transform 500ms ease;
 }
 
@@ -1165,9 +1165,15 @@ body.nav-open {
   margin-bottom: 1.25rem;
 }
 
+.doctor-panels {
+  position: relative;
+  display: grid;
+}
+
 .doctor-feature {
   position: relative;
-  display: none;
+  grid-area: 1 / 1;
+  display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   gap: 0;
   align-items: stretch;
@@ -1178,16 +1184,22 @@ body.nav-open {
   background: var(--white);
   box-shadow: 0 12px 32px rgba(26, 58, 63, 0.07);
   overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .doctor-feature.is-active {
-  display: grid;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 1;
 }
 
 .doctor-feature__media {
   position: relative;
   overflow: hidden;
-  min-height: 20rem;
+  min-height: 22rem;
+  height: 100%;
   background: var(--secondary);
 }
 
@@ -1222,6 +1234,8 @@ body.nav-open {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
+  min-height: 100%;
   padding: clamp(1.25rem, 2.5vw, 2rem);
 }
 
@@ -1277,6 +1291,16 @@ body.nav-open {
   color: var(--text);
   font-size: 0.92rem;
   line-height: 1.7;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  min-height: calc(1.7em * 4);
+}
+
+.doctor-feature__content > .btn-primary-custom {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .doctor-meta {
@@ -2201,6 +2225,16 @@ body.nav-open {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.02em;
+}
+
+.footer-credit a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-credit a:hover {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ---------- Reveal on scroll ---------- */

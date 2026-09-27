@@ -80,15 +80,19 @@
   }
 
   .doctor-feature.is-active {
-    display: grid;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .doctor-feature__media {
     min-height: 0;
+    height: auto;
     aspect-ratio: 16 / 9;
   }
 
   .doctor-feature__content {
+    height: auto;
+    min-height: 0;
     padding: 1.35rem 1.5rem;
   }
 
@@ -133,8 +137,8 @@
   }
 
   .intro-media {
-    aspect-ratio: 16 / 11;
-    max-width: 520px;
+    aspect-ratio: 16 / 10;
+    max-width: none;
   }
 
   .footer-top {
@@ -515,6 +519,8 @@
     font-size: 0.88rem;
     line-height: 1.65;
     margin-bottom: 0.75rem;
+    -webkit-line-clamp: 4;
+    min-height: calc(1.65em * 4);
   }
 
   .doctor-feature__content > .btn-primary-custom {

@@ -195,9 +195,11 @@
       doctorPanels.forEach(function (panel) {
         var isActive = panel.getAttribute("data-doctor-panel") === id;
         panel.classList.toggle("is-active", isActive);
-        panel.hidden = !isActive;
+        panel.setAttribute("aria-hidden", isActive ? "false" : "true");
         if (isActive) {
-          panel.classList.add("is-visible");
+          panel.removeAttribute("inert");
+        } else {
+          panel.setAttribute("inert", "");
         }
       });
     }

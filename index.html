@@ -404,13 +404,14 @@
           </button>
         </div>
 
-        <div class="doctor-panels">
+        <div class="doctor-panels reveal">
           <div
-            class="doctor-feature reveal is-active"
+            class="doctor-feature is-active"
             role="tabpanel"
             id="panel-hamedani"
             aria-labelledby="tab-hamedani"
             data-doctor-panel="hamedani"
+            aria-hidden="false"
           >
             <div class="doctor-feature__media">
               <img
@@ -473,7 +474,8 @@
             id="panel-takyar"
             aria-labelledby="tab-takyar"
             data-doctor-panel="takyar"
-            hidden
+            aria-hidden="true"
+            inert
           >
             <div class="doctor-feature__media">
               <img
@@ -1053,7 +1055,9 @@
         </div>
       </div>
 
-      <p class="footer-credit">درخشان با میرکا 💎</p>
+      <p class="footer-credit">
+        <a href="https://mirka.agency/" target="_blank" rel="noopener noreferrer">درخشان با میرکا 💎</a>
+      </p>
     </div>
   </footer>
 
