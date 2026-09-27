@@ -371,10 +371,23 @@
     var playButton = media.querySelector("[data-hero-video-play]");
     if (!video || !playButton) return;
 
+    var hasStarted = false;
+
     function setPlaying(isPlaying) {
       media.classList.toggle("is-playing", isPlaying);
       playButton.setAttribute("aria-hidden", isPlaying ? "true" : "false");
       playButton.tabIndex = isPlaying ? -1 : 0;
+    }
+
+    function enableControls() {
+      video.setAttribute("controls", "");
+    }
+
+    function resetToIdle() {
+      hasStarted = false;
+      setPlaying(false);
+      video.removeAttribute("controls");
+      video.currentTime = 0;
     }
 
     function playVideo() {
@@ -382,15 +395,17 @@
       if (playPromise && typeof playPromise.then === "function") {
         playPromise
           .then(function () {
+            hasStarted = true;
             setPlaying(true);
-            video.setAttribute("controls", "");
+            enableControls();
           })
           .catch(function () {
             setPlaying(false);
           });
       } else {
+        hasStarted = true;
         setPlaying(true);
-        video.setAttribute("controls", "");
+        enableControls();
       }
     }
 
@@ -399,20 +414,22 @@
     });
 
     video.addEventListener("play", function () {
+      hasStarted = true;
       setPlaying(true);
-      video.setAttribute("controls", "");
+      enableControls();
     });
 
     video.addEventListener("pause", function () {
       if (video.ended) return;
-      setPlaying(false);
-      video.removeAttribute("controls");
+      // Keep overlay hidden and controls visible so seeking stays usable.
+      if (hasStarted) {
+        setPlaying(true);
+        enableControls();
+      }
     });
 
     video.addEventListener("ended", function () {
-      setPlaying(false);
-      video.removeAttribute("controls");
-      video.currentTime = 0;
+      resetToIdle();
     });
   })();
 })();
