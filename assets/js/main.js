@@ -432,4 +432,151 @@
       resetToIdle();
     });
   })();
+
+  (function initBookingModal() {
+    var modal = document.getElementById("booking-modal");
+    if (!modal) return;
+
+    var dialog = modal.querySelector("[data-booking-dialog]");
+    var openButtons = document.querySelectorAll("[data-booking-open]");
+    var closeButtons = modal.querySelectorAll("[data-booking-close]");
+    var form = modal.querySelector("[data-booking-form]");
+    var success = modal.querySelector("[data-booking-success]");
+    var lastFocus = null;
+
+    function getFocusable() {
+      return Array.from(
+        dialog.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter(function (el) {
+        return !el.hasAttribute("hidden") && el.offsetParent !== null;
+      });
+    }
+
+    function openModal() {
+      lastFocus = document.activeElement;
+      setMobileNavOpen(false);
+      modal.hidden = false;
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("booking-open");
+
+      if (form) form.hidden = false;
+      if (success) success.hidden = true;
+
+      window.setTimeout(function () {
+        var firstInput = modal.querySelector("#booking-name");
+        if (firstInput) firstInput.focus();
+      }, 20);
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("booking-open");
+
+      if (form) {
+        form.hidden = false;
+        form.reset();
+        form.querySelectorAll(".booking-form__field.is-invalid").forEach(function (field) {
+          field.classList.remove("is-invalid");
+        });
+        form.querySelectorAll(".booking-form__error").forEach(function (error) {
+          error.hidden = true;
+        });
+      }
+      if (success) success.hidden = true;
+
+      if (lastFocus && typeof lastFocus.focus === "function") {
+        lastFocus.focus();
+      }
+    }
+
+    function isValidPhone(value) {
+      var digits = String(value).replace(/[^\d]/g, "");
+      return digits.length >= 10 && digits.length <= 12;
+    }
+
+    openButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        openModal();
+      });
+    });
+
+    closeButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        closeModal();
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (modal.hidden) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      var focusable = getFocusable();
+      if (!focusable.length) return;
+
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    if (form) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var nameInput = form.querySelector("#booking-name");
+        var phoneInput = form.querySelector("#booking-phone");
+        var nameField = nameInput ? nameInput.closest(".booking-form__field") : null;
+        var phoneField = phoneInput ? phoneInput.closest(".booking-form__field") : null;
+        var nameError = form.querySelector('[data-error-for="name"]');
+        var phoneError = form.querySelector('[data-error-for="phone"]');
+        var isValid = true;
+
+        if (nameField) nameField.classList.remove("is-invalid");
+        if (phoneField) phoneField.classList.remove("is-invalid");
+        if (nameError) nameError.hidden = true;
+        if (phoneError) phoneError.hidden = true;
+
+        if (!nameInput || !String(nameInput.value).trim()) {
+          isValid = false;
+          if (nameField) nameField.classList.add("is-invalid");
+          if (nameError) nameError.hidden = false;
+        }
+
+        if (!phoneInput || !isValidPhone(phoneInput.value)) {
+          isValid = false;
+          if (phoneField) phoneField.classList.add("is-invalid");
+          if (phoneError) phoneError.hidden = false;
+        }
+
+        if (!isValid) {
+          var firstInvalid = form.querySelector(".booking-form__field.is-invalid input");
+          if (firstInvalid) firstInvalid.focus();
+          return;
+        }
+
+        form.hidden = true;
+        if (success) {
+          success.hidden = false;
+          var closeBtn = success.querySelector("[data-booking-close]");
+          if (closeBtn) closeBtn.focus();
+        }
+      });
+    }
+  })();
 })();
