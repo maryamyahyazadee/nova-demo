@@ -665,14 +665,31 @@
   }
 
   .testimonial-card {
-    padding: 1.2rem 1.05rem;
+    padding: 1.2rem 1.05rem 1.05rem;
+  }
+
+  .testimonial-card::before {
+    top: 1.1rem;
+    bottom: 1.1rem;
+  }
+
+  .testimonial-card__header,
+  .testimonial-card__quote {
+    padding-inline-start: 0.4rem;
   }
 
   .testimonial-voice {
-    gap: 0.7rem;
+    margin-inline-start: 0.4rem;
+    padding: 0.45rem 0.55rem 0.45rem 0.45rem;
+    gap: 0.55rem;
   }
 
   .testimonial-voice__play {
+    width: 34px;
+    height: 34px;
+  }
+
+  .testimonial-card__avatar {
     width: 40px;
     height: 40px;
   }

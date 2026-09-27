@@ -196,7 +196,7 @@
         parts.progress.style.width = "0%";
       }
       if (parts.current) {
-        parts.current.textContent = formatVoiceTime(0);
+        parts.current.textContent = formatVoiceTime(parts.duration);
       }
     }
 
