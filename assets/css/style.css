@@ -1746,6 +1746,11 @@ body.nav-open {
   font-weight: 700;
 }
 
+.testimonial-card__avatar svg {
+  width: 24px;
+  height: 24px;
+}
+
 .testimonial-card__identity {
   min-width: 0;
 }
