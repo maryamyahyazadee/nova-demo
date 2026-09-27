@@ -1767,46 +1767,50 @@ body.nav-open {
 .testimonial-voice {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.7rem;
   margin-top: auto;
   margin-inline-start: 0.65rem;
-  padding: 0.55rem 0.7rem 0.55rem 0.55rem;
-  border-radius: 999px;
-  background: var(--primary-soft);
-  border: 1px solid rgba(9, 112, 125, 0.08);
+  padding: 0.85rem 0 0;
+  border-top: 1px solid rgba(9, 112, 125, 0.1);
+  background: transparent;
 }
 
 .testimonial-voice__play {
   flex-shrink: 0;
   display: inline-grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   padding: 0;
-  border: 0;
+  border: 1px solid rgba(9, 112, 125, 0.22);
   border-radius: 50%;
-  background: var(--primary);
-  color: var(--white);
+  background: transparent;
+  color: var(--primary);
   cursor: pointer;
   transition:
     background-color var(--transition),
-    transform var(--transition),
-    box-shadow var(--transition);
-  box-shadow: 0 4px 12px rgba(9, 112, 125, 0.18);
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+  box-shadow: none;
 }
 
 .testimonial-voice__play:hover {
-  background: var(--primary-dark);
-  transform: scale(1.04);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+  transform: none;
 }
 
 .testimonial-card.is-playing .testimonial-voice__play {
-  background: var(--primary-dark);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
 }
 
 .testimonial-voice__icon {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 0.85rem;
+  height: 0.85rem;
 }
 
 .testimonial-voice__icon--pause,
@@ -1822,69 +1826,12 @@ body.nav-open {
   flex: 1;
   min-width: 0;
   display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.testimonial-voice__waveform {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 22px;
-}
-
-.testimonial-voice__waveform span {
-  flex: 0 0 2px;
-  width: 2px;
-  border-radius: 99px;
-  background: rgba(9, 112, 125, 0.28);
-  transform-origin: center;
-}
-
-.testimonial-voice__waveform span:nth-child(14n + 1) { height: 28%; }
-.testimonial-voice__waveform span:nth-child(14n + 2) { height: 62%; }
-.testimonial-voice__waveform span:nth-child(14n + 3) { height: 44%; }
-.testimonial-voice__waveform span:nth-child(14n + 4) { height: 86%; }
-.testimonial-voice__waveform span:nth-child(14n + 5) { height: 36%; }
-.testimonial-voice__waveform span:nth-child(14n + 6) { height: 70%; }
-.testimonial-voice__waveform span:nth-child(14n + 7) { height: 24%; }
-.testimonial-voice__waveform span:nth-child(14n + 8) { height: 78%; }
-.testimonial-voice__waveform span:nth-child(14n + 9) { height: 50%; }
-.testimonial-voice__waveform span:nth-child(14n + 10) { height: 92%; }
-.testimonial-voice__waveform span:nth-child(14n + 11) { height: 40%; }
-.testimonial-voice__waveform span:nth-child(14n + 12) { height: 66%; }
-.testimonial-voice__waveform span:nth-child(14n + 13) { height: 32%; }
-.testimonial-voice__waveform span:nth-child(14n + 14) { height: 58%; }
-
-.testimonial-card.is-playing .testimonial-voice__waveform span {
-  background: var(--primary);
-  animation: voice-wave 1s ease-in-out infinite;
-}
-
-.testimonial-card.is-playing .testimonial-voice__waveform span:nth-child(2n) {
-  animation-delay: 120ms;
-}
-
-.testimonial-card.is-playing .testimonial-voice__waveform span:nth-child(3n) {
-  animation-delay: 240ms;
-}
-
-.testimonial-card.is-playing .testimonial-voice__waveform span:nth-child(5n) {
-  animation-delay: 360ms;
-}
-
-@keyframes voice-wave {
-  0%,
-  100% {
-    transform: scaleY(0.45);
-  }
-  50% {
-    transform: scaleY(1);
-  }
 }
 
 .testimonial-voice__progress {
+  position: relative;
+  width: 100%;
   height: 2px;
   border-radius: 99px;
   background: rgba(9, 112, 125, 0.12);
@@ -1900,14 +1847,19 @@ body.nav-open {
   transition: width 180ms linear;
 }
 
+.testimonial-card.is-playing .testimonial-voice__progress-bar {
+  box-shadow: 0 0 0 1px rgba(9, 112, 125, 0.08);
+}
+
 .testimonial-voice__time {
   flex-shrink: 0;
-  min-width: 2.4rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-  text-align: center;
+  min-width: 2.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: end;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
 }
 
 .visually-hidden {
@@ -2601,10 +2553,6 @@ body.nav-open {
 
   .testimonials-slider__viewport {
     scroll-behavior: auto;
-  }
-
-  .testimonial-card.is-playing .testimonial-voice__waveform span {
-    animation: none;
   }
 
   .intro-media:hover img,
