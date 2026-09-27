@@ -150,15 +150,33 @@
         </div>
 
         <div class="booking-form__field">
-          <label for="booking-service">موضوع مراجعه <span>(اختیاری)</span></label>
-          <select id="booking-service" name="service">
-            <option value="">انتخاب کنید</option>
-            <option value="thyroid">جراحی / مشاوره تیروئید</option>
-            <option value="parathyroid">جراحی / مشاوره پاراتیروئید</option>
-            <option value="adrenal">جراحی / مشاوره فوق کلیه</option>
-            <option value="pancreas">جراحی / مشاوره پانکراس</option>
-            <option value="other">سایر موارد</option>
-          </select>
+          <span class="booking-form__label" id="booking-service-label">موضوع مراجعه <span>(اختیاری)</span></span>
+          <div class="booking-select" data-booking-select>
+            <input type="hidden" id="booking-service" name="service" value="thyroid">
+            <button
+              class="booking-select__trigger"
+              type="button"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-labelledby="booking-service-label booking-service-value"
+              data-booking-select-trigger
+            >
+              <span class="booking-select__value" id="booking-service-value" data-booking-select-value>مشاوره تخصصی تیروئید</span>
+              <span class="booking-select__caret" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </span>
+            </button>
+            <ul class="booking-select__menu" role="listbox" aria-labelledby="booking-service-label" hidden data-booking-select-menu>
+              <li role="option" tabindex="-1" class="is-selected" data-value="thyroid" aria-selected="true">مشاوره تخصصی تیروئید</li>
+              <li role="option" tabindex="-1" data-value="parathyroid" aria-selected="false">مشاوره پاراتیروئید</li>
+              <li role="option" tabindex="-1" data-value="adrenal" aria-selected="false">مشاوره فوق کلیه (آدرنال)</li>
+              <li role="option" tabindex="-1" data-value="pancreas" aria-selected="false">مشاوره پانکراس</li>
+              <li role="option" tabindex="-1" data-value="toetva" aria-selected="false">جراحی تیروئید بدون جای زخم (TOETVA)</li>
+              <li role="option" tabindex="-1" data-value="other" aria-selected="false">سایر خدمات غدد</li>
+            </ul>
+          </div>
         </div>
 
         <div class="booking-form__field">

@@ -442,7 +442,72 @@
     var closeButtons = modal.querySelectorAll("[data-booking-close]");
     var form = modal.querySelector("[data-booking-form]");
     var success = modal.querySelector("[data-booking-success]");
+    var selectRoot = modal.querySelector("[data-booking-select]");
     var lastFocus = null;
+
+    function getSelectParts() {
+      if (!selectRoot) return null;
+      return {
+        input: selectRoot.querySelector("#booking-service"),
+        trigger: selectRoot.querySelector("[data-booking-select-trigger]"),
+        valueLabel: selectRoot.querySelector("[data-booking-select-value]"),
+        menu: selectRoot.querySelector("[data-booking-select-menu]"),
+        options: Array.from(selectRoot.querySelectorAll('[role="option"]'))
+      };
+    }
+
+    function closeSelect() {
+      var parts = getSelectParts();
+      if (!parts || !parts.menu || !parts.trigger) return;
+      selectRoot.classList.remove("is-open");
+      parts.menu.hidden = true;
+      parts.trigger.setAttribute("aria-expanded", "false");
+      parts.options.forEach(function (option) {
+        option.classList.remove("is-active");
+      });
+    }
+
+    function openSelect() {
+      var parts = getSelectParts();
+      if (!parts || !parts.menu || !parts.trigger) return;
+      selectRoot.classList.add("is-open");
+      parts.menu.hidden = false;
+      parts.trigger.setAttribute("aria-expanded", "true");
+      var selected = parts.options.find(function (option) {
+        return option.classList.contains("is-selected");
+      });
+      if (selected) {
+        selected.classList.add("is-active");
+        selected.focus();
+      }
+    }
+
+    function setSelectValue(value, label) {
+      var parts = getSelectParts();
+      if (!parts) return;
+
+      if (parts.input) parts.input.value = value;
+      if (parts.valueLabel) parts.valueLabel.textContent = label;
+
+      parts.options.forEach(function (option) {
+        var isSelected = option.getAttribute("data-value") === value;
+        option.classList.toggle("is-selected", isSelected);
+        option.setAttribute("aria-selected", isSelected ? "true" : "false");
+      });
+    }
+
+    function resetSelect() {
+      var parts = getSelectParts();
+      if (!parts) return;
+      var defaultOption =
+        parts.options.find(function (option) {
+          return option.getAttribute("data-value") === "thyroid";
+        }) || parts.options[0];
+
+      if (!defaultOption) return;
+      setSelectValue(defaultOption.getAttribute("data-value"), defaultOption.textContent.trim());
+      closeSelect();
+    }
 
     function getFocusable() {
       return Array.from(
@@ -457,6 +522,7 @@
     function openModal() {
       lastFocus = document.activeElement;
       setMobileNavOpen(false);
+      closeSelect();
       modal.hidden = false;
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("booking-open");
@@ -471,6 +537,7 @@
     }
 
     function closeModal() {
+      closeSelect();
       modal.hidden = true;
       modal.setAttribute("aria-hidden", "true");
       document.body.classList.remove("booking-open");
@@ -478,6 +545,7 @@
       if (form) {
         form.hidden = false;
         form.reset();
+        resetSelect();
         form.querySelectorAll(".booking-form__field.is-invalid").forEach(function (field) {
           field.classList.remove("is-invalid");
         });
@@ -509,10 +577,75 @@
       });
     });
 
+    if (selectRoot) {
+      var parts = getSelectParts();
+
+      parts.trigger.addEventListener("click", function () {
+        if (selectRoot.classList.contains("is-open")) {
+          closeSelect();
+          parts.trigger.focus();
+        } else {
+          openSelect();
+        }
+      });
+
+      parts.options.forEach(function (option, index) {
+        option.addEventListener("click", function () {
+          setSelectValue(option.getAttribute("data-value"), option.textContent.trim());
+          closeSelect();
+          parts.trigger.focus();
+        });
+
+        option.addEventListener("keydown", function (event) {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            var next = parts.options[Math.min(index + 1, parts.options.length - 1)];
+            parts.options.forEach(function (item) {
+              item.classList.remove("is-active");
+            });
+            next.classList.add("is-active");
+            next.focus();
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            var prev = parts.options[Math.max(index - 1, 0)];
+            parts.options.forEach(function (item) {
+              item.classList.remove("is-active");
+            });
+            prev.classList.add("is-active");
+            prev.focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            setSelectValue(option.getAttribute("data-value"), option.textContent.trim());
+            closeSelect();
+            parts.trigger.focus();
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            event.stopPropagation();
+            closeSelect();
+            parts.trigger.focus();
+          }
+        });
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!selectRoot.classList.contains("is-open")) return;
+        if (!selectRoot.contains(event.target)) {
+          closeSelect();
+        }
+      });
+    }
+
     document.addEventListener("keydown", function (event) {
       if (modal.hidden) return;
 
       if (event.key === "Escape") {
+        if (selectRoot && selectRoot.classList.contains("is-open")) {
+          event.preventDefault();
+          closeSelect();
+          var selectParts = getSelectParts();
+          if (selectParts && selectParts.trigger) selectParts.trigger.focus();
+          return;
+        }
         event.preventDefault();
         closeModal();
         return;
