@@ -57,7 +57,10 @@
 
     floatCall.classList.toggle("is-visible", show);
     floatCall.setAttribute("aria-hidden", show ? "false" : "true");
-    floatCall.tabIndex = show ? 0 : -1;
+
+    floatCall.querySelectorAll("a, button").forEach(function (el) {
+      el.tabIndex = show ? 0 : -1;
+    });
   }
 
   if (navToggle && mobileNav) {

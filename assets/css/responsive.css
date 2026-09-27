@@ -829,6 +829,10 @@
   .float-call {
     bottom: 1.1rem;
     inset-inline-start: 1rem;
+    gap: 0.45rem;
+  }
+
+  .float-call__btn {
     width: 3rem;
     height: 3rem;
   }
