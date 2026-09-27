@@ -362,4 +362,57 @@
 
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  (function initHeroVideo() {
+    var media = document.querySelector("[data-hero-video]");
+    if (!media) return;
+
+    var video = media.querySelector(".hero-media__video");
+    var playButton = media.querySelector("[data-hero-video-play]");
+    if (!video || !playButton) return;
+
+    function setPlaying(isPlaying) {
+      media.classList.toggle("is-playing", isPlaying);
+      playButton.setAttribute("aria-hidden", isPlaying ? "true" : "false");
+      playButton.tabIndex = isPlaying ? -1 : 0;
+    }
+
+    function playVideo() {
+      var playPromise = video.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise
+          .then(function () {
+            setPlaying(true);
+            video.setAttribute("controls", "");
+          })
+          .catch(function () {
+            setPlaying(false);
+          });
+      } else {
+        setPlaying(true);
+        video.setAttribute("controls", "");
+      }
+    }
+
+    playButton.addEventListener("click", function () {
+      playVideo();
+    });
+
+    video.addEventListener("play", function () {
+      setPlaying(true);
+      video.setAttribute("controls", "");
+    });
+
+    video.addEventListener("pause", function () {
+      if (video.ended) return;
+      setPlaying(false);
+      video.removeAttribute("controls");
+    });
+
+    video.addEventListener("ended", function () {
+      setPlaying(false);
+      video.removeAttribute("controls");
+      video.currentTime = 0;
+    });
+  })();
 })();

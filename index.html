@@ -160,14 +160,26 @@
             </p>
           </div>
 
-          <div class="hero-media hero-reveal hero-reveal--delay">
-            <img
-              src="assets/images/home/hero-doctor.webp"
-              width="1200"
-              height="675"
-              alt="دکتر کاوه همدانی، فلوشیپ جراحی غدد درون‌ریز"
-              fetchpriority="high"
+          <div class="hero-media hero-reveal hero-reveal--delay" data-hero-video>
+            <video
+              class="hero-media__video"
+              poster="assets/images/home/hero-doctor.webp"
+              preload="metadata"
+              playsinline
+              controlslist="nodownload noplaybackrate"
+              aria-label="ویدیوی معرفی نووا کلینیک"
             >
+              <source src="assets/videos/hero.mp4" type="video/mp4">
+            </video>
+            <button class="hero-media__play" type="button" aria-label="پخش ویدیو" data-hero-video-play>
+              <span class="hero-media__play-ring" aria-hidden="true"></span>
+              <span class="hero-media__play-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5.14v13.72L19 12 8 5.14z"/>
+                </svg>
+              </span>
+              <span class="hero-media__play-label">تماشای معرفی</span>
+            </button>
           </div>
         </div>
       </div>
