@@ -1215,7 +1215,7 @@ body.nav-open {
 
 .services-note {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.85rem;
   margin-top: 1.75rem;
   padding: 1.35rem 1.5rem;
@@ -1230,7 +1230,7 @@ body.nav-open {
   flex-shrink: 0;
   width: 2.35rem;
   height: 2.35rem;
-  margin-top: 0.1rem;
+  margin: 0;
   border-radius: 50%;
   background: var(--white);
   color: var(--primary);
