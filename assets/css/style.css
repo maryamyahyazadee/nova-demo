@@ -784,8 +784,8 @@ body.nav-open {
   position: relative;
   border-radius: calc(var(--radius-lg) + 4px);
   overflow: hidden;
-  aspect-ratio: 5 / 4;
-  background: var(--primary-soft);
+  aspect-ratio: 16 / 9;
+  background: #0b4f57;
   isolation: isolate;
   box-shadow:
     0 18px 40px rgba(9, 112, 125, 0.12),
@@ -827,12 +827,12 @@ body.nav-open {
   object-fit: cover;
   object-position: center center;
   display: block;
-  transform: scale(1.02);
+  transform: none;
   transition: transform 700ms ease;
 }
 
 .hero-media:not(.is-playing):hover .hero-media__video {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .hero-media.is-playing .hero-media__video {
@@ -2589,7 +2589,7 @@ body.nav-open {
   }
 
   .hero-media:not(.is-playing):hover .hero-media__video {
-    transform: scale(1.02);
+    transform: none;
   }
 
   .testimonials-slider__viewport {

@@ -132,7 +132,7 @@
 
   .hero-media {
     order: 0;
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 16 / 9;
     max-width: 640px;
   }
 
@@ -264,7 +264,7 @@
   .hero-media {
     order: 1;
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     border-radius: 18px;
   }
 
