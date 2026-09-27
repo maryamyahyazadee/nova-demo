@@ -163,12 +163,13 @@ a:hover {
   margin-inline: auto;
 }
 
-/* ---------- Phone links (LTR) ---------- */
+/* ---------- Phone numbers (LTR inside RTL) ---------- */
 
-a[href^="tel:"],
+.phone-ltr,
 .header-phone__number {
   direction: ltr;
   unicode-bidi: isolate;
+  display: inline-block;
 }
 
 /* ---------- Buttons ---------- */
