@@ -2616,12 +2616,6 @@ body.nav-open {
   display: block;
 }
 
-.float-call__btn--consult {
-  background: var(--white);
-  color: var(--primary);
-  box-shadow: 0 6px 18px rgba(9, 112, 125, 0.18);
-}
-
 .float-call__btn--phone {
   background: var(--primary);
   color: var(--white);
@@ -2631,13 +2625,6 @@ body.nav-open {
 .float-call__btn:hover,
 .float-call__btn:focus-visible {
   transform: translateY(-2px);
-}
-
-.float-call__btn--consult:hover,
-.float-call__btn--consult:focus-visible {
-  background: var(--primary-soft);
-  color: var(--primary-dark);
-  box-shadow: 0 8px 22px rgba(9, 112, 125, 0.24);
 }
 
 .float-call__btn--phone:hover,
