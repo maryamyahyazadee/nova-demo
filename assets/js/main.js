@@ -8,6 +8,19 @@
   var faqButtons = document.querySelectorAll(".faq-item__question");
   var revealItems = document.querySelectorAll(".reveal");
   var testimonialSliders = document.querySelectorAll("[data-testimonials-slider]");
+  var voiceCards = document.querySelectorAll("[data-voice-card]");
+
+  function toPersianDigits(value) {
+    return String(value).replace(/\d/g, function (digit) {
+      return "۰۱۲۳۴۵۶۷۸۹"[digit];
+    });
+  }
+
+  function formatVoiceTime(totalSeconds) {
+    var minutes = Math.floor(totalSeconds / 60);
+    var seconds = Math.max(0, Math.floor(totalSeconds % 60));
+    return toPersianDigits(minutes + ":" + String(seconds).padStart(2, "0"));
+  }
 
   function setMobileNavOpen(isOpen) {
     if (!navToggle || !mobileNav) return;
@@ -82,9 +95,7 @@
     if (!viewport || !slides.length || !prevButton || !nextButton) return;
 
     function toPersianNumber(number) {
-      return String(number).replace(/\d/g, function (digit) {
-        return "۰۱۲۳۴۵۶۷۸۹"[digit];
-      });
+      return toPersianDigits(number);
     }
 
     function isFullyVisible(slide, viewportRect) {
@@ -156,6 +167,127 @@
     window.addEventListener("resize", updateSliderState);
     updateSliderState();
   });
+
+  (function initVoicePlayers() {
+    if (!voiceCards.length) return;
+
+    var activeCard = null;
+    var rafId = null;
+    var startedAt = 0;
+    var elapsedBeforePause = 0;
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function getCardParts(card) {
+      return {
+        playButton: card.querySelector("[data-voice-play]"),
+        progress: card.querySelector("[data-voice-progress]"),
+        current: card.querySelector("[data-voice-current]"),
+        duration: Number(card.getAttribute("data-duration")) || 45
+      };
+    }
+
+    function resetCard(card) {
+      var parts = getCardParts(card);
+      card.classList.remove("is-playing");
+      if (parts.playButton) {
+        parts.playButton.setAttribute("aria-pressed", "false");
+      }
+      if (parts.progress) {
+        parts.progress.style.width = "0%";
+      }
+      if (parts.current) {
+        parts.current.textContent = formatVoiceTime(0);
+      }
+    }
+
+    function stopActive() {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      if (activeCard) {
+        resetCard(activeCard);
+        activeCard = null;
+      }
+      elapsedBeforePause = 0;
+      startedAt = 0;
+    }
+
+    function tick() {
+      if (!activeCard) return;
+
+      var parts = getCardParts(activeCard);
+      var elapsed = elapsedBeforePause + (performance.now() - startedAt) / 1000;
+      var progress = Math.min(elapsed / parts.duration, 1);
+
+      if (parts.progress) {
+        parts.progress.style.width = progress * 100 + "%";
+      }
+      if (parts.current) {
+        parts.current.textContent = formatVoiceTime(elapsed);
+      }
+
+      if (progress >= 1) {
+        stopActive();
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    function playCard(card) {
+      var parts = getCardParts(card);
+
+      if (activeCard && activeCard !== card) {
+        stopActive();
+      }
+
+      if (activeCard === card) {
+        elapsedBeforePause += (performance.now() - startedAt) / 1000;
+        if (rafId) {
+          window.cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        card.classList.remove("is-playing");
+        if (parts.playButton) {
+          parts.playButton.setAttribute("aria-pressed", "false");
+        }
+        activeCard = null;
+        return;
+      }
+
+      activeCard = card;
+      card.classList.add("is-playing");
+      if (parts.playButton) {
+        parts.playButton.setAttribute("aria-pressed", "true");
+      }
+
+      if (reduceMotion) {
+        if (parts.progress) {
+          parts.progress.style.width = "100%";
+        }
+        if (parts.current) {
+          parts.current.textContent = formatVoiceTime(parts.duration);
+        }
+        window.setTimeout(stopActive, 450);
+        return;
+      }
+
+      startedAt = performance.now();
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    voiceCards.forEach(function (card) {
+      var parts = getCardParts(card);
+      resetCard(card);
+
+      if (!parts.playButton) return;
+
+      parts.playButton.addEventListener("click", function () {
+        playCard(card);
+      });
+    });
+  })();
 
   if ("IntersectionObserver" in window && revealItems.length) {
     var observer = new IntersectionObserver(

@@ -668,6 +668,15 @@
     padding: 1.2rem 1.05rem;
   }
 
+  .testimonial-voice {
+    gap: 0.7rem;
+  }
+
+  .testimonial-voice__play {
+    width: 40px;
+    height: 40px;
+  }
+
   .article-item {
     padding: 0;
   }
