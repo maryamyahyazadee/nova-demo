@@ -591,6 +591,20 @@
     scroll-snap-stop: always;
   }
 
+  .blog-grid--related {
+    gap: 0.85rem;
+  }
+
+  .blog-grid--related .blog-card {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
   .testimonial-slide {
     flex-basis: 94%;
   }
@@ -989,6 +1003,17 @@
     grid-column: 1 / -1;
   }
 
+
+
+  .blog-grid--related {
+    gap: 1rem;
+  }
+
+  .blog-grid--related .blog-card {
+    flex: 0 0 calc((100% - 1rem) / 2);
+    width: calc((100% - 1rem) / 2);
+  }
+
   .blog-card--featured .blog-card__link {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   }
@@ -1185,18 +1210,21 @@
     inset-inline-end: 0.35rem;
   }
 
-  .service-article-hero {
+  .service-article-hero,
+  .blog-single-hero {
     grid-template-columns: 1fr;
     gap: 1.75rem;
     padding-block: 5.75rem 2.5rem;
   }
 
-  .service-article-hero__media {
+  .service-article-hero__media,
+  .blog-single-hero__media {
     width: min(100%, 28rem);
     margin-inline: auto;
   }
 
-  .service-article__layout {
+  .service-article__layout,
+  .blog-post__layout {
     grid-template-columns: 1fr;
     grid-template-areas:
       "toc"
@@ -1204,16 +1232,26 @@
     gap: 1.5rem;
   }
 
-  .service-toc__panel {
+  .service-toc__panel,
+  .blog-toc__panel {
     position: static;
     max-height: none;
     overflow: visible;
   }
 
-  .service-toc__list {
+  .service-toc__list,
+  .blog-toc__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.25rem 0.75rem;
+  }
+
+  .service-toc__list a::after {
+    display: none;
+  }
+
+  .service-toc__nav {
+    padding-inline: 0.65rem;
   }
 
   .doctor-about__layout {
@@ -1472,7 +1510,8 @@
   }
 
   .page-hero--service-article .page-hero__inner,
-  .service-article-hero {
+  .service-article-hero,
+  .blog-single-hero {
     padding-block: 5.25rem 1.75rem;
   }
 
@@ -1486,17 +1525,23 @@
     justify-content: center;
   }
 
-  .service-article-meta li {
+  .service-article-meta li,
+  .blog-single-meta li {
     font-size: 0.76rem;
     min-height: 2rem;
     padding: 0.3rem 0.7rem;
   }
 
-  .service-toc__list {
+  .service-toc__list,
+  .blog-toc__list {
     grid-template-columns: 1fr;
   }
 
   .service-toc__panel {
+    padding: 0;
+  }
+
+  .blog-toc__panel {
     padding: 1.15rem 1rem;
   }
 
