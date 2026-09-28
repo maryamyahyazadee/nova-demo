@@ -524,8 +524,8 @@
   }
 
   .videos-grid--related .video-card {
-    flex: 0 0 calc(100% - 1.75rem);
-    width: calc(100% - 1.75rem);
+    flex: 0 0 100%;
+    width: 100%;
     max-width: none;
     height: auto;
     min-height: 100%;
