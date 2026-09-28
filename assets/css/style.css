@@ -5478,6 +5478,10 @@ button.header-cta {
   margin-top: 0.35rem;
 }
 
+.event-gallery:not(:has([data-gallery-index])) {
+  display: none;
+}
+
 .event-gallery__header {
   display: flex;
   align-items: flex-end;

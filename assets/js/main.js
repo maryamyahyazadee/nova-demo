@@ -794,10 +794,31 @@
   (function initEventGallery() {
     var gallery = document.querySelector("[data-event-gallery]");
     var lightbox = document.getElementById("gallery-lightbox");
-    if (!gallery || !lightbox) return;
+    if (!gallery) return;
 
-    var items = Array.prototype.slice.call(gallery.querySelectorAll("[data-gallery-index]"));
-    if (!items.length) return;
+    var section = gallery.closest(".event-gallery");
+
+    function hideGallery() {
+      if (section) {
+        section.hidden = true;
+        section.setAttribute("aria-hidden", "true");
+      }
+      if (lightbox) {
+        lightbox.hidden = true;
+        lightbox.setAttribute("aria-hidden", "true");
+      }
+    }
+
+    var items = Array.prototype.slice.call(gallery.querySelectorAll("[data-gallery-index]")).filter(function (item) {
+      var img = item.querySelector("img");
+      var src = img ? (img.getAttribute("src") || "").trim() : "";
+      return Boolean(src);
+    });
+
+    if (!items.length || !lightbox) {
+      hideGallery();
+      return;
+    }
 
     var imageEl = lightbox.querySelector("[data-gallery-image]");
     var captionEl = lightbox.querySelector("[data-gallery-caption]");
@@ -808,9 +829,11 @@
     var nextButton = lightbox.querySelector("[data-gallery-next]");
     var activeIndex = 0;
     var lastFocus = null;
+    var readyItems = [];
+    var pendingChecks = items.length;
 
     function getItemData(index) {
-      var item = items[index];
+      var item = readyItems[index];
       var img = item ? item.querySelector("img") : null;
       return {
         src: img ? img.currentSrc || img.src : "",
@@ -819,7 +842,8 @@
     }
 
     function render(index) {
-      activeIndex = (index + items.length) % items.length;
+      if (!readyItems.length) return;
+      activeIndex = (index + readyItems.length) % readyItems.length;
       var data = getItemData(activeIndex);
       if (imageEl) {
         imageEl.src = data.src;
@@ -827,7 +851,7 @@
       }
       if (captionEl) captionEl.textContent = data.alt;
       if (counterEl) {
-        counterEl.textContent = toPersianDigits(activeIndex + 1) + " / " + toPersianDigits(items.length);
+        counterEl.textContent = toPersianDigits(activeIndex + 1) + " / " + toPersianDigits(readyItems.length);
       }
     }
 
@@ -852,45 +876,96 @@
       if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
     }
 
-    items.forEach(function (item, index) {
-      item.addEventListener("click", function () {
-        openLightbox(index);
-      });
-    });
-
-    closeButtons.forEach(function (button) {
-      button.addEventListener("click", closeLightbox);
-    });
-
-    if (prevButton) {
-      prevButton.addEventListener("click", function () {
-        render(activeIndex - 1);
-      });
-    }
-
-    if (nextButton) {
-      nextButton.addEventListener("click", function () {
-        render(activeIndex + 1);
-      });
-    }
-
-    if (dialog && !dialog.hasAttribute("tabindex")) {
-      dialog.setAttribute("tabindex", "-1");
-    }
-
-    document.addEventListener("keydown", function (event) {
-      if (lightbox.hidden) return;
-
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeLightbox();
-      } else if (event.key === "ArrowRight") {
-        event.preventDefault();
-        render(activeIndex - 1);
-      } else if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        render(activeIndex + 1);
+    function bindGallery() {
+      var countEl = section ? section.querySelector(".event-gallery__count") : null;
+      if (countEl) {
+        countEl.textContent = toPersianDigits(readyItems.length) + " تصویر";
       }
+
+      readyItems.forEach(function (item, index) {
+        item.hidden = false;
+        item.addEventListener("click", function () {
+          openLightbox(index);
+        });
+      });
+
+      closeButtons.forEach(function (button) {
+        button.addEventListener("click", closeLightbox);
+      });
+
+      if (prevButton) {
+        prevButton.addEventListener("click", function () {
+          render(activeIndex - 1);
+        });
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener("click", function () {
+          render(activeIndex + 1);
+        });
+      }
+
+      if (dialog && !dialog.hasAttribute("tabindex")) {
+        dialog.setAttribute("tabindex", "-1");
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (lightbox.hidden) return;
+
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeLightbox();
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          render(activeIndex - 1);
+        } else if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          render(activeIndex + 1);
+        }
+      });
+    }
+
+    function onItemChecked(item, isValid) {
+      if (isValid) {
+        readyItems.push(item);
+      } else {
+        item.hidden = true;
+      }
+
+      pendingChecks -= 1;
+      if (pendingChecks > 0) return;
+
+      if (!readyItems.length) {
+        hideGallery();
+        return;
+      }
+
+      if (section) {
+        section.hidden = false;
+        section.setAttribute("aria-hidden", "false");
+      }
+
+      bindGallery();
+    }
+
+    items.forEach(function (item) {
+      var img = item.querySelector("img");
+      if (!img) {
+        onItemChecked(item, false);
+        return;
+      }
+
+      if (img.complete) {
+        onItemChecked(item, img.naturalWidth > 0);
+        return;
+      }
+
+      img.addEventListener("load", function () {
+        onItemChecked(item, true);
+      });
+      img.addEventListener("error", function () {
+        onItemChecked(item, false);
+      });
     });
   })();
 })();
