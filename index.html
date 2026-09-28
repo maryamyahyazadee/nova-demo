@@ -22,12 +22,30 @@
 
         <nav class="desktop-nav" aria-label="منوی اصلی">
           <ul class="main-nav">
-            <li><a class="is-active" href="index.html">خانه</a></li>
-            <li><a href="#services">خدمات</a></li>
-            <li><a href="#doctors">پزشکان</a></li>
-            <li><a href="#journey">مسیر درمان</a></li>
-            <li><a href="#articles">مقالات</a></li>
-            <li><a href="#contact">تماس</a></li>
+            <li><a class="is-active" href="index.html">صفحه اصلی</a></li>
+            <li class="has-dropdown">
+              <a href="#services" aria-haspopup="true" aria-expanded="false">
+                خدمات ما
+                <span class="nav-caret" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </span>
+              </a>
+              <ul class="nav-dropdown" aria-label="زیرمنوی خدمات">
+                <li><a href="pages/services.html#thyroid">جراحی تیروئید</a></li>
+                <li><a href="pages/services.html#parathyroid">جراحی پاراتیروئید</a></li>
+                <li><a href="pages/services.html#adrenal">جراحی فوق کلیه</a></li>
+                <li><a href="pages/services.html#pancreas">جراحی پانکراس</a></li>
+              </ul>
+            </li>
+            <li><a href="#doctors">متخصصان کلینیک</a></li>
+            <li><a href="https://nova-clinic.org/event/">رویدادها</a></li>
+            <li><a href="https://nova-clinic.org/videos/">ویدئو ها</a></li>
+            <li><a href="#articles">مقالات تخصصی</a></li>
+            <li><a href="https://nova-clinic.org/blog/">وبلاگ</a></li>
+            <li><a href="#about">درباره ما</a></li>
+            <li><a href="#contact">تماس باما</a></li>
           </ul>
         </nav>
 
@@ -72,13 +90,30 @@
       <div class="container">
         <div class="mobile-nav__panel">
           <ul>
-            <li><a href="index.html">خانه</a></li>
-            <li><a href="#services">خدمات</a></li>
-            <li><a href="#doctors">پزشکان</a></li>
-            <li><a href="#journey">مسیر درمان</a></li>
-            <li><a href="#articles">مقالات</a></li>
-            <li><a href="#faq">سوالات متداول</a></li>
-            <li><a href="#contact">تماس</a></li>
+            <li><a href="index.html">صفحه اصلی</a></li>
+            <li class="has-dropdown">
+              <div class="mobile-nav__row">
+                <a href="#services">خدمات ما</a>
+                <button class="mobile-nav__submenu-toggle" type="button" aria-expanded="false" aria-label="باز کردن زیرمنوی خدمات">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </button>
+              </div>
+              <ul class="mobile-nav__submenu">
+                <li><a href="pages/services.html#thyroid">جراحی تیروئید</a></li>
+                <li><a href="pages/services.html#parathyroid">جراحی پاراتیروئید</a></li>
+                <li><a href="pages/services.html#adrenal">جراحی فوق کلیه</a></li>
+                <li><a href="pages/services.html#pancreas">جراحی پانکراس</a></li>
+              </ul>
+            </li>
+            <li><a href="#doctors">متخصصان کلینیک</a></li>
+            <li><a href="https://nova-clinic.org/event/">رویدادها</a></li>
+            <li><a href="https://nova-clinic.org/videos/">ویدئو ها</a></li>
+            <li><a href="#articles">مقالات تخصصی</a></li>
+            <li><a href="https://nova-clinic.org/blog/">وبلاگ</a></li>
+            <li><a href="#about">درباره ما</a></li>
+            <li><a href="#contact">تماس باما</a></li>
           </ul>
           <div class="mobile-nav__meta">
             <a class="mobile-nav__meta-row" href="tel:02191093492">
@@ -181,7 +216,7 @@
 
         <div class="booking-form__field">
           <label for="booking-message">توضیح کوتاه <span>(اختیاری)</span></label>
-          <textarea id="booking-message" name="message" rows="3" placeholder="در صورت نیاز توضیح دهید..."></textarea>
+          <textarea id="booking-message" name="message" rows="2" placeholder="در صورت نیاز توضیح دهید..."></textarea>
         </div>
 
         <button class="btn-primary-custom booking-form__submit" type="submit">

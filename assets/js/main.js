@@ -31,6 +31,14 @@
     mobileNav.setAttribute("aria-hidden", isOpen ? "false" : "true");
     document.body.classList.toggle("nav-open", isOpen);
 
+    if (!isOpen) {
+      mobileNav.querySelectorAll(".has-dropdown.is-open").forEach(function (item) {
+        item.classList.remove("is-open");
+        var openBtn = item.querySelector(".mobile-nav__submenu-toggle");
+        if (openBtn) openBtn.setAttribute("aria-expanded", "false");
+      });
+    }
+
     if (navBackdrop) {
       navBackdrop.classList.toggle("is-visible", isOpen);
       navBackdrop.setAttribute("aria-hidden", isOpen ? "false" : "true");
@@ -79,7 +87,56 @@
         setMobileNavOpen(false);
       });
     });
+
+    mobileNav.querySelectorAll(".mobile-nav__submenu-toggle").forEach(function (button) {
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var item = button.closest(".has-dropdown");
+        if (!item) return;
+
+        var willOpen = !item.classList.contains("is-open");
+        mobileNav.querySelectorAll(".has-dropdown.is-open").forEach(function (openItem) {
+          if (openItem === item) return;
+          openItem.classList.remove("is-open");
+          var openBtn = openItem.querySelector(".mobile-nav__submenu-toggle");
+          if (openBtn) openBtn.setAttribute("aria-expanded", "false");
+        });
+
+        item.classList.toggle("is-open", willOpen);
+        button.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      });
+    });
   }
+
+  document.querySelectorAll(".desktop-nav .has-dropdown > a").forEach(function (trigger) {
+    trigger.addEventListener("click", function (event) {
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+      var item = trigger.closest(".has-dropdown");
+      if (!item) return;
+
+      event.preventDefault();
+      var willOpen = !item.classList.contains("is-open");
+      document.querySelectorAll(".desktop-nav .has-dropdown.is-open").forEach(function (openItem) {
+        if (openItem === item) return;
+        openItem.classList.remove("is-open");
+        var openLink = openItem.querySelector(":scope > a");
+        if (openLink) openLink.setAttribute("aria-expanded", "false");
+      });
+      item.classList.toggle("is-open", willOpen);
+      trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    });
+  });
+
+  document.addEventListener("click", function (event) {
+    if (event.target.closest(".desktop-nav .has-dropdown")) return;
+    document.querySelectorAll(".desktop-nav .has-dropdown.is-open").forEach(function (item) {
+      item.classList.remove("is-open");
+      var link = item.querySelector(":scope > a");
+      if (link) link.setAttribute("aria-expanded", "false");
+    });
+  });
 
   faqButtons.forEach(function (button) {
     button.addEventListener("click", function () {
