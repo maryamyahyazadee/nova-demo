@@ -533,6 +533,33 @@
     scroll-snap-stop: always;
   }
 
+  .articles-archive__grid--related {
+    display: flex;
+    align-items: stretch;
+    gap: 0.85rem;
+    padding: 0.15rem 0 0.65rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .articles-archive__grid--related::-webkit-scrollbar {
+    display: none;
+  }
+
+  .articles-archive__grid--related .article-card {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
   .testimonial-slide {
     flex-basis: 94%;
   }
@@ -1442,10 +1469,6 @@
   }
 
   .articles-archive__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .articles-archive__grid--related {
     grid-template-columns: 1fr;
   }
 
