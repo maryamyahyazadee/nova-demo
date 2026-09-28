@@ -7056,7 +7056,31 @@ a.video-single-meta__value:focus-visible {
 .about-hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 0.85rem 1.25rem;
+}
+
+.about-hero__text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(9, 112, 125, 0.3);
+  border-radius: 0;
+  padding: 0.15rem 0;
+  background: none;
+  transition:
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.about-hero__text-link:hover,
+.about-hero__text-link:focus-visible {
+  color: var(--primary-dark);
+  border-bottom-color: var(--primary-dark);
 }
 
 .about-hero__visual {
