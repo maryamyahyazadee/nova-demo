@@ -1026,20 +1026,32 @@
     margin-inline: auto;
   }
 
-  .about-story__layout {
+  .about-story__grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
-  .about-story__aside {
-    padding-block: 0 1.25rem;
-    padding-inline-end: 0;
-    border-inline-end: 0;
-    border-block-end: 1px solid rgba(9, 112, 125, 0.1);
+  .about-story__visual {
+    width: min(100%, 16rem);
   }
 
-  .about-story__body {
-    padding-block: 0.5rem 0;
+  .about-story__focus {
+    max-width: none;
+    gap: 0.45rem;
+  }
+
+  .about-story__focus > li {
+    flex: 1 0 auto;
+    min-width: 4.75rem;
+  }
+
+  .about-story__focus-item {
+    min-height: 4.25rem;
+    padding: 0.6rem 0.4rem;
+  }
+
+  .about-story__focus-label {
+    font-size: 0.75rem;
   }
 
   .about-why__head {
@@ -1723,5 +1735,85 @@
   .float-call__btn {
     width: 3rem;
     height: 3rem;
+  }
+}
+
+/* ---------- Contact page ---------- */
+
+@media (max-width: 991.98px) {
+  .contact-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-block: 5.75rem 2.75rem;
+    min-height: 0;
+  }
+
+  .contact-hero__visual {
+    max-width: 24rem;
+    margin-inline: auto;
+  }
+
+  .contact-channels__list {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-section__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-aside {
+    position: static;
+  }
+
+  .contact-map__frame {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .contact-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-channel {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .contact-channel__action {
+    display: none;
+  }
+
+  .contact-map__head {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .contact-map__frame {
+    aspect-ratio: 4 / 3;
+    min-height: 16rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .contact-hero__grid {
+    padding-block: 5.25rem 2.25rem;
+  }
+
+  .contact-hero__brand {
+    font-size: clamp(2.1rem, 10vw, 2.75rem);
+  }
+
+  .contact-hero__title {
+    font-size: 1.1rem;
+  }
+
+  .contact-form-panel,
+  .contact-aside {
+    padding: 1.25rem;
+  }
+
+  .contact-form__submit {
+    width: 100%;
+    justify-content: center;
   }
 }

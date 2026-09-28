@@ -1323,4 +1323,84 @@
 
     render();
   })();
+
+  (function initContactForm() {
+    var form = document.querySelector("[data-contact-form]");
+    if (!form) return;
+
+    var success = form.querySelector("[data-contact-success]");
+    var nameInput = form.querySelector("#contact-name");
+    var phoneInput = form.querySelector("#contact-phone");
+    var emailInput = form.querySelector("#contact-email");
+    var subjectInput = form.querySelector("#contact-subject");
+    var messageInput = form.querySelector("#contact-message");
+
+    function isValidPhone(value) {
+      var digits = String(value).replace(/[^\d]/g, "");
+      return digits.length >= 10 && digits.length <= 12;
+    }
+
+    function isValidEmail(value) {
+      if (!value) return true;
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value).trim());
+    }
+
+    function clearErrors() {
+      form.querySelectorAll(".contact-form__field.is-invalid").forEach(function (field) {
+        field.classList.remove("is-invalid");
+      });
+      form.querySelectorAll(".contact-form__error").forEach(function (error) {
+        error.hidden = true;
+      });
+    }
+
+    function setInvalid(input, errorKey) {
+      if (!input) return;
+      var field = input.closest(".contact-form__field");
+      if (field) field.classList.add("is-invalid");
+      var error = form.querySelector('[data-error-for="' + errorKey + '"]');
+      if (error) error.hidden = false;
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      clearErrors();
+
+      var valid = true;
+
+      if (!nameInput || !String(nameInput.value).trim()) {
+        setInvalid(nameInput, "name");
+        valid = false;
+      }
+
+      if (!phoneInput || !isValidPhone(phoneInput.value)) {
+        setInvalid(phoneInput, "phone");
+        valid = false;
+      }
+
+      if (emailInput && !isValidEmail(emailInput.value)) {
+        setInvalid(emailInput, "email");
+        valid = false;
+      }
+
+      if (!subjectInput || !subjectInput.value) {
+        setInvalid(subjectInput, "subject");
+        valid = false;
+      }
+
+      if (!messageInput || !String(messageInput.value).trim()) {
+        setInvalid(messageInput, "message");
+        valid = false;
+      }
+
+      if (!valid) {
+        var firstInvalid = form.querySelector(".contact-form__field.is-invalid input, .contact-form__field.is-invalid textarea, .contact-form__field.is-invalid select");
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      form.classList.add("is-sent");
+      if (success) success.hidden = false;
+    });
+  })();
 })();
