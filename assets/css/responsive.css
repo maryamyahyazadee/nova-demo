@@ -887,7 +887,34 @@
     grid-column: auto;
   }
 
-  .doctor-jump {
+  .page-hero--doctors .page-hero__layout {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding-block: 5.75rem 2.5rem;
+  }
+
+  .page-hero__portraits {
+    min-height: 18rem;
+    max-width: 22rem;
+    margin-inline: auto;
+  }
+
+  .page-hero__portrait--main {
+    width: 100%;
+    height: 20rem;
+    margin-inline: auto;
+  }
+
+  .page-hero__portrait--secondary {
+    width: 8.5rem;
+    height: 10.5rem;
+  }
+
+  .doctor-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .doctors-values__grid {
     grid-template-columns: 1fr;
   }
 
@@ -944,28 +971,38 @@
     height: 1.85rem;
   }
 
-  .doctor-jump__item {
-    gap: 0.8rem;
-    padding: 1rem;
-    min-height: 0;
+  .page-hero--doctors .page-hero__layout {
+    padding-block: 5.25rem 2rem;
   }
 
-  .doctor-jump__avatar {
-    width: 2.9rem;
-    height: 2.9rem;
+  .page-hero__portraits {
+    min-height: 15rem;
   }
 
-  .doctor-jump__name {
-    font-size: 0.98rem;
+  .page-hero__portrait--main {
+    height: 16.5rem;
   }
 
-  .doctor-jump__title {
-    font-size: 0.82rem;
+  .page-hero__portrait--secondary {
+    width: 7.25rem;
+    height: 9rem;
+    inset-block-end: 0.75rem;
   }
 
-  .doctor-jump__action {
-    width: 1.85rem;
-    height: 1.85rem;
+  .page-hero__chips span {
+    font-size: 0.74rem;
+  }
+
+  .doctors-intro__quote {
+    padding: 1.5rem 1.1rem 1.25rem;
+  }
+
+  .doctors-intro__quote p {
+    font-size: 1.02rem;
+  }
+
+  .doctor-card__body {
+    padding: 1.1rem 1.05rem 1.2rem;
   }
 
   .consult-band__panel {

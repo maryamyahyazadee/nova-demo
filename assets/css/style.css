@@ -3461,127 +3461,401 @@ button.header-cta {
 
 /* ---------- Inner page: Doctors archive ---------- */
 
-.doctors-overview {
-  padding-block: var(--section-space);
+.page-hero--doctors {
+  background:
+    radial-gradient(ellipse at 12% 18%, rgba(9, 112, 125, 0.12) 0%, transparent 46%),
+    radial-gradient(ellipse at 92% 88%, rgba(196, 163, 90, 0.1) 0%, transparent 42%),
+    linear-gradient(180deg, #f4fbfc 0%, var(--surface) 100%);
+}
+
+.page-hero--doctors .page-hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: 2rem 2.5rem;
+  padding-block: 6.5rem 3rem;
+}
+
+.page-hero--doctors .page-hero__copy {
+  max-width: 34rem;
+}
+
+.page-hero--doctors .page-hero__title {
+  margin-bottom: 0.95rem;
+}
+
+.page-hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.35rem;
+}
+
+.page-hero__chips span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  background: rgba(9, 112, 125, 0.08);
+  border: 1px solid rgba(9, 112, 125, 0.12);
+  color: var(--primary-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.page-hero__portraits {
+  position: relative;
+  min-height: 22rem;
+  margin: 0;
+}
+
+.page-hero__portrait {
+  margin: 0;
+  overflow: hidden;
+  border-radius: calc(var(--radius-lg) + 4px);
+  box-shadow: 0 18px 40px rgba(26, 58, 63, 0.14);
+}
+
+.page-hero__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero__portrait--main {
+  position: relative;
+  width: min(100%, 21rem);
+  height: 25rem;
+  margin-inline-start: auto;
+  background: var(--secondary);
+}
+
+.page-hero__portrait--main img {
+  object-position: center 18%;
+  transition: transform 700ms ease;
+}
+
+.page-hero__portrait--secondary {
+  position: absolute;
+  inset-block-end: 1.25rem;
+  inset-inline-start: 0;
+  width: 10.5rem;
+  height: 13rem;
+  border: 4px solid var(--white);
+  background: var(--secondary);
+  z-index: 2;
+  animation: doctors-hero-float 7s ease-in-out infinite;
+}
+
+.page-hero__portrait--secondary img {
+  object-position: center 15%;
+}
+
+.page-hero--doctors:hover .page-hero__portrait--main img {
+  transform: scale(1.03);
+}
+
+.doctors-intro {
+  padding-block: 0.25rem 0.5rem;
   background: var(--surface);
 }
 
-.doctor-jump {
+.doctors-intro__quote {
+  position: relative;
+  margin: 0 auto;
+  max-width: 42rem;
+  padding: 1.75rem 1.5rem 1.5rem;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  border: 1px solid rgba(9, 112, 125, 0.1);
+  box-shadow: var(--shadow-sm);
+}
+
+.doctors-intro__quote::before {
+  content: "“";
+  position: absolute;
+  inset-block-start: -0.35rem;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  color: var(--accent);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.doctors-intro__quote p {
+  margin: 0 0 0.75rem;
+  color: var(--secondary);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.85;
+}
+
+.doctors-intro__quote footer {
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.doctors-overview {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--section-space);
+  background: var(--white);
+}
+
+.doctors-overview::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 3rem;
+  inset-inline-end: -4rem;
+  width: 14rem;
+  height: 14rem;
+  border: 1px solid rgba(9, 112, 125, 0.08);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2.5rem rgba(9, 112, 125, 0.02),
+    0 0 0 5rem rgba(9, 112, 125, 0.015);
+  pointer-events: none;
+}
+
+.doctors-overview .container {
+  position: relative;
+  z-index: 1;
+}
+
+.doctor-showcase {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem;
+  gap: 1.25rem;
 }
 
-.doctor-jump__item {
-  position: relative;
+.doctor-card {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 1rem;
-  min-height: 5.75rem;
-  padding: 1.15rem 1.2rem;
-  color: inherit;
-  text-decoration: none;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition:
-    border-color var(--transition),
-    box-shadow var(--transition),
-    background-color var(--transition),
-    transform var(--transition);
-}
-
-.doctor-jump__item:hover,
-.doctor-jump__item:focus-visible {
-  color: inherit;
-  border-color: rgba(9, 112, 125, 0.28);
-  box-shadow: var(--shadow-md);
-  background: linear-gradient(105deg, var(--white) 55%, var(--primary-soft) 100%);
-  transform: translateY(-2px);
-}
-
-.doctor-jump__avatar {
-  display: block;
-  flex-shrink: 0;
-  width: 3.35rem;
-  height: 3.35rem;
-  padding: 2px;
-  border: 2px solid rgba(9, 112, 125, 0.16);
-  border-radius: 50%;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
+  border-radius: calc(var(--radius-lg) + 2px);
+  border: 1px solid rgba(9, 112, 125, 0.12);
   background: var(--white);
+  box-shadow: 0 10px 28px rgba(26, 58, 63, 0.06);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
 }
 
-.doctor-jump__avatar img {
+.doctor-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(9, 112, 125, 0.22);
+  box-shadow: 0 16px 36px rgba(26, 58, 63, 0.1);
+}
+
+.doctor-card__media {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3.2;
+  background: var(--secondary);
+}
+
+.doctor-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 90, 100, 0.28), transparent 50%);
+  pointer-events: none;
+}
+
+.doctor-card__media img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   object-fit: cover;
-  object-position: center top;
-  display: block;
+  object-position: center 18%;
+  transition: transform 650ms ease;
 }
 
-.doctor-jump__body {
-  display: grid;
-  gap: 0.2rem;
-  min-width: 0;
+.doctor-card:hover .doctor-card__media img {
+  transform: scale(1.04);
 }
 
-.doctor-jump__role {
+.doctor-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.3rem 1.4rem;
+}
+
+.doctor-card__role {
+  align-self: flex-start;
+  margin-bottom: 0.55rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--primary);
-  letter-spacing: 0.01em;
 }
 
-.doctor-jump__name {
-  font-size: 1.05rem;
+.doctor-card__name {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.35;
-  color: var(--secondary);
-  transition: color var(--transition);
 }
 
-.doctor-jump__item:hover .doctor-jump__name,
-.doctor-jump__item:focus-visible .doctor-jump__name {
+.doctor-card__name a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.doctor-card__name a:hover,
+.doctor-card__name a:focus-visible {
   color: var(--primary-dark);
 }
 
-.doctor-jump__title {
+.doctor-card__specialty {
+  margin: 0 0 0.75rem;
+  color: var(--primary-dark);
   font-size: 0.86rem;
+  font-weight: 600;
   line-height: 1.55;
+}
+
+.doctor-card__bio {
+  margin: 0 0 1rem;
   color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
 }
 
-.doctor-jump__action {
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 50%;
+.doctor-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1.15rem;
+  padding: 0;
+  list-style: none;
+}
+
+.doctor-card__tags li {
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(9, 112, 125, 0.12);
+  background: var(--surface);
+  color: var(--primary-dark);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.doctor-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
   color: var(--primary);
-  background: var(--primary-soft);
-  opacity: 0.7;
-  transition:
-    opacity var(--transition),
-    background-color var(--transition),
-    color var(--transition),
-    transform var(--transition);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color var(--transition), gap var(--transition);
 }
 
-.doctor-jump__action svg {
+.doctor-card__link svg {
   width: 0.95rem;
   height: 0.95rem;
+  transition: transform var(--transition);
 }
 
-.doctor-jump__item:hover .doctor-jump__action,
-.doctor-jump__item:focus-visible .doctor-jump__action {
-  opacity: 1;
-  background: var(--primary);
-  color: var(--white);
+.doctor-card__link:hover,
+.doctor-card__link:focus-visible {
+  color: var(--primary-dark);
+  gap: 0.55rem;
+}
+
+.doctor-card__link:hover svg,
+.doctor-card__link:focus-visible svg {
   transform: translateX(-3px);
+}
+
+.doctors-values {
+  padding-block: var(--section-space);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(9, 112, 125, 0.06) 0%, transparent 55%),
+    var(--surface);
+}
+
+.doctors-values .section-header {
+  margin-bottom: 1.75rem;
+}
+
+.doctors-values__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.doctors-value {
+  padding: 1.35rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  border: 1px solid rgba(9, 112, 125, 0.1);
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.doctors-value:hover {
+  transform: translateY(-3px);
+  border-color: rgba(9, 112, 125, 0.22);
+  box-shadow: var(--shadow-md);
+}
+
+.doctors-value__icon {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-bottom: 0.9rem;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.doctors-value__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.doctors-value__title {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.doctors-value__text {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+@keyframes doctors-hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-hero__portrait--secondary {
+    animation: none;
+  }
 }
 
 /* ---------- Inner page: Consult band CTA ---------- */
