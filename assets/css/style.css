@@ -5055,22 +5055,80 @@ button.header-cta {
 .event-card__year {
   display: inline-flex;
   align-items: center;
-  min-height: 1.75rem;
-  padding: 0.15rem 0.7rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
+  gap: 0.4rem;
+  min-height: 1.7rem;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
 
 .event-card__type {
-  background: var(--primary-soft);
+  position: relative;
+  border-radius: 999px;
+  border: 1px solid rgba(9, 112, 125, 0.16);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, var(--primary-soft) 100%);
   color: var(--primary-dark);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.event-card__type::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px rgba(9, 112, 125, 0.12);
+  flex-shrink: 0;
+}
+
+.event-card:hover .event-card__type,
+.event-card:focus-visible .event-card__type {
+  border-color: rgba(9, 112, 125, 0.28);
+  background: var(--primary);
+  color: var(--white);
+}
+
+.event-card:hover .event-card__type::before,
+.event-card:focus-visible .event-card__type::before {
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22);
 }
 
 .event-card__year {
-  background: rgba(196, 163, 90, 0.14);
-  color: #8a6d2e;
+  border-radius: 999px;
+  border: 1px solid rgba(9, 112, 125, 0.1);
+  background: rgba(9, 112, 125, 0.04);
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.event-card__year::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  flex-shrink: 0;
+  background-color: currentColor;
+  opacity: 0.7;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M16 3v4M8 3v4M3 11h18'/%3E%3C/svg%3E") center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M16 3v4M8 3v4M3 11h18'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.event-card:hover .event-card__year,
+.event-card:focus-visible .event-card__year {
+  border-color: rgba(9, 112, 125, 0.18);
+  background: rgba(9, 112, 125, 0.08);
+  color: var(--primary-dark);
 }
 
 .event-card__title {
