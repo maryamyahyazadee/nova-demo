@@ -893,6 +893,33 @@
     padding-block: 5.75rem 2.5rem;
   }
 
+  .doctor-single-hero {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding-block: 5.75rem 2.5rem;
+  }
+
+  .doctor-single-hero__media {
+    width: min(100%, 20rem);
+    margin-inline: auto;
+  }
+
+  .doctor-about__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-focus__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .doctor-timeline::before {
+    inset-inline-start: 2.85rem;
+  }
+
+  .doctor-timeline__item {
+    grid-template-columns: 4.75rem minmax(0, 1fr);
+  }
+
   .page-hero__portraits {
     max-width: 20rem;
     margin-inline: auto;
@@ -913,7 +940,7 @@
 
   .consult-band__panel {
     grid-template-columns: 1fr;
-    gap: 1.35rem;
+    gap: 1rem;
   }
 
   .consult-band__actions {
@@ -968,6 +995,55 @@
     padding-block: 5.25rem 2rem;
   }
 
+  .doctor-single-hero {
+    padding-block: 5.25rem 2rem;
+  }
+
+  .doctor-single-hero__specialty {
+    font-size: 0.92rem;
+  }
+
+  .doctor-single-badges li {
+    font-size: 0.74rem;
+  }
+
+  .doctor-single-hero__actions {
+    flex-direction: column;
+  }
+
+  .doctor-single-hero__actions .btn-primary-custom,
+  .doctor-single-hero__actions .btn-secondary-custom {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .doctor-focus__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-timeline::before {
+    display: none;
+  }
+
+  .doctor-timeline__item {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .doctor-timeline__year {
+    width: fit-content;
+  }
+
+  .doctor-about__aside {
+    padding: 1.15rem 1.1rem;
+  }
+
+  .doctor-activity__list li {
+    padding-block: 0.9rem;
+    padding-inline: 2.4rem 1rem;
+    font-size: 0.9rem;
+  }
+
   .page-hero__chips span {
     font-size: 0.74rem;
   }
@@ -1001,20 +1077,20 @@
 
   .consult-band__panel {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
-    padding: 1.35rem 1.2rem;
+    gap: 1rem;
+    padding: 1.05rem 1.1rem;
   }
 
   .consult-band__panel::before {
-    inset-block: 1rem;
+    inset-block: 0;
   }
 
   .consult-band__title {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
   }
 
   .consult-band__lead {
-    font-size: 0.9rem;
+    font-size: 0.86rem;
   }
 
   .consult-band__actions {
