@@ -506,6 +506,33 @@
     overflow: hidden;
   }
 
+  .videos-grid--related {
+    display: flex;
+    align-items: stretch;
+    gap: 0.85rem;
+    padding: 0.15rem 0 0.65rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .videos-grid--related::-webkit-scrollbar {
+    display: none;
+  }
+
+  .videos-grid--related .video-card {
+    flex: 0 0 calc(100% - 1.75rem);
+    width: calc(100% - 1.75rem);
+    max-width: none;
+    height: auto;
+    min-height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
   .testimonial-slide {
     flex-basis: 94%;
   }
@@ -892,10 +919,6 @@
   }
 
   .videos-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .videos-grid--related {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1379,10 +1402,6 @@
   }
 
   .videos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .videos-grid--related {
     grid-template-columns: 1fr;
   }
 
