@@ -1114,7 +1114,8 @@
     flex-direction: column;
   }
 
-  .consult-band__btn {
+  .consult-band__actions .btn-primary-custom,
+  .consult-band__actions .btn-secondary-custom {
     width: 100%;
   }
 }
