@@ -894,20 +894,13 @@
   }
 
   .page-hero__portraits {
-    min-height: 18rem;
-    max-width: 22rem;
+    max-width: 20rem;
     margin-inline: auto;
   }
 
   .page-hero__portrait--main {
     width: 100%;
-    height: 20rem;
     margin-inline: auto;
-  }
-
-  .page-hero__portrait--secondary {
-    width: 8.5rem;
-    height: 10.5rem;
   }
 
   .doctor-jump {
@@ -973,20 +966,6 @@
 
   .page-hero--doctors .page-hero__layout {
     padding-block: 5.25rem 2rem;
-  }
-
-  .page-hero__portraits {
-    min-height: 15rem;
-  }
-
-  .page-hero__portrait--main {
-    height: 16.5rem;
-  }
-
-  .page-hero__portrait--secondary {
-    width: 7.25rem;
-    height: 9rem;
-    inset-block-end: 0.75rem;
   }
 
   .page-hero__chips span {

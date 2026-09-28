@@ -3505,7 +3505,6 @@ button.header-cta {
 
 .page-hero__portraits {
   position: relative;
-  min-height: 22rem;
   margin: 0;
 }
 
@@ -3513,47 +3512,29 @@ button.header-cta {
   margin: 0;
   overflow: hidden;
   border-radius: calc(var(--radius-lg) + 4px);
-  box-shadow: 0 18px 40px rgba(26, 58, 63, 0.14);
+  box-shadow: 0 16px 36px rgba(26, 58, 63, 0.12);
+  background: var(--secondary);
 }
 
 .page-hero__portrait img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .page-hero__portrait--main {
   position: relative;
-  width: min(100%, 21rem);
-  height: 25rem;
+  width: min(100%, 24rem);
   margin-inline-start: auto;
-  background: var(--secondary);
+  border: 1px solid rgba(9, 112, 125, 0.1);
 }
 
 .page-hero__portrait--main img {
-  object-position: center 18%;
-  transition: transform 700ms ease;
-}
-
-.page-hero__portrait--secondary {
-  position: absolute;
-  inset-block-end: 1.25rem;
-  inset-inline-start: 0;
-  width: 10.5rem;
-  height: 13rem;
-  border: 4px solid var(--white);
-  background: var(--secondary);
-  z-index: 2;
-  animation: doctors-hero-float 7s ease-in-out infinite;
-}
-
-.page-hero__portrait--secondary img {
-  object-position: center 15%;
+  transition: transform 650ms ease;
 }
 
 .page-hero--doctors:hover .page-hero__portrait--main img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .doctors-intro {
@@ -3808,22 +3789,6 @@ button.header-cta {
   color: var(--text-muted);
   font-size: 0.88rem;
   line-height: 1.75;
-}
-
-@keyframes doctors-hero-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-hero__portrait--secondary {
-    animation: none;
-  }
 }
 
 /* ---------- Inner page: Consult band CTA ---------- */
