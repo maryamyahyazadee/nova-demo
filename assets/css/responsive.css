@@ -1021,6 +1021,15 @@
     grid-template-columns: 1fr;
   }
 
+  .doctor-highlight__panel {
+    padding: 1.6rem 1.25rem;
+  }
+
+  .doctor-highlight__panel::after {
+    font-size: 4rem;
+    opacity: 0.9;
+  }
+
   .doctor-timeline::before {
     display: none;
   }
