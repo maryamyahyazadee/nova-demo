@@ -886,6 +886,19 @@
   .service-group:last-child {
     grid-column: auto;
   }
+
+  .doctor-jump {
+    grid-template-columns: 1fr;
+  }
+
+  .consult-band__panel {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  .consult-band__actions {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -929,6 +942,57 @@
   .service-group__action {
     width: 1.85rem;
     height: 1.85rem;
+  }
+
+  .doctor-jump__item {
+    gap: 0.8rem;
+    padding: 1rem;
+    min-height: 0;
+  }
+
+  .doctor-jump__avatar {
+    width: 2.9rem;
+    height: 2.9rem;
+  }
+
+  .doctor-jump__name {
+    font-size: 0.98rem;
+  }
+
+  .doctor-jump__title {
+    font-size: 0.82rem;
+  }
+
+  .doctor-jump__action {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .consult-band__panel {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.35rem 1.2rem;
+  }
+
+  .consult-band__panel::before {
+    inset-block: 1rem;
+  }
+
+  .consult-band__title {
+    font-size: 1.3rem;
+  }
+
+  .consult-band__lead {
+    font-size: 0.9rem;
+  }
+
+  .consult-band__actions {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+
+  .consult-band__btn {
+    width: 100%;
   }
 }
 
