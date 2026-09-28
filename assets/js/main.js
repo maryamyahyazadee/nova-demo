@@ -1324,6 +1324,142 @@
     render();
   })();
 
+  (function initBlogArchive() {
+    var archive = document.querySelector("[data-blog-archive]");
+    if (!archive) return;
+
+    var FIRST_PAGE_SIZE = 7;
+    var OTHER_PAGE_SIZE = 12;
+    var cards = Array.prototype.slice.call(archive.querySelectorAll("[data-blog-card]"));
+    var countEl = archive.querySelector("[data-blog-count]");
+    var emptyEl = archive.querySelector("[data-blog-empty]");
+    var pagination = archive.querySelector("[data-blog-pagination]");
+    var pagesEl = archive.querySelector("[data-blog-pages]");
+    var prevBtn = archive.querySelector("[data-blog-prev]");
+    var nextBtn = archive.querySelector("[data-blog-next]");
+    var currentPage = 1;
+
+    function getTotalPages(total) {
+      if (total <= FIRST_PAGE_SIZE) return Math.max(1, total > 0 ? 1 : 0);
+      return 1 + Math.ceil((total - FIRST_PAGE_SIZE) / OTHER_PAGE_SIZE);
+    }
+
+    function getPageRange(page) {
+      if (page <= 1) {
+        return { start: 0, end: FIRST_PAGE_SIZE };
+      }
+
+      var start = FIRST_PAGE_SIZE + (page - 2) * OTHER_PAGE_SIZE;
+      return { start: start, end: start + OTHER_PAGE_SIZE };
+    }
+
+    function updateCount(total, visibleStart, visibleEnd) {
+      if (!countEl) return;
+
+      if (!total) {
+        countEl.textContent = "۰ مطلب";
+        return;
+      }
+
+      countEl.textContent =
+        "نمایش " +
+        toPersianDigits(visibleStart) +
+        " تا " +
+        toPersianDigits(visibleEnd) +
+        " از " +
+        toPersianDigits(total) +
+        " مطلب";
+    }
+
+    function renderPagination(totalPages) {
+      if (!pagination || !pagesEl) return;
+
+      if (totalPages <= 1) {
+        pagination.hidden = true;
+        pagesEl.innerHTML = "";
+        return;
+      }
+
+      pagination.hidden = false;
+      pagesEl.innerHTML = "";
+
+      for (var page = 1; page <= totalPages; page += 1) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "blog-pagination__page" + (page === currentPage ? " is-active" : "");
+        button.textContent = toPersianDigits(page);
+        button.setAttribute("data-blog-page", String(page));
+        button.setAttribute("aria-label", "صفحه " + toPersianDigits(page));
+        if (page === currentPage) {
+          button.setAttribute("aria-current", "page");
+        }
+        pagesEl.appendChild(button);
+      }
+
+      if (prevBtn) prevBtn.disabled = currentPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
+    }
+
+    function render() {
+      var total = cards.length;
+      var totalPages = Math.max(1, getTotalPages(total));
+
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      var range = getPageRange(currentPage);
+
+      cards.forEach(function (card, index) {
+        if (index >= range.start && index < range.end) {
+          card.classList.remove("is-hidden");
+        } else {
+          card.classList.add("is-hidden");
+        }
+      });
+
+      if (emptyEl) {
+        emptyEl.hidden = total > 0;
+      }
+
+      var visibleEnd = Math.min(range.end, total);
+      var visibleStart = total ? range.start + 1 : 0;
+      updateCount(total, visibleStart, visibleEnd);
+      renderPagination(total ? totalPages : 0);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        if (currentPage <= 1) return;
+        currentPage -= 1;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        var totalPages = Math.max(1, getTotalPages(cards.length));
+        if (currentPage >= totalPages) return;
+        currentPage += 1;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    if (pagesEl) {
+      pagesEl.addEventListener("click", function (event) {
+        var target = event.target.closest("[data-blog-page]");
+        if (!target) return;
+        var page = Number(target.getAttribute("data-blog-page"));
+        if (!page || page === currentPage) return;
+        currentPage = page;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    render();
+  })();
+
   (function initContactForm() {
     var form = document.querySelector("[data-contact-form]");
     if (!form) return;
