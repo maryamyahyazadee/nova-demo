@@ -5080,7 +5080,7 @@ button.header-cta {
 .event-card--featured {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: stretch;
 }
 
@@ -5092,8 +5092,9 @@ button.header-cta {
 }
 
 .event-card--featured .event-card__media {
-  aspect-ratio: auto;
-  min-height: 100%;
+  aspect-ratio: 16 / 11;
+  min-height: 0;
+  max-height: 14.5rem;
 }
 
 .event-card__media img {
@@ -5118,7 +5119,7 @@ button.header-cta {
 
 .event-card--featured .event-card__body {
   justify-content: center;
-  padding: clamp(1.5rem, 3vw, 2.35rem);
+  padding: 1.15rem 1.35rem;
 }
 
 .event-card__meta {
@@ -5161,9 +5162,9 @@ button.header-cta {
 }
 
 .event-card--featured .event-card__title {
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-  line-height: 1.45;
-  margin-bottom: 0.9rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 0.55rem;
 }
 
 .event-card:hover .event-card__title,
@@ -5180,8 +5181,12 @@ button.header-cta {
 }
 
 .event-card--featured .event-card__excerpt {
-  font-size: 0.98rem;
-  max-width: 36rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .event-card__more {
