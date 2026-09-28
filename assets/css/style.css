@@ -3875,6 +3875,179 @@ button.header-cta {
   gap: 0.75rem;
 }
 
+/* ---------- Service page: Consult band CTA ---------- */
+
+.consult-band--service {
+  padding-block: clamp(2rem, 4vw, 3.25rem);
+  background:
+    radial-gradient(ellipse at 12% 20%, rgba(9, 112, 125, 0.06), transparent 45%),
+    var(--white);
+}
+
+.consult-band--service .consult-band__panel {
+  grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.85fr);
+  gap: 1.5rem 2.25rem;
+  padding: clamp(1.75rem, 3.5vw, 2.6rem) clamp(1.4rem, 3vw, 2.4rem);
+  border: 0;
+  border-radius: calc(var(--radius-lg) + 6px);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0.16), transparent 42%),
+    linear-gradient(145deg, var(--primary) 0%, #0a8a9a 48%, var(--primary-dark) 100%);
+  box-shadow:
+    0 18px 40px rgba(9, 112, 125, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: var(--white);
+}
+
+.consult-band--service .consult-band__panel::before {
+  inset-inline-start: auto;
+  inset-inline-end: -4rem;
+  inset-block-start: -3rem;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 0 0 2.5rem rgba(255, 255, 255, 0.04),
+    0 0 0 5rem rgba(255, 255, 255, 0.025);
+}
+
+.consult-band--service .consult-band__panel::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: -3rem;
+  inset-block-end: -4rem;
+  width: 11rem;
+  height: 11rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.consult-band--service .consult-band__copy,
+.consult-band--service .consult-band__side {
+  position: relative;
+  z-index: 1;
+}
+
+.consult-band--service .consult-band__kicker {
+  margin-bottom: 0.65rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.8rem;
+}
+
+.consult-band--service .consult-band__title {
+  margin-bottom: 0.75rem;
+  font-size: clamp(1.4rem, 2.6vw, 1.95rem);
+  color: var(--white);
+}
+
+.consult-band--service .consult-band__lead {
+  margin-bottom: 1.1rem;
+  max-width: 34rem;
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.consult-band--service .consult-band__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.consult-band--service .consult-band__chips li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.consult-band--service .consult-band__side {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: stretch;
+}
+
+.consult-band--service .consult-band__phone {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1.05rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--white);
+  text-decoration: none;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.consult-band--service .consult-band__phone:hover,
+.consult-band--service .consult-band__phone:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.consult-band--service .consult-band__phone-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--white);
+}
+
+.consult-band--service .consult-band__phone-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.consult-band--service .consult-band__phone-text {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.consult-band--service .consult-band__phone-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.consult-band--service .consult-band__phone-number {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.consult-band--service .consult-band__actions {
+  justify-content: stretch;
+}
+
+.consult-band--service .consult-band__actions .btn-light-custom {
+  width: 100%;
+  justify-content: center;
+  min-height: 3rem;
+  box-shadow: 0 8px 20px rgba(26, 58, 63, 0.16);
+}
+
 /* ---------- Inner page: Doctor single ---------- */
 
 .page-hero--doctor-single {
@@ -4551,7 +4724,7 @@ button.header-cta {
   grid-template-columns: minmax(0, 1.7fr) minmax(16rem, 0.78fr);
   grid-template-areas: "content toc";
   gap: 2rem 2.75rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .service-article__content {
@@ -4563,13 +4736,14 @@ button.header-cta {
 .service-toc {
   grid-area: toc;
   min-width: 0;
+  align-self: stretch;
 }
 
 .service-toc__panel {
   position: sticky;
-  top: calc(var(--header-height) + 1rem);
+  top: calc(var(--header-height) + 1.25rem);
   z-index: 2;
-  max-height: calc(100dvh - var(--header-height) - 2rem);
+  max-height: calc(100dvh - var(--header-height) - 2.5rem);
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 1.35rem 1.25rem;
@@ -4712,44 +4886,93 @@ button.header-cta {
 }
 
 .service-table-wrap {
-  margin: 1.25rem 0;
+  margin: 1.5rem 0;
   overflow-x: auto;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(9, 112, 125, 0.14);
-  background: var(--surface);
+  border-radius: calc(var(--radius-lg) + 2px);
+  border: 1px solid rgba(9, 112, 125, 0.12);
+  background: var(--white);
   box-shadow: var(--shadow-sm);
+  -webkit-overflow-scrolling: touch;
 }
 
 .service-table {
   width: 100%;
-  min-width: 34rem;
-  border-collapse: collapse;
+  min-width: 40rem;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
-.service-table th,
-.service-table td {
-  padding: 0.85rem 1rem;
-  border-bottom: 1px solid rgba(9, 112, 125, 0.1);
+.service-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 1rem 1.15rem;
+  background:
+    linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-align: start;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 0;
+}
+
+.service-table thead th:first-child {
+  border-start-start-radius: calc(var(--radius-lg) + 1px);
+}
+
+.service-table thead th:last-child {
+  border-start-end-radius: calc(var(--radius-lg) + 1px);
+}
+
+.service-table tbody th,
+.service-table tbody td {
+  padding: 1.05rem 1.15rem;
   text-align: start;
   vertical-align: top;
   font-size: 0.9rem;
-  line-height: 1.65;
-}
-
-.service-table th {
-  background: rgba(9, 112, 125, 0.08);
-  color: var(--secondary);
-  font-weight: 700;
-}
-
-.service-table td {
-  color: var(--text);
+  line-height: 1.7;
+  border-bottom: 1px solid rgba(9, 112, 125, 0.08);
   background: var(--white);
+  transition: background-color var(--transition);
 }
 
-.service-table tr:last-child td,
-.service-table tr:last-child th {
+.service-table tbody th[scope="row"] {
+  width: 9.5rem;
+  color: var(--primary-dark);
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: rgba(230, 243, 245, 0.55);
+  border-inline-end: 1px solid rgba(9, 112, 125, 0.08);
+}
+
+.service-table tbody td {
+  color: var(--text);
+}
+
+.service-table tbody tr:last-child th,
+.service-table tbody tr:last-child td {
   border-bottom: 0;
+}
+
+.service-table tbody tr:hover th[scope="row"] {
+  background: var(--primary-soft);
+}
+
+.service-table tbody tr:hover td {
+  background: rgba(247, 250, 250, 0.95);
+}
+
+.service-table tbody td:nth-child(3) {
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.service-table tbody td:nth-child(4) {
+  color: var(--text-muted);
+  font-size: 0.86rem;
 }
 
 .service-callout {

@@ -988,6 +988,11 @@
   .consult-band__actions {
     justify-content: flex-start;
   }
+
+  .consult-band--service .consult-band__panel {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -1094,6 +1099,21 @@
     padding: 1.15rem 1rem;
   }
 
+  .service-table {
+    min-width: 32rem;
+  }
+
+  .service-table thead th,
+  .service-table tbody th,
+  .service-table tbody td {
+    padding: 0.85rem 0.9rem;
+  }
+
+  .service-table tbody th[scope="row"] {
+    width: 7.5rem;
+    font-size: 0.82rem;
+  }
+
   .service-prose h2 {
     font-size: 1.25rem;
   }
@@ -1170,6 +1190,23 @@
     inset-block: 0;
   }
 
+  .consult-band--service .consult-band__panel {
+    padding: 1.4rem 1.2rem;
+  }
+
+  .consult-band--service .consult-band__panel::before,
+  .consult-band--service .consult-band__panel::after {
+    display: none;
+  }
+
+  .consult-band--service .consult-band__title {
+    font-size: 1.25rem;
+  }
+
+  .consult-band--service .consult-band__lead {
+    font-size: 0.9rem;
+  }
+
   .consult-band__title {
     font-size: 1.15rem;
   }
@@ -1184,7 +1221,8 @@
   }
 
   .consult-band__actions .btn-primary-custom,
-  .consult-band__actions .btn-secondary-custom {
+  .consult-band__actions .btn-secondary-custom,
+  .consult-band--service .consult-band__actions .btn-light-custom {
     width: 100%;
   }
 }
