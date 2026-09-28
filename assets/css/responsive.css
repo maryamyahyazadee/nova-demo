@@ -1003,10 +1003,15 @@
     min-height: 0;
   }
 
-  .page-hero--doctors .page-hero__layout {
+  .page-hero--doctors .page-hero__layout,
+  .page-hero--about .page-hero__layout {
     grid-template-columns: 1fr;
     gap: 1.75rem;
     padding-block: 5.75rem 2.5rem;
+  }
+
+  .page-hero--about .page-hero__portrait--main {
+    margin-inline: auto;
   }
 
   .doctor-single-hero {
@@ -1133,6 +1138,10 @@
     grid-template-columns: 1fr;
   }
 
+  .about-values__grid {
+    grid-template-columns: 1fr;
+  }
+
   .consult-band__panel {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -1155,6 +1164,11 @@
 
   .page-hero__lead {
     font-size: 0.98rem;
+  }
+
+  .page-hero--doctors .page-hero__layout,
+  .page-hero--about .page-hero__layout {
+    padding-block: 5.25rem 2rem;
   }
 
   .service-detail__aside {
@@ -1189,10 +1203,6 @@
   .service-group__action {
     width: 1.85rem;
     height: 1.85rem;
-  }
-
-  .page-hero--doctors .page-hero__layout {
-    padding-block: 5.25rem 2rem;
   }
 
   .doctor-single-hero {
