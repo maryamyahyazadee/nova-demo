@@ -922,6 +922,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .articles-archive__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .video-detail__layout {
     grid-template-columns: 1fr;
   }
@@ -1403,6 +1407,26 @@
 
   .videos-grid {
     grid-template-columns: 1fr;
+  }
+
+  .articles-archive__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .articles-toolbar {
+    gap: 0.45rem;
+  }
+
+  .articles-filter {
+    min-height: 2.25rem;
+    padding-inline: 0.8rem;
+    font-size: 0.84rem;
+  }
+
+  .article-card__title {
+    font-size: 1rem;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
 
   .videos-toolbar {

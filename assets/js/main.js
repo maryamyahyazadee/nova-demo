@@ -1065,4 +1065,47 @@
       }
     });
   })();
+
+  (function initArticlesArchive() {
+    var archive = document.querySelector("[data-articles-archive]");
+    if (!archive) return;
+
+    var filters = archive.querySelectorAll("[data-article-filter]");
+    var cards = archive.querySelectorAll("[data-article-card]");
+    var countEl = archive.querySelector("[data-articles-count]");
+    var emptyEl = archive.querySelector("[data-articles-empty]");
+
+    function updateCount(visible) {
+      if (countEl) {
+        countEl.textContent = toPersianDigits(visible) + " مقاله";
+      }
+      if (emptyEl) {
+        emptyEl.hidden = visible > 0;
+      }
+    }
+
+    function applyFilter(category) {
+      var visible = 0;
+      cards.forEach(function (card) {
+        var match = category === "all" || card.getAttribute("data-article-category") === category;
+        card.classList.toggle("is-hidden", !match);
+        if (match) visible += 1;
+      });
+      updateCount(visible);
+    }
+
+    filters.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var category = button.getAttribute("data-article-filter") || "all";
+        filters.forEach(function (item) {
+          var isActive = item === button;
+          item.classList.toggle("is-active", isActive);
+          item.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+        applyFilter(category);
+      });
+    });
+
+    applyFilter("all");
+  })();
 })();
