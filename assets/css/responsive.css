@@ -912,6 +912,17 @@
     grid-template-columns: 1fr 1fr;
   }
 
+  .doctor-highlight__panel {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .doctor-highlight__visual {
+    justify-items: start;
+    text-align: start;
+    padding: 1rem 1.15rem;
+  }
+
   .doctor-timeline::before {
     inset-inline-start: 2.85rem;
   }
@@ -1003,8 +1014,9 @@
     font-size: 0.92rem;
   }
 
-  .doctor-single-badges li {
-    font-size: 0.74rem;
+  .doctor-single-meta {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
   }
 
   .doctor-single-hero__actions {
@@ -1022,12 +1034,7 @@
   }
 
   .doctor-highlight__panel {
-    padding: 1.6rem 1.25rem;
-  }
-
-  .doctor-highlight__panel::after {
-    font-size: 4rem;
-    opacity: 0.9;
+    padding: 1.5rem 1.2rem;
   }
 
   .doctor-timeline::before {
