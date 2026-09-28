@@ -165,7 +165,7 @@
 
 @media (max-width: 767.98px) {
   :root {
-    --section-space: 3.5rem;
+    --section-space: 2.5rem;
   }
 
   body {
@@ -191,7 +191,7 @@
   }
 
   .section-header {
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.35rem;
   }
 
   .site-header {
@@ -692,7 +692,7 @@
 
 @media (max-width: 575.98px) {
   :root {
-    --section-space: 3.15rem;
+    --section-space: 2.15rem;
   }
 
   .container {

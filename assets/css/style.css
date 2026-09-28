@@ -67,7 +67,7 @@
   --shadow-sm: 0 1px 4px rgba(9, 112, 125, 0.05);
   --shadow-md: 0 4px 14px rgba(9, 112, 125, 0.07);
 
-  --section-space: clamp(4rem, 8vw, 6.5rem);
+  --section-space: clamp(2.75rem, 5vw, 4.25rem);
   --container-max: 1140px;
   --header-height: 80px;
 
@@ -151,7 +151,7 @@ a:hover {
 }
 
 .section-header {
-  margin-bottom: 2.75rem;
+  margin-bottom: 2rem;
 }
 
 .section-header--center {
@@ -952,7 +952,7 @@ body.nav-open {
 .trust-section {
   position: relative;
   z-index: 2;
-  padding-block: 0 2rem;
+  padding-block: 0 1.25rem;
   background: var(--surface);
 }
 
