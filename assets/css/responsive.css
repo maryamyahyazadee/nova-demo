@@ -982,7 +982,12 @@
   }
 
   .articles-archive__grid--related {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .articles-archive__grid--related .article-card {
+    flex: 0 0 calc((100% - 1rem) / 2);
+    width: calc((100% - 1rem) / 2);
   }
 
   .video-detail__layout {
