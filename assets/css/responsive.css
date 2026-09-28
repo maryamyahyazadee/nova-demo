@@ -1106,14 +1106,12 @@
   .service-table thead th,
   .service-table tbody th,
   .service-table tbody td {
-    padding-block: 0.85rem;
-    padding-inline-end: 0.9rem;
+    padding: 0.85rem 0.9rem;
     font-size: 0.86rem;
   }
 
   .service-table tbody th[scope="row"] {
     width: 7.5rem;
-    font-size: 0.84rem;
   }
 
   .service-prose h2 {
