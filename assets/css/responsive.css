@@ -1109,16 +1109,21 @@
   }
 
   .about-honors__item {
-    flex-basis: calc((100% - 1rem) / 2);
+    flex: 0 0 100%;
   }
 
   .about-team__grid {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 1.35rem;
+  }
+
+  .about-team__card {
+    grid-template-columns: 8.25rem minmax(0, 1fr);
+    gap: 0.9rem 1rem;
   }
 
   .about-team__photo {
-    max-width: 28rem;
+    width: 8.25rem;
   }
 
   .doctor-single-hero {
@@ -1240,7 +1245,7 @@
   }
 
   .about-honors__item {
-    flex-basis: calc((100% - 1rem) / 2);
+    flex: 0 0 100%;
   }
 
   .about-honors__top {
@@ -1288,12 +1293,16 @@
     max-width: none;
   }
 
+  .about-team__card {
+    grid-template-columns: 7rem minmax(0, 1fr);
+  }
+
   .about-team__photo {
-    max-width: none;
+    width: 7rem;
   }
 
   .about-honors__item {
-    flex-basis: 85%;
+    flex: 0 0 100%;
   }
 
   .about-honors__controls {
