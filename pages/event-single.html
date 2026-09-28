@@ -251,39 +251,26 @@
 
   <main>
     <section class="page-hero page-hero--event-single" aria-labelledby="page-hero-title">
-      <div class="container event-single-hero">
-        <div class="event-single-hero__copy">
-          <nav class="page-breadcrumb reveal" aria-label="مسیر صفحه">
-            <a href="../index.html">صفحه اصلی</a>
-            <span class="page-breadcrumb__sep" aria-hidden="true">/</span>
-            <a href="events.html">رویدادها</a>
-            <span class="page-breadcrumb__sep" aria-hidden="true">/</span>
-            <span aria-current="page">برنامه اعضای پنل کارگاه</span>
-          </nav>
+      <div class="container page-hero__inner">
+        <nav class="page-breadcrumb reveal" aria-label="مسیر صفحه">
+          <a href="../index.html">صفحه اصلی</a>
+          <span class="page-breadcrumb__sep" aria-hidden="true">/</span>
+          <a href="events.html">رویدادها</a>
+          <span class="page-breadcrumb__sep" aria-hidden="true">/</span>
+          <span aria-current="page">برنامه اعضای پنل کارگاه</span>
+        </nav>
 
-          <p class="event-single-hero__kicker reveal">کارگاه تخصصی · ۱۴۰۴</p>
-          <h1 class="page-hero__title reveal" id="page-hero-title">برنامه اعضای پنل کارگاه</h1>
-          <p class="page-hero__lead reveal">
-            کارگاه تخصصی بررسی توده‌های آدرنال در گردهمایی جامعه جراحان ایران؛ با تمرکز بر رویکردهای نوین تشخیصی و درمانی.
-          </p>
+        <p class="section-kicker reveal">کارگاه تخصصی · ۱۴۰۴</p>
+        <h1 class="page-hero__title reveal" id="page-hero-title">برنامه اعضای پنل کارگاه</h1>
+        <p class="page-hero__lead reveal">
+          کارگاه تخصصی بررسی توده‌های آدرنال در گردهمایی جامعه جراحان ایران؛ با تمرکز بر رویکردهای نوین تشخیصی و درمانی.
+        </p>
 
-          <ul class="event-single-meta reveal" aria-label="اطلاعات رویداد">
-            <li>کارگاه تخصصی</li>
-            <li>سال ۱۴۰۴</li>
-            <li>مسئولیت علمی: <a href="doctor-single.html">دکتر کاوه همدانی</a></li>
-          </ul>
-        </div>
-
-        <figure class="event-single-hero__media reveal">
-          <img
-            src="../assets/images/events/adrenal-workshop.webp"
-            width="1024"
-            height="576"
-            alt="کارگاه تخصصی بررسی توده‌های آدرنال"
-            loading="eager"
-            decoding="async"
-          >
-        </figure>
+        <ul class="event-single-meta reveal" aria-label="اطلاعات رویداد">
+          <li>کارگاه تخصصی</li>
+          <li>سال ۱۴۰۴</li>
+          <li>مسئولیت علمی: <a href="doctor-single.html">دکتر کاوه همدانی</a></li>
+        </ul>
       </div>
     </section>
 
@@ -439,8 +426,6 @@
                 <span class="event-info-list__value">توده‌های آدرنال</span>
               </li>
             </ul>
-            <a class="event-detail__aside-link" href="events.html">بازگشت به آرشیو رویدادها</a>
-            <a class="event-detail__aside-service" href="services.html#adrenal">مشاهده خدمت جراحی فوق کلیه</a>
           </aside>
         </div>
       </div>
@@ -453,7 +438,7 @@
           <h2 class="section-heading" id="event-related-heading">رویدادهای مرتبط</h2>
         </div>
 
-        <div class="events-list events-list--related">
+        <div class="events-list events-list--related" tabindex="0" aria-label="رویدادهای مرتبط">
           <a class="event-card reveal" href="event-single.html">
             <span class="event-card__media">
               <img
@@ -527,29 +512,6 @@
         </div>
       </div>
     </section>
-
-    <section class="consult-band consult-band--compact" id="contact" aria-labelledby="consult-band-heading">
-      <div class="container">
-        <div class="consult-band__panel reveal">
-          <div class="consult-band__copy">
-            <p class="consult-band__kicker">نوبت مشاوره</p>
-            <h2 class="consult-band__title" id="consult-band-heading">
-              رزرو مشاوره تخصصی
-            </h2>
-            <p class="consult-band__meta">شنبه تا پنجشنبه · ۹ تا ۲۱</p>
-          </div>
-
-          <div class="consult-band__actions">
-            <button class="btn-primary-custom" type="button" data-booking-open>
-              رزرو نوبت
-            </button>
-            <a class="btn-secondary-custom" href="tel:02191093492">
-              <span class="phone-ltr">۰۲۱-۹۱۰۹۳۴۹۲</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -593,7 +555,7 @@
             </ul>
           </div>
 
-          <div class="footer-col footer-col--contact">
+          <div class="footer-col footer-col--contact" id="contact">
             <h3 class="footer-heading">ارتباط</h3>
             <ul class="footer-contact">
               <li>

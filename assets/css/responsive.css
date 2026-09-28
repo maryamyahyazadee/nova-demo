@@ -1024,23 +1024,17 @@
     margin-inline: auto;
   }
 
-  .event-single-hero {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-    padding-block: 5.75rem 2.5rem;
-  }
-
-  .event-single-hero__media {
-    width: min(100%, 36rem);
-    margin-inline: auto;
-  }
-
   .event-detail__layout {
     grid-template-columns: 1fr;
   }
 
   .events-list--related {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .events-list--related .event-card {
+    flex: 0 0 min(18.5rem, calc(100% - 2rem));
+    width: min(18.5rem, calc(100% - 2rem));
   }
 
   .event-gallery__grid {
@@ -1231,10 +1225,6 @@
     justify-content: center;
   }
 
-  .event-single-hero {
-    padding-block: 5.25rem 2rem;
-  }
-
   .event-single-meta {
     gap: 0.4rem;
   }
@@ -1246,7 +1236,12 @@
   }
 
   .events-list--related {
-    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .events-list--related .event-card {
+    flex: 0 0 100%;
+    width: 100%;
   }
 
   .event-gallery__header {
