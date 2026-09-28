@@ -1009,6 +1009,7 @@
     min-height: 0;
   }
 
+  .page-hero--doctors .page-hero__layout,
   .page-hero--about .page-hero__layout {
     grid-template-columns: 1fr;
     gap: 1.75rem;
@@ -1017,6 +1018,22 @@
 
   .page-hero--about .page-hero__portrait--main {
     margin-inline: auto;
+  }
+
+  .about-values__grid--five {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-values__grid--five .about-value:nth-child(1),
+  .about-values__grid--five .about-value:nth-child(2),
+  .about-values__grid--five .about-value:nth-child(3),
+  .about-values__grid--five .about-value:nth-child(4),
+  .about-values__grid--five .about-value:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .about-values__grid--five .about-value:nth-child(5) {
+    grid-column: 1 / -1;
   }
 
   .doctor-single-hero {
@@ -1141,6 +1158,22 @@
     grid-template-columns: 1fr;
   }
 
+  .about-values__grid--five {
+    grid-template-columns: 1fr;
+  }
+
+  .about-values__grid--five .about-value:nth-child(1),
+  .about-values__grid--five .about-value:nth-child(2),
+  .about-values__grid--five .about-value:nth-child(3),
+  .about-values__grid--five .about-value:nth-child(4),
+  .about-values__grid--five .about-value:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .about-honors__item {
+    flex-basis: calc((100% - 1rem) / 2);
+  }
+
   .consult-band__panel {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -1165,8 +1198,13 @@
     font-size: 0.98rem;
   }
 
+  .page-hero--doctors .page-hero__layout,
   .page-hero--about .page-hero__layout {
     padding-block: 5.25rem 2rem;
+  }
+
+  .about-honors__item {
+    flex-basis: 85%;
   }
 
   .service-detail__aside {

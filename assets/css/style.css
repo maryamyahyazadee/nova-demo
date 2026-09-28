@@ -7059,6 +7059,24 @@ a.video-single-meta__value:focus-visible {
   gap: 1rem;
 }
 
+.about-values__grid--five {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.about-values__grid--five .about-value:nth-child(1),
+.about-values__grid--five .about-value:nth-child(2),
+.about-values__grid--five .about-value:nth-child(3) {
+  grid-column: span 2;
+}
+
+.about-values__grid--five .about-value:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.about-values__grid--five .about-value:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
 .about-value {
   padding: 1.45rem 1.35rem;
   border-radius: var(--radius-lg);
@@ -7106,8 +7124,169 @@ a.video-single-meta__value:focus-visible {
   line-height: 1.75;
 }
 
-.about-team {
+.about-honors {
+  padding-block: var(--section-space);
   background: var(--white);
+}
+
+.about-honors .section-header {
+  margin-bottom: 1.75rem;
+}
+
+.about-honors__slider {
+  position: relative;
+}
+
+.about-honors__viewport {
+  overflow-x: auto;
+  padding: 0.35rem 0.15rem 1.1rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+
+.about-honors__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.about-honors__viewport:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
+}
+
+.about-honors__track {
+  display: flex;
+  gap: 1rem;
+}
+
+.about-honors__item {
+  flex: 0 0 calc((100% - 2rem) / 3);
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: start;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.about-honors__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(9, 112, 125, 0.12);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(9, 112, 125, 0.06), transparent 55%),
+    var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.about-honors__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 0.85rem;
+  transition: transform 500ms ease;
+}
+
+.about-honors__item:hover .about-honors__media,
+.about-honors__item:focus-visible .about-honors__media {
+  border-color: rgba(9, 112, 125, 0.28);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.about-honors__item:hover .about-honors__media img,
+.about-honors__item:focus-visible .about-honors__media img {
+  transform: scale(1.03);
+}
+
+.about-honors__item:focus-visible {
+  outline: none;
+}
+
+.about-honors__item:focus-visible .about-honors__media {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.about-honors__caption {
+  display: block;
+  padding-inline: 0.15rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+
+.about-honors__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 0.15rem;
+}
+
+.about-honors__button {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(9, 112, 125, 0.18);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--primary-dark);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.about-honors__button svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.about-honors__button:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.about-honors__button:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.about-honors__counter {
+  min-width: 3.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.about-team {
+  background: var(--surface);
 }
 
 .about-team .articles-footer {
