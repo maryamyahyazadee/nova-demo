@@ -891,6 +891,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .videos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .event-card--featured {
     grid-template-columns: 1fr;
   }
@@ -1364,6 +1368,33 @@
 
   .events-list {
     grid-template-columns: 1fr;
+  }
+
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .videos-toolbar {
+    gap: 0.45rem;
+  }
+
+  .videos-filter {
+    min-height: 2.25rem;
+    padding-inline: 0.8rem;
+    font-size: 0.84rem;
+  }
+
+  .video-lightbox {
+    padding: 0.85rem;
+  }
+
+  .video-lightbox__dialog {
+    padding: 1rem 0.9rem 1.05rem;
+  }
+
+  .video-lightbox__title {
+    margin-inline-end: 2.4rem;
+    font-size: 0.95rem;
   }
 
   .event-card--featured {
