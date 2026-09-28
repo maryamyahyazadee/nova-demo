@@ -910,7 +910,7 @@
     height: 10.5rem;
   }
 
-  .doctor-showcase {
+  .doctor-jump {
     grid-template-columns: 1fr;
   }
 
@@ -1001,8 +1001,23 @@
     font-size: 1.02rem;
   }
 
-  .doctor-card__body {
-    padding: 1.1rem 1.05rem 1.2rem;
+  .doctor-jump__item {
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    min-height: 0;
+  }
+
+  .doctor-jump__avatar {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .doctor-jump__name {
+    font-size: 0.92rem;
+  }
+
+  .doctor-jump__title {
+    font-size: 0.76rem;
   }
 
   .consult-band__panel {
