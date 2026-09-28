@@ -3473,29 +3473,6 @@ button.header-cta {
 
 /* ---------- Inner page: Doctors archive ---------- */
 
-.page-hero--doctors {
-  background:
-    radial-gradient(ellipse at 12% 18%, rgba(9, 112, 125, 0.12) 0%, transparent 46%),
-    radial-gradient(ellipse at 92% 88%, rgba(196, 163, 90, 0.1) 0%, transparent 42%),
-    linear-gradient(180deg, #f4fbfc 0%, var(--surface) 100%);
-}
-
-.page-hero--doctors .page-hero__layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  align-items: center;
-  gap: 2rem 2.5rem;
-  padding-block: 6.5rem 3rem;
-}
-
-.page-hero--doctors .page-hero__copy {
-  max-width: 34rem;
-}
-
-.page-hero--doctors .page-hero__title {
-  margin-bottom: 0.95rem;
-}
-
 .page-hero__chips {
   display: flex;
   flex-wrap: wrap;
@@ -3545,10 +3522,6 @@ button.header-cta {
 
 .page-hero__portrait--main img {
   transition: transform 650ms ease;
-}
-
-.page-hero--doctors:hover .page-hero__portrait--main img {
-  transform: scale(1.02);
 }
 
 .doctors-overview {
@@ -4209,7 +4182,7 @@ button.header-cta {
 .doctor-quick-list {
   display: grid;
   gap: 0.85rem;
-  margin: 0 0 1.15rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -4236,20 +4209,6 @@ button.header-cta {
   font-size: 0.9rem;
   line-height: 1.6;
   color: var(--text);
-}
-
-.doctor-about__aside-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--primary);
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.doctor-about__aside-link:hover,
-.doctor-about__aside-link:focus-visible {
-  color: var(--primary-dark);
 }
 
 .doctor-education {

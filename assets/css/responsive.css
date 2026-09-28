@@ -1003,7 +1003,6 @@
     min-height: 0;
   }
 
-  .page-hero--doctors .page-hero__layout,
   .page-hero--about .page-hero__layout {
     grid-template-columns: 1fr;
     gap: 1.75rem;
@@ -1166,7 +1165,6 @@
     font-size: 0.98rem;
   }
 
-  .page-hero--doctors .page-hero__layout,
   .page-hero--about .page-hero__layout {
     padding-block: 5.25rem 2rem;
   }
