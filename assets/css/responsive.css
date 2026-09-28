@@ -1502,13 +1502,26 @@
   }
 
   .videos-toolbar {
-    gap: 0.45rem;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 0.22rem;
+    padding: 0.28rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .videos-toolbar::-webkit-scrollbar {
+    display: none;
   }
 
   .videos-filter {
-    min-height: 2.25rem;
-    padding-inline: 0.8rem;
-    font-size: 0.84rem;
+    flex: 0 0 auto;
+    min-height: 2.2rem;
+    padding-inline: 0.9rem;
+    font-size: 0.82rem;
   }
 
   .video-player-section {

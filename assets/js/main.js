@@ -968,97 +968,130 @@
     var archive = document.querySelector("[data-videos-archive]");
     if (!archive) return;
 
+    var PER_PAGE = 9;
     var filters = archive.querySelectorAll("[data-video-filter]");
-    var cards = archive.querySelectorAll("[data-video-card]");
+    var cards = Array.prototype.slice.call(archive.querySelectorAll("[data-video-card]"));
     var countEl = archive.querySelector("[data-videos-count]");
     var emptyEl = archive.querySelector("[data-videos-empty]");
-    var openButtons = archive.querySelectorAll("[data-video-open]");
-    var lightbox = document.getElementById("video-lightbox");
-    var iframe = lightbox ? lightbox.querySelector("[data-video-iframe]") : null;
-    var titleEl = lightbox ? lightbox.querySelector("[data-video-lightbox-title]") : null;
-    var dialog = lightbox ? lightbox.querySelector("[data-video-dialog]") : null;
-    var closeButtons = lightbox ? lightbox.querySelectorAll("[data-video-close]") : [];
-    var lastFocus = null;
+    var pagination = archive.querySelector("[data-videos-pagination]");
+    var pagesEl = archive.querySelector("[data-videos-pages]");
+    var prevBtn = archive.querySelector("[data-videos-prev]");
+    var nextBtn = archive.querySelector("[data-videos-next]");
+    var currentCategory = "all";
+    var currentPage = 1;
 
-    function updateCount(visible) {
+    function getMatchedCards() {
+      return cards.filter(function (card) {
+        return currentCategory === "all" || card.getAttribute("data-video-category") === currentCategory;
+      });
+    }
+
+    function updateCount(total) {
       if (countEl) {
-        countEl.textContent = toPersianDigits(visible) + " ویدئو";
+        countEl.textContent = toPersianDigits(total) + " ویدئو";
       }
       if (emptyEl) {
-        emptyEl.hidden = visible > 0;
+        emptyEl.hidden = total > 0;
       }
     }
 
-    function applyFilter(category) {
-      var visible = 0;
+    function renderPagination(totalPages) {
+      if (!pagination || !pagesEl) return;
+
+      if (totalPages <= 1) {
+        pagination.hidden = true;
+        pagesEl.innerHTML = "";
+        return;
+      }
+
+      pagination.hidden = false;
+      pagesEl.innerHTML = "";
+
+      for (var page = 1; page <= totalPages; page += 1) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "videos-pagination__page" + (page === currentPage ? " is-active" : "");
+        button.textContent = toPersianDigits(page);
+        button.setAttribute("data-videos-page", String(page));
+        button.setAttribute("aria-label", "صفحه " + toPersianDigits(page));
+        if (page === currentPage) {
+          button.setAttribute("aria-current", "page");
+        }
+        pagesEl.appendChild(button);
+      }
+
+      if (prevBtn) prevBtn.disabled = currentPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
+    }
+
+    function render() {
+      var matched = getMatchedCards();
+      var totalPages = Math.max(1, Math.ceil(matched.length / PER_PAGE));
+
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      var start = (currentPage - 1) * PER_PAGE;
+      var end = start + PER_PAGE;
+
       cards.forEach(function (card) {
-        var match = category === "all" || card.getAttribute("data-video-category") === category;
-        card.classList.toggle("is-hidden", !match);
-        if (match) visible += 1;
+        card.classList.add("is-hidden");
       });
-      updateCount(visible);
+
+      matched.forEach(function (card, index) {
+        if (index >= start && index < end) {
+          card.classList.remove("is-hidden");
+        }
+      });
+
+      updateCount(matched.length);
+      renderPagination(matched.length ? totalPages : 0);
     }
 
     filters.forEach(function (button) {
       button.addEventListener("click", function () {
-        var category = button.getAttribute("data-video-filter") || "all";
+        currentCategory = button.getAttribute("data-video-filter") || "all";
+        currentPage = 1;
         filters.forEach(function (item) {
           var isActive = item === button;
           item.classList.toggle("is-active", isActive);
           item.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
-        applyFilter(category);
+        render();
       });
     });
 
-    applyFilter("all");
-
-    if (!lightbox || !iframe) return;
-
-    function openVideo(button) {
-      var src = button.getAttribute("data-video-src") || "";
-      var title = button.getAttribute("data-video-title") || "ویدئو";
-      if (!src) return;
-
-      lastFocus = document.activeElement;
-      iframe.src = src;
-      iframe.title = title;
-      if (titleEl) titleEl.textContent = title;
-      lightbox.hidden = false;
-      lightbox.setAttribute("aria-hidden", "false");
-      document.body.classList.add("video-lightbox-open");
-      if (dialog) dialog.focus();
-      else if (closeButtons[0]) closeButtons[0].focus();
-    }
-
-    function closeVideo() {
-      lightbox.hidden = true;
-      lightbox.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("video-lightbox-open");
-      iframe.src = "";
-      iframe.title = "";
-      if (lastFocus && typeof lastFocus.focus === "function") {
-        lastFocus.focus();
-      }
-    }
-
-    openButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        openVideo(button);
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        if (currentPage <= 1) return;
+        currentPage -= 1;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
       });
-    });
+    }
 
-    closeButtons.forEach(function (button) {
-      button.addEventListener("click", closeVideo);
-    });
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        var totalPages = Math.max(1, Math.ceil(getMatchedCards().length / PER_PAGE));
+        if (currentPage >= totalPages) return;
+        currentPage += 1;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
 
-    document.addEventListener("keydown", function (event) {
-      if (lightbox.hidden) return;
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeVideo();
-      }
-    });
+    if (pagesEl) {
+      pagesEl.addEventListener("click", function (event) {
+        var target = event.target.closest("[data-videos-page]");
+        if (!target) return;
+        var page = Number(target.getAttribute("data-videos-page"));
+        if (!page || page === currentPage) return;
+        currentPage = page;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    render();
   })();
 
   (function initArticlesArchive() {
