@@ -283,7 +283,7 @@
 
         if (counter) {
           counter.textContent =
-            toPersianDigits(activeIndex + 1) + " / " + toPersianDigits(slides.length);
+            toPersianDigits(activeIndex + 1) + " از " + toPersianDigits(slides.length);
         }
       }
 

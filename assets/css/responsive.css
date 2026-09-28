@@ -1009,31 +1009,76 @@
     min-height: 0;
   }
 
-  .page-hero--doctors .page-hero__layout,
-  .page-hero--about .page-hero__layout {
+  .page-hero--doctors .page-hero__layout {
     grid-template-columns: 1fr;
     gap: 1.75rem;
     padding-block: 5.75rem 2.5rem;
   }
 
-  .page-hero--about .page-hero__portrait--main {
+  .about-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-block: 5.75rem 2.75rem;
+  }
+
+  .about-hero__visual {
+    max-width: 24rem;
     margin-inline: auto;
   }
 
-  .about-values__grid--five {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .about-story__layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .about-values__grid--five .about-value:nth-child(1),
-  .about-values__grid--five .about-value:nth-child(2),
-  .about-values__grid--five .about-value:nth-child(3),
-  .about-values__grid--five .about-value:nth-child(4),
-  .about-values__grid--five .about-value:nth-child(5) {
+  .about-story__aside {
+    padding-block: 0 1.25rem;
+    padding-inline-end: 0;
+    border-inline-end: 0;
+    border-block-end: 1px solid rgba(9, 112, 125, 0.1);
+  }
+
+  .about-story__body {
+    padding-block: 0.5rem 0;
+  }
+
+  .about-why__head {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .about-why__list {
+    grid-template-columns: 1fr;
+  }
+
+  .about-why__item,
+  .about-why__item:nth-child(odd),
+  .about-why__item:last-child:nth-child(odd) {
     grid-column: auto;
+    max-width: none;
+    padding: 1.2rem 0.15rem;
+    border-inline-end: 0;
   }
 
-  .about-values__grid--five .about-value:nth-child(5) {
-    grid-column: 1 / -1;
+  .about-why__item:nth-last-child(-n + 2) {
+    border-bottom: 1px solid rgba(9, 112, 125, 0.1);
+  }
+
+  .about-why__item:last-child {
+    border-bottom: 0;
+  }
+
+  .about-honors__item {
+    flex-basis: calc((100% - 1rem) / 2);
+  }
+
+  .about-team__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-team__card {
+    grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+    gap: 0.9rem 1rem;
   }
 
   .doctor-single-hero {
@@ -1154,24 +1199,17 @@
     grid-template-columns: 1fr;
   }
 
-  .about-values__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-values__grid--five {
-    grid-template-columns: 1fr;
-  }
-
-  .about-values__grid--five .about-value:nth-child(1),
-  .about-values__grid--five .about-value:nth-child(2),
-  .about-values__grid--five .about-value:nth-child(3),
-  .about-values__grid--five .about-value:nth-child(4),
-  .about-values__grid--five .about-value:nth-child(5) {
-    grid-column: auto;
+  .about-team__card {
+    grid-template-columns: minmax(0, 7.25rem) minmax(0, 1fr);
+    padding: 0.65rem;
   }
 
   .about-honors__item {
     flex-basis: calc((100% - 1rem) / 2);
+  }
+
+  .about-honors__top {
+    align-items: start;
   }
 
   .consult-band__panel {
@@ -1198,13 +1236,38 @@
     font-size: 0.98rem;
   }
 
-  .page-hero--doctors .page-hero__layout,
-  .page-hero--about .page-hero__layout {
+  .page-hero--doctors .page-hero__layout {
     padding-block: 5.25rem 2rem;
+  }
+
+  .about-hero__grid {
+    padding-block: 5.25rem 2.25rem;
+  }
+
+  .about-hero__brand {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .about-hero__title {
+    font-size: clamp(1.15rem, 4.6vw, 1.4rem);
+    max-width: none;
+  }
+
+  .about-team__card {
+    grid-template-columns: 1fr;
+  }
+
+  .about-team__photo {
+    max-width: 14rem;
   }
 
   .about-honors__item {
     flex-basis: 85%;
+  }
+
+  .about-honors__controls {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .service-detail__aside {
