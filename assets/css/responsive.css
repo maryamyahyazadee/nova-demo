@@ -878,6 +878,14 @@
   .page-hero__inner {
     padding-block: 5.75rem 2.25rem;
   }
+
+  .service-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .service-group:last-child {
+    grid-column: auto;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -891,6 +899,36 @@
 
   .service-detail__aside {
     padding: 1.15rem 1.2rem;
+  }
+
+  .service-group {
+    gap: 0.8rem;
+    padding: 1rem;
+    min-height: 0;
+  }
+
+  .service-group__icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 12px;
+  }
+
+  .service-group__icon svg {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .service-group__title {
+    font-size: 0.98rem;
+  }
+
+  .service-group__text {
+    font-size: 0.82rem;
+  }
+
+  .service-group__action {
+    width: 1.85rem;
+    height: 1.85rem;
   }
 }
 
