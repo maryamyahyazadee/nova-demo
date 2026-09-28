@@ -1255,10 +1255,6 @@
   .event-card--featured .event-card__body {
     padding: 1.25rem 1.2rem 1.35rem;
   }
-
-  .events-note__panel {
-    padding: 1.2rem 1.15rem;
-  }
 }
 
 @media (max-width: 374.98px) {
