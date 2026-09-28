@@ -4889,7 +4889,7 @@ button.header-cta {
   margin: 1.5rem 0;
   overflow-x: auto;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(9, 112, 125, 0.12);
+  border: 1px solid rgba(9, 112, 125, 0.2);
   background: var(--white);
   -webkit-overflow-scrolling: touch;
 }
@@ -4910,7 +4910,12 @@ button.header-cta {
   vertical-align: middle;
   white-space: nowrap;
   border: 0;
-  border-bottom: 1px solid rgba(9, 112, 125, 0.12);
+  border-bottom: 2px solid rgba(9, 112, 125, 0.28);
+  border-inline-end: 1px solid rgba(9, 112, 125, 0.16);
+}
+
+.service-table thead th:last-child {
+  border-inline-end: 0;
 }
 
 .service-table tbody th,
@@ -4921,15 +4926,22 @@ button.header-cta {
   font-size: 0.9rem;
   line-height: 1.7;
   border: 0;
-  border-bottom: 1px solid rgba(9, 112, 125, 0.08);
+  border-bottom: 1px solid rgba(9, 112, 125, 0.18);
+  border-inline-end: 1px solid rgba(9, 112, 125, 0.14);
   background: var(--white);
+}
+
+.service-table tbody th:last-child,
+.service-table tbody td:last-child {
+  border-inline-end: 0;
 }
 
 .service-table tbody th[scope="row"] {
   width: 10rem;
   color: var(--secondary);
   font-weight: 700;
-  background: rgba(247, 250, 250, 0.9);
+  background: rgba(230, 243, 245, 0.45);
+  border-inline-end: 1px solid rgba(9, 112, 125, 0.2);
 }
 
 .service-table tbody td {
@@ -4940,14 +4952,25 @@ button.header-cta {
   color: var(--text-muted);
 }
 
+.service-table tbody tr:nth-child(even) td {
+  background: rgba(247, 250, 250, 0.85);
+}
+
+.service-table tbody tr:nth-child(even) th[scope="row"] {
+  background: rgba(230, 243, 245, 0.65);
+}
+
 .service-table tbody tr:last-child th,
 .service-table tbody tr:last-child td {
   border-bottom: 0;
 }
 
-.service-table tbody tr:hover td,
-.service-table tbody tr:hover th {
-  background: rgba(230, 243, 245, 0.35);
+.service-table tbody tr:hover td {
+  background: rgba(230, 243, 245, 0.4);
+}
+
+.service-table tbody tr:hover th[scope="row"] {
+  background: rgba(230, 243, 245, 0.75);
 }
 
 .service-callout {
