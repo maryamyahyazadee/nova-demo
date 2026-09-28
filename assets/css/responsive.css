@@ -917,6 +917,29 @@
     margin-inline: auto;
   }
 
+  .event-single-hero {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding-block: 5.75rem 2.5rem;
+  }
+
+  .event-single-hero__media {
+    width: min(100%, 36rem);
+    margin-inline: auto;
+  }
+
+  .event-detail__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .event-speakers__list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .events-list--related {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .service-article-hero {
     grid-template-columns: 1fr;
     gap: 1.75rem;
@@ -1081,6 +1104,28 @@
   .doctor-single-hero__actions .btn-secondary-custom {
     width: 100%;
     justify-content: center;
+  }
+
+  .event-single-hero {
+    padding-block: 5.25rem 2rem;
+  }
+
+  .event-single-meta {
+    gap: 0.4rem;
+  }
+
+  .event-single-meta li {
+    font-size: 0.76rem;
+    min-height: 2rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .event-speakers__list {
+    grid-template-columns: 1fr;
+  }
+
+  .events-list--related {
+    grid-template-columns: 1fr;
   }
 
   .page-hero--service-article .page-hero__inner,
