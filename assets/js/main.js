@@ -877,11 +877,6 @@
     }
 
     function bindGallery() {
-      var countEl = section ? section.querySelector(".event-gallery__count") : null;
-      if (countEl) {
-        countEl.textContent = toPersianDigits(readyItems.length) + " تصویر";
-      }
-
       readyItems.forEach(function (item, index) {
         item.hidden = false;
         item.addEventListener("click", function () {

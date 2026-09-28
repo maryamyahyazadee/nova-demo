@@ -5431,15 +5431,7 @@ button.header-cta {
 }
 
 .event-gallery__header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
   margin-bottom: 1rem;
-}
-
-.event-gallery__heading .section-kicker {
-  margin-bottom: 0.35rem;
 }
 
 .event-gallery__title {
@@ -5448,17 +5440,6 @@ button.header-cta {
   font-weight: 700;
   line-height: 1.45;
   color: var(--secondary);
-}
-
-.event-gallery__count {
-  margin: 0;
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-sm);
-  background: var(--primary-soft);
-  color: var(--primary-dark);
-  font-size: 0.78rem;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .event-gallery__panel {
