@@ -1098,42 +1098,143 @@
     var archive = document.querySelector("[data-articles-archive]");
     if (!archive) return;
 
+    var FIRST_PAGE_SIZE = 4;
+    var OTHER_PAGE_SIZE = 6;
     var filters = archive.querySelectorAll("[data-article-filter]");
-    var cards = archive.querySelectorAll("[data-article-card]");
+    var cards = Array.prototype.slice.call(archive.querySelectorAll("[data-article-card]"));
     var countEl = archive.querySelector("[data-articles-count]");
     var emptyEl = archive.querySelector("[data-articles-empty]");
+    var pagination = archive.querySelector("[data-articles-pagination]");
+    var pagesEl = archive.querySelector("[data-articles-pages]");
+    var prevBtn = archive.querySelector("[data-articles-prev]");
+    var nextBtn = archive.querySelector("[data-articles-next]");
+    var currentCategory = "all";
+    var currentPage = 1;
 
-    function updateCount(visible) {
+    function getMatchedCards() {
+      return cards.filter(function (card) {
+        return currentCategory === "all" || card.getAttribute("data-article-category") === currentCategory;
+      });
+    }
+
+    function getTotalPages(total) {
+      if (total <= FIRST_PAGE_SIZE) return Math.max(1, total > 0 ? 1 : 0);
+      return 1 + Math.ceil((total - FIRST_PAGE_SIZE) / OTHER_PAGE_SIZE);
+    }
+
+    function getPageRange(page) {
+      if (page <= 1) {
+        return { start: 0, end: FIRST_PAGE_SIZE };
+      }
+
+      var start = FIRST_PAGE_SIZE + (page - 2) * OTHER_PAGE_SIZE;
+      return { start: start, end: start + OTHER_PAGE_SIZE };
+    }
+
+    function updateCount(total) {
       if (countEl) {
-        countEl.textContent = toPersianDigits(visible) + " مقاله";
+        countEl.textContent = toPersianDigits(total) + " مقاله";
       }
       if (emptyEl) {
-        emptyEl.hidden = visible > 0;
+        emptyEl.hidden = total > 0;
       }
     }
 
-    function applyFilter(category) {
-      var visible = 0;
+    function renderPagination(totalPages) {
+      if (!pagination || !pagesEl) return;
+
+      if (totalPages <= 1) {
+        pagination.hidden = true;
+        pagesEl.innerHTML = "";
+        return;
+      }
+
+      pagination.hidden = false;
+      pagesEl.innerHTML = "";
+
+      for (var page = 1; page <= totalPages; page += 1) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "articles-pagination__page" + (page === currentPage ? " is-active" : "");
+        button.textContent = toPersianDigits(page);
+        button.setAttribute("data-articles-page", String(page));
+        button.setAttribute("aria-label", "صفحه " + toPersianDigits(page));
+        if (page === currentPage) {
+          button.setAttribute("aria-current", "page");
+        }
+        pagesEl.appendChild(button);
+      }
+
+      if (prevBtn) prevBtn.disabled = currentPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
+    }
+
+    function render() {
+      var matched = getMatchedCards();
+      var totalPages = Math.max(1, getTotalPages(matched.length));
+
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      var range = getPageRange(currentPage);
+
       cards.forEach(function (card) {
-        var match = category === "all" || card.getAttribute("data-article-category") === category;
-        card.classList.toggle("is-hidden", !match);
-        if (match) visible += 1;
+        card.classList.add("is-hidden");
       });
-      updateCount(visible);
+
+      matched.forEach(function (card, index) {
+        if (index >= range.start && index < range.end) {
+          card.classList.remove("is-hidden");
+        }
+      });
+
+      updateCount(matched.length);
+      renderPagination(matched.length ? totalPages : 0);
     }
 
     filters.forEach(function (button) {
       button.addEventListener("click", function () {
-        var category = button.getAttribute("data-article-filter") || "all";
+        currentCategory = button.getAttribute("data-article-filter") || "all";
+        currentPage = 1;
         filters.forEach(function (item) {
           var isActive = item === button;
           item.classList.toggle("is-active", isActive);
           item.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
-        applyFilter(category);
+        render();
       });
     });
 
-    applyFilter("all");
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        if (currentPage <= 1) return;
+        currentPage -= 1;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        var totalPages = Math.max(1, getTotalPages(getMatchedCards().length));
+        if (currentPage >= totalPages) return;
+        currentPage += 1;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    if (pagesEl) {
+      pagesEl.addEventListener("click", function (event) {
+        var target = event.target.closest("[data-articles-page]");
+        if (!target) return;
+        var page = Number(target.getAttribute("data-articles-page"));
+        if (!page || page === currentPage) return;
+        currentPage = page;
+        render();
+        archive.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    render();
   })();
 })();

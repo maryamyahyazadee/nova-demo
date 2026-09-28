@@ -569,34 +569,25 @@
         </div>
 
         <p class="articles-empty" data-articles-empty hidden>مقاله‌ای در این دسته یافت نشد.</p>
-      </div>
-    </section>
 
-    <section class="consult-band consult-band--compact" id="contact" aria-labelledby="consult-band-heading">
-      <div class="container">
-        <div class="consult-band__panel reveal">
-          <div class="consult-band__copy">
-            <p class="consult-band__kicker">نوبت مشاوره</p>
-            <h2 class="consult-band__title" id="consult-band-heading">
-              رزرو مشاوره تخصصی
-            </h2>
-            <p class="consult-band__meta">شنبه تا پنجشنبه · ۹ تا ۲۱</p>
-          </div>
-
-          <div class="consult-band__actions">
-            <button class="btn-primary-custom" type="button" data-booking-open>
-              رزرو نوبت
-            </button>
-            <a class="btn-secondary-custom" href="tel:02191093492">
-              <span class="phone-ltr">۰۲۱-۹۱۰۹۳۴۹۲</span>
-            </a>
-          </div>
-        </div>
+        <nav class="articles-pagination" data-articles-pagination hidden aria-label="صفحه‌بندی مقالات">
+          <button class="articles-pagination__btn" type="button" data-articles-prev aria-label="صفحه قبل">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 18 6-6-6-6"/>
+            </svg>
+          </button>
+          <div class="articles-pagination__pages" data-articles-pages></div>
+          <button class="articles-pagination__btn" type="button" data-articles-next aria-label="صفحه بعد">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+          </button>
+        </nav>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" id="contact">
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
