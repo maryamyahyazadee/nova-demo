@@ -4561,8 +4561,16 @@ button.header-cta {
 
 .service-toc {
   grid-column: 2;
+  min-width: 0;
+}
+
+.service-toc__panel {
   position: sticky;
   top: calc(var(--header-height) + 1rem);
+  z-index: 2;
+  max-height: calc(100dvh - var(--header-height) - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 1.35rem 1.25rem;
   border-radius: calc(var(--radius-lg) + 2px);
   background:
