@@ -932,10 +932,6 @@
     grid-template-columns: 1fr;
   }
 
-  .event-speakers__list {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .events-list--related {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1136,10 +1132,6 @@
     font-size: 0.76rem;
     min-height: 2rem;
     padding: 0.3rem 0.7rem;
-  }
-
-  .event-speakers__list {
-    grid-template-columns: 1fr;
   }
 
   .events-list--related {
