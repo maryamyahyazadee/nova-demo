@@ -917,16 +917,10 @@
 
   .service-article__layout {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "toc"
+      "content";
     gap: 1.5rem;
-  }
-
-  .service-article__content,
-  .service-toc {
-    grid-column: auto;
-  }
-
-  .service-toc {
-    order: -1;
   }
 
   .service-toc__panel {

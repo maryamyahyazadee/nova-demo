@@ -4548,19 +4548,20 @@ button.header-cta {
 
 .service-article__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(15rem, 0.78fr);
+  grid-template-columns: minmax(0, 1.7fr) minmax(16rem, 0.78fr);
+  grid-template-areas: "content toc";
   gap: 2rem 2.75rem;
   align-items: start;
 }
 
 .service-article__content {
-  grid-column: 1;
+  grid-area: content;
   min-width: 0;
   padding: 0.35rem 0 0;
 }
 
 .service-toc {
-  grid-column: 2;
+  grid-area: toc;
   min-width: 0;
 }
 
