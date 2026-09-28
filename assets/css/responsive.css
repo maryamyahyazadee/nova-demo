@@ -1402,14 +1402,6 @@
     font-size: 0.74rem;
   }
 
-  .doctors-intro__quote {
-    padding: 1.5rem 1.1rem 1.25rem;
-  }
-
-  .doctors-intro__quote p {
-    font-size: 1.02rem;
-  }
-
   .doctor-jump__item {
     gap: 0.75rem;
     padding: 0.9rem 1rem;
