@@ -4965,14 +4965,6 @@ button.header-cta {
   border-bottom: 0;
 }
 
-.service-table tbody tr:hover td {
-  background: rgba(230, 243, 245, 0.4);
-}
-
-.service-table tbody tr:hover th[scope="row"] {
-  background: rgba(230, 243, 245, 0.75);
-}
-
 .service-callout {
   margin-top: 1.35rem;
   padding: 1.2rem 1.3rem;
