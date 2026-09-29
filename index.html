@@ -21,8 +21,8 @@
         </a>
 
         <nav class="desktop-nav" aria-label="منوی اصلی">
-          <ul class="main-nav">
-            <li><a class="is-active" href="index.html">صفحه اصلی</a></li>
+                    <ul class="main-nav">
+            <li><a class="is-active" href="index.html" aria-current="page">صفحه اصلی</a></li>
             <li class="has-dropdown">
               <a href="pages/services.html" aria-haspopup="true" aria-expanded="false">
                 خدمات ما
@@ -39,13 +39,24 @@
                 <li><a href="pages/services.html#pancreas">جراحی پانکراس</a></li>
               </ul>
             </li>
-            <li><a href="pages/doctors.html">متخصصان کلینیک</a></li>
-            <li><a href="pages/events.html">رویدادها</a></li>
             <li><a href="pages/videos.html">ویدئو ها</a></li>
             <li><a href="pages/articles.html">مقالات تخصصی</a></li>
             <li><a href="pages/blog.html">وبلاگ</a></li>
-            <li><a href="pages/about.html">درباره ما</a></li>
-            <li><a href="pages/contact.html">تماس باما</a></li>
+            <li class="has-dropdown">
+              <a href="pages/about.html" aria-haspopup="true" aria-expanded="false">
+                درباره ما
+                <span class="nav-caret" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </span>
+              </a>
+              <ul class="nav-dropdown" aria-label="زیرمنوی درباره ما">
+                <li><a href="pages/contact.html">تماس با ما</a></li>
+                <li><a href="pages/doctors.html">متخصصان کلینیک</a></li>
+                <li><a href="pages/events.html">رویدادها</a></li>
+              </ul>
+            </li>
           </ul>
         </nav>
 
@@ -89,8 +100,8 @@
     <nav class="mobile-nav" id="mobile-nav" aria-label="منوی موبایل" aria-hidden="true">
       <div class="container">
         <div class="mobile-nav__panel">
-          <ul>
-            <li><a href="index.html">صفحه اصلی</a></li>
+                    <ul>
+            <li><a class="is-active" href="index.html" aria-current="page">صفحه اصلی</a></li>
             <li class="has-dropdown">
               <div class="mobile-nav__row">
                 <a href="pages/services.html">خدمات ما</a>
@@ -106,6 +117,26 @@
                 <li><a href="pages/services.html#adrenal">جراحی فوق کلیه</a></li>
                 <li><a href="pages/services.html#pancreas">جراحی پانکراس</a></li>
               </ul>
+            </li>
+            <li><a href="pages/videos.html">ویدئو ها</a></li>
+            <li><a href="pages/articles.html">مقالات تخصصی</a></li>
+            <li><a href="pages/blog.html">وبلاگ</a></li>
+            <li class="has-dropdown">
+              <div class="mobile-nav__row">
+                <a href="pages/about.html">درباره ما</a>
+                <button class="mobile-nav__submenu-toggle" type="button" aria-expanded="false" aria-label="باز کردن زیرمنوی درباره ما">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </button>
+              </div>
+              <ul class="mobile-nav__submenu">
+                <li><a href="pages/contact.html">تماس با ما</a></li>
+                <li><a href="pages/doctors.html">متخصصان کلینیک</a></li>
+                <li><a href="pages/events.html">رویدادها</a></li>
+              </ul>
+            </li>
+          </ul>
             </li>
             <li><a href="pages/doctors.html">متخصصان کلینیک</a></li>
             <li><a href="pages/events.html">رویدادها</a></li>
