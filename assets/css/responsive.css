@@ -1645,6 +1645,21 @@
     font-size: 0.9rem;
   }
 
+  .consult-band--service .consult-band__chips {
+    flex-wrap: nowrap;
+    gap: 0.3rem;
+  }
+
+  .consult-band--service .consult-band__chips li {
+    flex: 1 1 0;
+    justify-content: center;
+    min-width: 0;
+    min-height: 1.75rem;
+    padding: 0.25rem 0.4rem;
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+
   .consult-band__title {
     font-size: 1.15rem;
   }
