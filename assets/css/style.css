@@ -2997,15 +2997,15 @@ body.booking-open .float-call {
   justify-content: space-between;
   gap: 0.75rem;
   width: 100%;
-  min-height: 42px;
-  padding: 0.6rem 0.85rem;
+  min-height: 46px;
+  padding: 0.65rem 0.9rem;
   border: 1px solid rgba(9, 112, 125, 0.16);
   border-radius: 12px;
   background: var(--surface);
   color: var(--text);
   font: inherit;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: 0.92rem;
+  line-height: 1.45;
   text-align: start;
   cursor: pointer;
   transition:
@@ -3027,9 +3027,22 @@ body.booking-open .float-call {
   box-shadow: 0 0 0 3px rgba(9, 112, 125, 0.12);
 }
 
+.booking-form__field.is-invalid .booking-select__trigger,
+.contact-form__field.is-invalid .booking-select__trigger {
+  border-color: #c45c5c;
+  box-shadow: 0 0 0 3px rgba(196, 92, 92, 0.12);
+}
+
 .booking-select__value {
   flex: 1;
   min-width: 0;
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.booking-select__value.is-placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 .booking-select__caret {
@@ -3055,15 +3068,15 @@ body.booking-open .float-call {
   position: absolute;
   inset-inline: 0;
   top: calc(100% + 0.4rem);
-  z-index: 5;
+  z-index: 20;
   margin: 0;
   padding: 0.4rem;
   list-style: none;
   border: 1px solid rgba(9, 112, 125, 0.14);
   border-radius: 14px;
   background: var(--white);
-  box-shadow: 0 16px 36px rgba(9, 112, 125, 0.16);
-  max-height: 220px;
+  box-shadow: 0 16px 36px rgba(9, 112, 125, 0.14);
+  max-height: 240px;
   overflow: auto;
 }
 
@@ -3107,6 +3120,12 @@ body.booking-open .float-call {
   margin-top: 0.45rem;
   border-radius: 50%;
   background: var(--primary);
+}
+
+.contact-form__label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--secondary);
 }
 
 .booking-form__field textarea {
@@ -8236,8 +8255,7 @@ a.contact-channel:focus-visible {
 }
 
 .contact-form__field input,
-.contact-form__field textarea,
-.contact-form__field select {
+.contact-form__field textarea {
   width: 100%;
   min-height: 46px;
   padding: 0.65rem 0.9rem;
@@ -8259,27 +8277,16 @@ a.contact-channel:focus-visible {
   resize: vertical;
 }
 
-.contact-form__field select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2309707d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: left 0.9rem center;
-  padding-inline: 0.9rem 2.4rem;
-  cursor: pointer;
-}
-
 .contact-form__field input:focus,
-.contact-form__field textarea:focus,
-.contact-form__field select:focus {
+.contact-form__field textarea:focus {
   outline: none;
   border-color: rgba(9, 112, 125, 0.45);
   background: var(--white);
   box-shadow: 0 0 0 3px rgba(9, 112, 125, 0.12);
 }
 
-.contact-form__field.is-invalid input,
-.contact-form__field.is-invalid textarea,
-.contact-form__field.is-invalid select {
+.contact-form__field.is-invalid input:not([type="hidden"]),
+.contact-form__field.is-invalid textarea {
   border-color: #c45c5c;
   box-shadow: 0 0 0 3px rgba(196, 92, 92, 0.12);
 }

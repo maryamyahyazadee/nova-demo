@@ -22,6 +22,150 @@
     return toPersianDigits(minutes + ":" + String(seconds).padStart(2, "0"));
   }
 
+  function createUiSelect(root, config) {
+    if (!root) return null;
+
+    config = config || {};
+    var placeholder = config.placeholder || "";
+    var defaultValue = config.defaultValue;
+
+    var input = root.querySelector('input[type="hidden"]');
+    var trigger =
+      root.querySelector("[data-ui-select-trigger]") ||
+      root.querySelector("[data-booking-select-trigger]");
+    var valueLabel =
+      root.querySelector("[data-ui-select-value]") ||
+      root.querySelector("[data-booking-select-value]");
+    var menu =
+      root.querySelector("[data-ui-select-menu]") ||
+      root.querySelector("[data-booking-select-menu]");
+    var options = Array.prototype.slice.call(root.querySelectorAll('[role="option"]'));
+
+    if (!trigger || !menu || !options.length) return null;
+
+    function close() {
+      root.classList.remove("is-open");
+      menu.hidden = true;
+      trigger.setAttribute("aria-expanded", "false");
+      options.forEach(function (option) {
+        option.classList.remove("is-active");
+      });
+    }
+
+    function open() {
+      root.classList.add("is-open");
+      menu.hidden = false;
+      trigger.setAttribute("aria-expanded", "true");
+      var selected = options.find(function (option) {
+        return option.classList.contains("is-selected");
+      });
+      var focusTarget = selected || options[0];
+      if (focusTarget) {
+        focusTarget.classList.add("is-active");
+        focusTarget.focus();
+      }
+    }
+
+    function setValue(value, label) {
+      if (input) input.value = value == null ? "" : value;
+      if (valueLabel) {
+        valueLabel.textContent = label || placeholder || "";
+        valueLabel.classList.toggle("is-placeholder", !value);
+      }
+
+      options.forEach(function (option) {
+        var isSelected = option.getAttribute("data-value") === value;
+        option.classList.toggle("is-selected", isSelected);
+        option.setAttribute("aria-selected", isSelected ? "true" : "false");
+      });
+    }
+
+    function reset() {
+      if (defaultValue != null) {
+        var match = options.find(function (option) {
+          return option.getAttribute("data-value") === defaultValue;
+        });
+        if (match) {
+          setValue(match.getAttribute("data-value"), match.textContent.trim());
+          close();
+          return;
+        }
+      }
+
+      setValue("", placeholder);
+      close();
+    }
+
+    function getValue() {
+      return input ? input.value : "";
+    }
+
+    trigger.addEventListener("click", function () {
+      if (root.classList.contains("is-open")) {
+        close();
+        trigger.focus();
+      } else {
+        open();
+      }
+    });
+
+    options.forEach(function (option, index) {
+      option.addEventListener("click", function () {
+        setValue(option.getAttribute("data-value"), option.textContent.trim());
+        close();
+        trigger.focus();
+      });
+
+      option.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          var next = options[Math.min(index + 1, options.length - 1)];
+          options.forEach(function (item) {
+            item.classList.remove("is-active");
+          });
+          next.classList.add("is-active");
+          next.focus();
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          var prev = options[Math.max(index - 1, 0)];
+          options.forEach(function (item) {
+            item.classList.remove("is-active");
+          });
+          prev.classList.add("is-active");
+          prev.focus();
+        } else if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setValue(option.getAttribute("data-value"), option.textContent.trim());
+          close();
+          trigger.focus();
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          event.stopPropagation();
+          close();
+          trigger.focus();
+        }
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!root.classList.contains("is-open")) return;
+      if (!root.contains(event.target)) close();
+    });
+
+    return {
+      root: root,
+      trigger: trigger,
+      close: close,
+      open: open,
+      setValue: setValue,
+      reset: reset,
+      getValue: getValue,
+      isOpen: function () {
+        return root.classList.contains("is-open");
+      },
+    };
+  }
+
   function setMobileNavOpen(isOpen) {
     if (!navToggle || !mobileNav) return;
 
@@ -587,71 +731,19 @@
     var closeButtons = modal.querySelectorAll("[data-booking-close]");
     var form = modal.querySelector("[data-booking-form]");
     var success = modal.querySelector("[data-booking-success]");
-    var selectRoot = modal.querySelector("[data-booking-select]");
+    var selectRoot = modal.querySelector("[data-booking-select], [data-ui-select]");
+    var bookingSelect = createUiSelect(selectRoot, {
+      defaultValue: "thyroid",
+      placeholder: "انتخاب موضوع مراجعه",
+    });
     var lastFocus = null;
 
-    function getSelectParts() {
-      if (!selectRoot) return null;
-      return {
-        input: selectRoot.querySelector("#booking-service"),
-        trigger: selectRoot.querySelector("[data-booking-select-trigger]"),
-        valueLabel: selectRoot.querySelector("[data-booking-select-value]"),
-        menu: selectRoot.querySelector("[data-booking-select-menu]"),
-        options: Array.from(selectRoot.querySelectorAll('[role="option"]'))
-      };
-    }
-
     function closeSelect() {
-      var parts = getSelectParts();
-      if (!parts || !parts.menu || !parts.trigger) return;
-      selectRoot.classList.remove("is-open");
-      parts.menu.hidden = true;
-      parts.trigger.setAttribute("aria-expanded", "false");
-      parts.options.forEach(function (option) {
-        option.classList.remove("is-active");
-      });
-    }
-
-    function openSelect() {
-      var parts = getSelectParts();
-      if (!parts || !parts.menu || !parts.trigger) return;
-      selectRoot.classList.add("is-open");
-      parts.menu.hidden = false;
-      parts.trigger.setAttribute("aria-expanded", "true");
-      var selected = parts.options.find(function (option) {
-        return option.classList.contains("is-selected");
-      });
-      if (selected) {
-        selected.classList.add("is-active");
-        selected.focus();
-      }
-    }
-
-    function setSelectValue(value, label) {
-      var parts = getSelectParts();
-      if (!parts) return;
-
-      if (parts.input) parts.input.value = value;
-      if (parts.valueLabel) parts.valueLabel.textContent = label;
-
-      parts.options.forEach(function (option) {
-        var isSelected = option.getAttribute("data-value") === value;
-        option.classList.toggle("is-selected", isSelected);
-        option.setAttribute("aria-selected", isSelected ? "true" : "false");
-      });
+      if (bookingSelect) bookingSelect.close();
     }
 
     function resetSelect() {
-      var parts = getSelectParts();
-      if (!parts) return;
-      var defaultOption =
-        parts.options.find(function (option) {
-          return option.getAttribute("data-value") === "thyroid";
-        }) || parts.options[0];
-
-      if (!defaultOption) return;
-      setSelectValue(defaultOption.getAttribute("data-value"), defaultOption.textContent.trim());
-      closeSelect();
+      if (bookingSelect) bookingSelect.reset();
     }
 
     function getFocusable() {
@@ -722,73 +814,14 @@
       });
     });
 
-    if (selectRoot) {
-      var parts = getSelectParts();
-
-      parts.trigger.addEventListener("click", function () {
-        if (selectRoot.classList.contains("is-open")) {
-          closeSelect();
-          parts.trigger.focus();
-        } else {
-          openSelect();
-        }
-      });
-
-      parts.options.forEach(function (option, index) {
-        option.addEventListener("click", function () {
-          setSelectValue(option.getAttribute("data-value"), option.textContent.trim());
-          closeSelect();
-          parts.trigger.focus();
-        });
-
-        option.addEventListener("keydown", function (event) {
-          if (event.key === "ArrowDown") {
-            event.preventDefault();
-            var next = parts.options[Math.min(index + 1, parts.options.length - 1)];
-            parts.options.forEach(function (item) {
-              item.classList.remove("is-active");
-            });
-            next.classList.add("is-active");
-            next.focus();
-          } else if (event.key === "ArrowUp") {
-            event.preventDefault();
-            var prev = parts.options[Math.max(index - 1, 0)];
-            parts.options.forEach(function (item) {
-              item.classList.remove("is-active");
-            });
-            prev.classList.add("is-active");
-            prev.focus();
-          } else if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            setSelectValue(option.getAttribute("data-value"), option.textContent.trim());
-            closeSelect();
-            parts.trigger.focus();
-          } else if (event.key === "Escape") {
-            event.preventDefault();
-            event.stopPropagation();
-            closeSelect();
-            parts.trigger.focus();
-          }
-        });
-      });
-
-      document.addEventListener("click", function (event) {
-        if (!selectRoot.classList.contains("is-open")) return;
-        if (!selectRoot.contains(event.target)) {
-          closeSelect();
-        }
-      });
-    }
-
     document.addEventListener("keydown", function (event) {
       if (modal.hidden) return;
 
       if (event.key === "Escape") {
-        if (selectRoot && selectRoot.classList.contains("is-open")) {
+        if (bookingSelect && bookingSelect.isOpen()) {
           event.preventDefault();
-          closeSelect();
-          var selectParts = getSelectParts();
-          if (selectParts && selectParts.trigger) selectParts.trigger.focus();
+          bookingSelect.close();
+          if (bookingSelect.trigger) bookingSelect.trigger.focus();
           return;
         }
         event.preventDefault();
@@ -1520,6 +1553,9 @@
     var emailInput = form.querySelector("#contact-email");
     var subjectInput = form.querySelector("#contact-subject");
     var messageInput = form.querySelector("#contact-message");
+    createUiSelect(form.querySelector("[data-ui-select]"), {
+      placeholder: "انتخاب موضوع",
+    });
 
     function isValidPhone(value) {
       var digits = String(value).replace(/[^\d]/g, "");
@@ -1580,7 +1616,9 @@
       }
 
       if (!valid) {
-        var firstInvalid = form.querySelector(".contact-form__field.is-invalid input, .contact-form__field.is-invalid textarea, .contact-form__field.is-invalid select");
+        var firstInvalid = form.querySelector(
+          ".contact-form__field.is-invalid input:not([type='hidden']), .contact-form__field.is-invalid textarea, .contact-form__field.is-invalid .booking-select__trigger"
+        );
         if (firstInvalid) firstInvalid.focus();
         return;
       }
