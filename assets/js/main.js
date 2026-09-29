@@ -111,10 +111,16 @@
 
   document.querySelectorAll(".desktop-nav .has-dropdown > a").forEach(function (trigger) {
     trigger.addEventListener("click", function (event) {
-      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+      var caret = event.target.closest(".nav-caret");
+      var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      // Parent link always navigates, except caret tap / first tap on touch to open submenu
+      if (canHover && !caret) return;
 
       var item = trigger.closest(".has-dropdown");
       if (!item) return;
+
+      if (!caret && item.classList.contains("is-open")) return;
 
       event.preventDefault();
       var willOpen = !item.classList.contains("is-open");

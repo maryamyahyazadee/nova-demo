@@ -468,6 +468,14 @@ a:hover {
   transform: rotate(180deg);
 }
 
+.has-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  height: 0.55rem;
+}
+
 .nav-dropdown {
   position: absolute;
   inset-inline-start: 0;
