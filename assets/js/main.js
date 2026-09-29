@@ -109,32 +109,7 @@
     });
   }
 
-  document.querySelectorAll(".desktop-nav .has-dropdown > a").forEach(function (trigger) {
-    trigger.addEventListener("click", function (event) {
-      var caret = event.target.closest(".nav-caret");
-      var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-      // Parent link always navigates, except caret tap / first tap on touch to open submenu
-      if (canHover && !caret) return;
-
-      var item = trigger.closest(".has-dropdown");
-      if (!item) return;
-
-      if (!caret && item.classList.contains("is-open")) return;
-
-      event.preventDefault();
-      var willOpen = !item.classList.contains("is-open");
-      document.querySelectorAll(".desktop-nav .has-dropdown.is-open").forEach(function (openItem) {
-        if (openItem === item) return;
-        openItem.classList.remove("is-open");
-        var openLink = openItem.querySelector(":scope > a");
-        if (openLink) openLink.setAttribute("aria-expanded", "false");
-      });
-      item.classList.toggle("is-open", willOpen);
-      trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
-    });
-  });
-
+  // Desktop: submenu opens via CSS :hover; parent link always goes to its href.
   document.addEventListener("click", function (event) {
     if (event.target.closest(".desktop-nav .has-dropdown")) return;
     document.querySelectorAll(".desktop-nav .has-dropdown.is-open").forEach(function (item) {
