@@ -8153,6 +8153,7 @@ a.contact-channel:focus-visible {
   display: grid;
   gap: 0.2rem;
   min-width: 0;
+  text-align: start;
 }
 
 .contact-channel__label {
@@ -8166,6 +8167,13 @@ a.contact-channel:focus-visible {
   font-weight: 700;
   color: var(--secondary);
   line-height: 1.55;
+}
+
+.contact-channel__value.phone-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+  justify-self: start;
 }
 
 .contact-form-section {
