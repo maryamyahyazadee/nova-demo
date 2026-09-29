@@ -1239,19 +1239,23 @@
     overflow: visible;
   }
 
+  .service-toc__panel {
+    padding: 0.9rem 0.75rem;
+  }
+
   .service-toc__list,
   .blog-toc__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.25rem 0.75rem;
+    gap: 0.2rem 0.65rem;
+  }
+
+  .service-toc__list a {
+    padding: 0.4rem 0.55rem;
   }
 
   .service-toc__list a::after {
     display: none;
-  }
-
-  .service-toc__nav {
-    padding-inline: 0.65rem;
   }
 
   .doctor-about__layout {
@@ -1535,10 +1539,6 @@
   .service-toc__list,
   .blog-toc__list {
     grid-template-columns: 1fr;
-  }
-
-  .service-toc__panel {
-    padding: 0;
   }
 
   .blog-toc__panel {

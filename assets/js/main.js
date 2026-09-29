@@ -1448,12 +1448,19 @@
     var links = Array.prototype.slice.call(toc.querySelectorAll(".service-toc__list a"));
     if (!links.length) return;
 
+    function resolveHeading(el) {
+      if (!el) return null;
+      if (el.matches("h2")) return el;
+      return el.querySelector("h2") || el;
+    }
+
     var sections = links
       .map(function (link) {
         var id = link.getAttribute("href");
         if (!id || id.charAt(0) !== "#") return null;
         var el = document.querySelector(id);
-        return el ? { link: link, el: el } : null;
+        var heading = resolveHeading(el);
+        return heading ? { link: link, heading: heading } : null;
       })
       .filter(Boolean);
 
@@ -1468,40 +1475,39 @@
       });
     }
 
+    function getOffset() {
+      var headerEl = document.querySelector(".site-header");
+      var headerH = headerEl ? headerEl.offsetHeight : 80;
+      return headerH + 20;
+    }
+
+    function updateActive() {
+      var offset = getOffset();
+      var current = sections[0];
+
+      sections.forEach(function (item) {
+        if (item.heading.getBoundingClientRect().top - offset <= 0) {
+          current = item;
+        }
+      });
+
+      setActive(current.link);
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        updateActive();
+        ticking = false;
+      });
+    }
+
     setActive(sections[0].link);
-
-    if (!("IntersectionObserver" in window)) return;
-
-    var visible = new Map();
-
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          visible.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
-        });
-
-        var best = null;
-        var bestRatio = 0;
-
-        sections.forEach(function (item) {
-          var ratio = visible.get(item.el) || 0;
-          if (ratio > bestRatio) {
-            bestRatio = ratio;
-            best = item;
-          }
-        });
-
-        if (best) setActive(best.link);
-      },
-      {
-        rootMargin: "-20% 0px -55% 0px",
-        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
-      }
-    );
-
-    sections.forEach(function (item) {
-      observer.observe(item.el);
-    });
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
   })();
 
   (function initContactForm() {
