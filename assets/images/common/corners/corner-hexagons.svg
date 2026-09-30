@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
+  <!-- Concentric Cellular Hexagon Facets (Origin at 0,0) -->
+  <g stroke="#09707D" stroke-width="1.2">
+    <!-- Tier 1 -->
+    <path d="M0 60 L52 30 L60 0" opacity="0.22"/>
+    <!-- Tier 2 -->
+    <path d="M0 110 L95.2 55 L110 0" opacity="0.18"/>
+    <!-- Tier 3 (Dashed) -->
+    <path d="M0 160 L138.5 80 L160 0" stroke-dasharray="3 4" opacity="0.15"/>
+    <!-- Tier 4 -->
+    <path d="M0 210 L181.8 105 L210 0" opacity="0.11"/>
+
+    <!-- Radial Axis Guideline -->
+    <line x1="0" y1="0" x2="190" y2="110" stroke-dasharray="2 3" opacity="0.15"/>
+  </g>
+
+  <!-- Vertex Nodes (Accent dots) -->
+  <g fill="#09707D">
+    <circle cx="52" cy="30" r="2.2" opacity="0.3"/>
+    <circle cx="95.2" cy="55" r="2.2" opacity="0.25"/>
+    <circle cx="138.5" cy="80" r="2.5" fill="#C4A35A" opacity="0.6"/>
+    <circle cx="181.8" cy="105" r="2" opacity="0.18"/>
+    <circle cx="110" cy="0" r="1.8" opacity="0.2"/>
+    <circle cx="0" cy="110" r="1.8" opacity="0.2"/>
+  </g>
+</svg>
