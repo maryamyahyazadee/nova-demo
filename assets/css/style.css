@@ -346,188 +346,6 @@ a:hover {
   transform: translateX(-3px);
 }
 
-/* ---------- Corner Decorative Patterns System (Nova Medical Motifs) ---------- */
-
-.corner-pattern {
-  position: relative;
-  overflow: hidden;
-}
-
-.corner-pattern::before {
-  content: "";
-  position: absolute;
-  width: var(--corner-size, 200px);
-  height: var(--corner-size, 200px);
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  z-index: 0;
-  transition: opacity var(--transition);
-}
-
-/* 1. Precision Dot Matrix */
-.corner-pattern--dots::before {
-  background-image: url("../images/common/corners/corner-dots-grid.svg");
-  --corner-size: 160px;
-}
-
-/* 2. Concentric Cellular Hexagons */
-.corner-pattern--hexagons::before {
-  background-image: url("../images/common/corners/corner-hexagons.svg");
-  --corner-size: 220px;
-}
-
-/* 3. Physiological Contour Waves */
-.corner-pattern--waves::before {
-  background-image: url("../images/common/corners/corner-contour-waves.svg");
-  --corner-size: 220px;
-}
-
-/* 4. Surgical Calibration Grid */
-.corner-pattern--calibration::before {
-  background-image: url("../images/common/corners/corner-calibration-cross.svg");
-  --corner-size: 180px;
-}
-
-/* 5. Technical Reticle Arcs */
-.corner-pattern--arcs::before {
-  background-image: url("../images/common/corners/corner-radial-arcs.svg");
-  --corner-size: 220px;
-}
-
-/* Light Variants for Dark Surfaces & Gradients */
-.corner-pattern--light.corner-pattern--dots::before {
-  background-image: url("../images/common/corners/corner-dots-grid-light.svg");
-}
-
-.corner-pattern--light.corner-pattern--hexagons::before {
-  background-image: url("../images/common/corners/corner-hexagons-light.svg");
-}
-
-.corner-pattern--light.corner-pattern--waves::before {
-  background-image: url("../images/common/corners/corner-contour-waves-light.svg");
-}
-
-.corner-pattern--light.corner-pattern--calibration::before {
-  background-image: url("../images/common/corners/corner-calibration-cross-light.svg");
-}
-
-.corner-pattern--light.corner-pattern--arcs::before {
-  background-image: url("../images/common/corners/corner-radial-arcs-light.svg");
-}
-
-/* Corner Positions (RTL & LTR friendly) */
-/* Top-Start (Top-Right in RTL) */
-.corner--top-start::before {
-  top: 0;
-  inset-inline-start: 0;
-  transform: scaleX(-1);
-}
-
-/* Top-End (Top-Left in RTL) */
-.corner--top-end::before {
-  top: 0;
-  inset-inline-end: 0;
-  transform: none;
-}
-
-/* Bottom-Start (Bottom-Right in RTL) */
-.corner--bottom-start::before {
-  bottom: 0;
-  inset-inline-start: 0;
-  transform: scale(-1);
-}
-
-/* Bottom-End (Bottom-Left in RTL) */
-.corner--bottom-end::before {
-  bottom: 0;
-  inset-inline-end: 0;
-  transform: scaleY(-1);
-}
-
-/* Dual Corner Pattern */
-.corner-pattern--dual::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  inset-inline-start: 0;
-  width: var(--corner-size-alt, 160px);
-  height: var(--corner-size-alt, 160px);
-  background-repeat: no-repeat;
-  background-size: contain;
-  transform: scale(-1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.corner-pattern--dual.corner-pattern--hexagons::after {
-  background-image: url("../images/common/corners/corner-hexagons.svg");
-}
-
-.corner-pattern--dual.corner-pattern--light.corner-pattern--hexagons::after {
-  background-image: url("../images/common/corners/corner-hexagons-light.svg");
-}
-
-.corner-pattern--dual.corner-pattern--arcs::after {
-  background-image: url("../images/common/corners/corner-radial-arcs.svg");
-}
-
-.corner-pattern--dual.corner-pattern--light.corner-pattern--arcs::after {
-  background-image: url("../images/common/corners/corner-radial-arcs-light.svg");
-}
-
-/* Ensure inner container stacks above the decorative corner patterns */
-.corner-pattern > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* ---------- Corner Concentric Rings (Preserved Original Motif) ---------- */
-
-.corner-rings {
-  position: relative;
-  overflow: hidden;
-}
-
-.corner-rings::before {
-  content: "";
-  position: absolute;
-  width: 14rem;
-  height: 14rem;
-  border: 1px solid rgba(9, 112, 125, 0.09);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 2.5rem rgba(9, 112, 125, 0.025),
-    0 0 0 5rem rgba(9, 112, 125, 0.018);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.corner-rings--top-end::before {
-  inset-block-start: 4rem;
-  inset-inline-end: -5rem;
-}
-
-.corner-rings--top-start::before {
-  inset-block-start: 3rem;
-  inset-inline-start: -5rem;
-}
-
-.corner-rings--bottom-end::before {
-  inset-block-end: -4rem;
-  inset-inline-end: -5rem;
-}
-
-.corner-rings--bottom-start::before {
-  inset-block-end: -4rem;
-  inset-inline-start: -5rem;
-}
-
-.corner-rings > * {
-  position: relative;
-  z-index: 1;
-}
-
 /* ---------- Header ---------- */
 
 .site-header {
@@ -1031,25 +849,10 @@ body.nav-open {
 .hero-section {
   position: relative;
   overflow: hidden;
-  isolation: isolate;
   background:
     radial-gradient(ellipse at 100% 0%, rgba(9, 112, 125, 0.08) 0%, transparent 42%),
     var(--surface);
   color: var(--secondary);
-}
-
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-end: 0;
-  width: 240px;
-  height: 240px;
-  background-image: url("../images/common/corners/corner-radial-arcs.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .hero-section__inner {
@@ -1460,31 +1263,8 @@ body.nav-open {
 /* ---------- Services ---------- */
 
 .services-section {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   padding-block: var(--section-space);
   background: var(--surface);
-}
-
-.services-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-start: 0;
-  width: 230px;
-  height: 230px;
-  background-image: url("../images/common/corners/corner-hexagons.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  transform: scaleX(-1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.services-section .container {
-  position: relative;
-  z-index: 1;
 }
 
 .service-card {
@@ -1914,31 +1694,8 @@ body.nav-open {
 /* ---------- Journey ---------- */
 
 .journey-section {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   padding-block: var(--section-space);
   background: var(--surface);
-}
-
-.journey-section::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  inset-inline-start: 0;
-  width: 230px;
-  height: 230px;
-  background-image: url("../images/common/corners/corner-contour-waves.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  transform: scale(-1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.journey-section .container {
-  position: relative;
-  z-index: 1;
 }
 
 .journey-steps {
@@ -2033,33 +1790,11 @@ body.nav-open {
 /* ---------- Testimonials ---------- */
 
 .testimonials-section {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   padding-block: var(--section-space);
   background:
     radial-gradient(circle at top left, rgba(9, 112, 125, 0.06), transparent 42%),
     radial-gradient(circle at bottom right, rgba(196, 163, 90, 0.08), transparent 38%),
     var(--surface);
-}
-
-.testimonials-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-end: 0;
-  width: 170px;
-  height: 170px;
-  background-image: url("../images/common/corners/corner-dots-grid.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.testimonials-section .container {
-  position: relative;
-  z-index: 1;
 }
 
 .testimonials-slider {
@@ -2531,30 +2266,8 @@ body.nav-open {
 /* ---------- FAQ ---------- */
 
 .faq-section {
-  position: relative;
-  overflow: hidden;
   padding-block: var(--section-space);
   background: var(--white);
-}
-
-.faq-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-start: 0;
-  width: 190px;
-  height: 190px;
-  background-image: url("../images/common/corners/corner-calibration-cross.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  transform: scaleX(-1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.faq-section .container {
-  position: relative;
-  z-index: 1;
 }
 
 .faq-list {
@@ -2636,46 +2349,9 @@ body.nav-open {
 }
 
 .cta-panel {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   padding: clamp(1.5rem, 3vw, 2.25rem);
   border-radius: calc(var(--radius-lg) + 4px);
   background: linear-gradient(135deg, #0a555e 0%, #09707d 55%, #0a8491 100%);
-}
-
-.cta-panel::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-end: 0;
-  width: 210px;
-  height: 210px;
-  background-image: url("../images/common/corners/corner-hexagons-light.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.cta-panel::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  inset-inline-start: 0;
-  width: 170px;
-  height: 170px;
-  background-image: url("../images/common/corners/corner-dots-grid-light.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  transform: scale(-1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.cta-panel > * {
-  position: relative;
-  z-index: 1;
 }
 
 .cta-section .section-heading {
@@ -3549,7 +3225,6 @@ button.header-cta {
 .page-hero {
   position: relative;
   overflow: hidden;
-  isolation: isolate;
   background:
     radial-gradient(ellipse at 0% 0%, rgba(9, 112, 125, 0.1) 0%, transparent 48%),
     radial-gradient(ellipse at 100% 100%, rgba(196, 163, 90, 0.08) 0%, transparent 40%),
@@ -3557,29 +3232,7 @@ button.header-cta {
   border-bottom: 1px solid rgba(9, 112, 125, 0.08);
 }
 
-.page-hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-end: 0;
-  width: 170px;
-  height: 170px;
-  background-image: url("../images/common/corners/corner-dots-grid.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.page-hero--doctor-single::after,
-.page-hero--service-article::after,
-.page-hero--blog-single::after {
-  display: none;
-}
-
 .page-hero__inner {
-  position: relative;
-  z-index: 1;
   padding-block: 6.75rem 2.75rem;
   max-width: 42rem;
 }
@@ -4049,33 +3702,10 @@ button.header-cta {
 }
 
 .doctors-values {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   padding-block: var(--section-space);
   background:
     radial-gradient(ellipse at 50% 0%, rgba(9, 112, 125, 0.06) 0%, transparent 55%),
     var(--surface);
-}
-
-.doctors-values::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-start: 0;
-  width: 220px;
-  height: 220px;
-  background-image: url("../images/common/corners/corner-hexagons.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  transform: scaleX(-1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.doctors-values .container {
-  position: relative;
-  z-index: 1;
 }
 
 .doctors-values .section-header {
@@ -7553,20 +7183,6 @@ a.video-single-meta__value:focus-visible {
   z-index: 0;
 }
 
-.about-hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-end: 0;
-  width: 200px;
-  height: 200px;
-  background-image: url("../images/common/corners/corner-calibration-cross.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  z-index: 0;
-}
-
 .about-hero__grid {
   position: relative;
   z-index: 1;
@@ -8581,31 +8197,9 @@ a.contact-channel:focus-visible {
 }
 
 .contact-form-section {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   padding-block: clamp(3rem, 6vw, 5rem);
   background:
     linear-gradient(180deg, var(--surface) 0%, #eef6f7 100%);
-}
-
-.contact-form-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline-end: 0;
-  width: 170px;
-  height: 170px;
-  background-image: url("../images/common/corners/corner-dots-grid.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.contact-form-section .container {
-  position: relative;
-  z-index: 1;
 }
 
 .contact-form-section__grid {

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
-  <!-- Molecular / cellular diamond lattice -->
-  <path d="M30 0 L60 30 L30 60 L0 30 Z" stroke="#09707D" stroke-width="0.8" opacity="0.75"/>
-  <circle cx="30" cy="30" r="1.5" fill="#09707D"/>
-  <circle cx="0" cy="0" r="1.5" fill="#09707D"/>
-  <circle cx="60" cy="0" r="1.5" fill="#09707D"/>
-  <circle cx="0" cy="60" r="1.5" fill="#09707D"/>
-  <circle cx="60" cy="60" r="1.5" fill="#09707D"/>
-</svg>

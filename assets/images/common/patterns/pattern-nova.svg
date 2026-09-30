@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-  <!-- Center 4-point Nova diamond star -->
-  <path d="M32 16C32 24.8 24.8 32 16 32C24.8 32 32 39.2 32 48C32 39.2 39.2 32 48 32C39.2 32 32 24.8 32 16Z" fill="#09707D"/>
-  <circle cx="32" cy="32" r="1.5" fill="#C4A35A"/>
-  <!-- Corner micro sparkles -->
-  <path d="M0 0C0 3.5 -3.5 0 0 0C3.5 0 0 3.5 0 0Z" fill="#09707D" opacity="0.4"/>
-  <circle cx="0" cy="0" r="1" fill="#09707D" opacity="0.5"/>
-</svg>
